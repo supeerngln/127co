@@ -5,42 +5,40 @@
 	import { onMount } from 'svelte';
 	// Create a writable store to manage the active link
 	const activeLink = writable(null);
-  
+
 	// Function to handle link clicks
 	const handleLinkClick = (href) => {
-    // Update the active link store
-    activeLink.set(href);
-  	};
-  
+		// Update the active link store
+		activeLink.set(href);
+	};
+
 	// Define your navigation links
-	let links = [ // If error occured, create folder with the appropriate href link
-	  { href: '/', label: 'Home', icon: 'home' },
-	  { href: '/human_resources', label: 'Human Resources', icon: 'groups' },
-	  { href: '/finance', label: 'Finance', icon: 'payments' },
-	  { href: '/proj_management', label: 'Project Management', icon: 'bookmark_manager' },
-	  { href: '/marketing', label: 'Marketing', icon: 'campaign'},
-	  { href: '/cooperative', label: 'Cooperative', icon: 'account_balance' },
-	  { href: '/supplies', label: 'Supplies and Inventory', icon: 'inventory_2' },
-	  { href: '/bootcamp', label: 'Bootcamp', icon: 'school' },
-	  // Add more links as needed
+	let links = [
+		// If error occured, create folder with the appropriate href link
+		{ href: '/', label: 'Home', icon: 'home' },
+		{ href: '/human_resources', label: 'Human Resources', icon: 'groups' },
+		{ href: '/finance', label: 'Finance', icon: 'payments' },
+		{ href: '/proj_management', label: 'Project Management', icon: 'bookmark_manager' },
+		{ href: '/marketing', label: 'Marketing', icon: 'campaign' },
+		{ href: '/cooperative', label: 'Cooperative', icon: 'account_balance' },
+		{ href: '/supplies', label: 'Supplies and Inventory', icon: 'inventory_2' },
+		{ href: '/bootcamp', label: 'Bootcamp', icon: 'school' }
+		// Add more links as needed
 	];
-  
+
 	// Subscribe to the active link store
 	$: activeLink.subscribe((value) => {
-	  $activeLink = value;
+		$activeLink = value;
 	});
-  
+
 	// Set the initial active link based on the current route or page
 	onMount(() => {
-	  const currentRoute = window.location.pathname; // Adjust this based on your routing setup
-	  activeLink.set(currentRoute);
+		const currentRoute = window.location.pathname; // Adjust this based on your routing setup
+		activeLink.set(currentRoute);
 	});
-  </script>
-  
-  <style>
-	/* Add your existing styles here */
-  </style>
-  <div class="relative min-h-screen md:flex" data-dev-hint="container">
+</script>
+
+<div class="relative min-h-screen md:flex" data-dev-hint="container">
 	<input type="checkbox" id="menu-open" class="hidden" />
 	<label
 		for="menu-open"
@@ -66,10 +64,7 @@
 		class="bg-primary w-screen text-secondary flex justify-between md:hidden"
 		data-dev-hint="mobile menu bar"
 	>
-		<a
-			href="home"
-			class="block p-4 jost text-accent font-bold text-3xl whitespace-nowrap truncate"
-		>
+		<a href="home" class="block p-4 jost text-accent font-bold text-3xl whitespace-nowrap truncate">
 			ONE TWENTY SEVEN CO.
 		</a>
 
@@ -131,11 +126,13 @@
 
 			<nav data-dev-hint="main navigation">
 				{#each links as { href, label, icon }}
-					<a href={href}
+					<a
+						{href}
 						class={`flex font-medium my-0.5 mx-4 rounded-md items-center space-x-3 py-2 px-4 transition duration-200
 								hover:bg-phover hover:text-secondary focus:text-accent focus:bg-afocus
 								${$activeLink === href ? 'active:bg-accent active:text-secondary' : ''}`}
-						on:click={() => handleLinkClick(href)}>
+						on:click={() => handleLinkClick(href)}
+					>
 						<span class="material-symbols-outlined">{icon}</span>
 						<span class="text-base">{label}</span>
 					</a>
@@ -151,3 +148,7 @@
 		</div>
 	</main>
 </div>
+
+<style>
+	/* Add your existing styles here */
+</style>
