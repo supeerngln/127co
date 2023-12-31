@@ -1,15 +1,10 @@
 <script lang='ts'>
-    export let headers = [];
-    export let rows = [];
-    function handleEdit() {
-      // Handle edit action
-      console.log('Edit clicked');
-    }
-  
-    function handleDelete() {
-      // Handle delete action
-      console.log('Delete clicked');
-    }
+    export let headers: Array<string> = [];
+    export let rows: Array<Record<string, any>> = [];
+
+    export let handleEdit: () => void; 
+    export let handleDelete: () => void; 
+
   </script>
   
   <div class="flex mt-4 mb-4 flex-col">
