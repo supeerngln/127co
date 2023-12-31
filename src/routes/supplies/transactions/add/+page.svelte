@@ -1,18 +1,10 @@
-<script>
+<script lang="ts">
 
   import Breadcrumb from '$lib/components/Breadcrumb.svelte';
   import { Label, Input, Helper } from 'flowbite-svelte';
-  let headers = [
-    "Property_Id",
-    "Employee_Id",
-    "Item_Type",
-    "Item_Status",
-    "Item_LastUpdated",
-    "Supplier_Id",
-    "Location",
-  ];
+  import { transactionHeaders as headers } from '$lib/headers';
 
-  let formData = {};
+  let formData: Record<string, any> = {};
   function handleSubmit() {
     // Handle form submission logic here
     console.log(formData);
@@ -45,6 +37,7 @@
         <Input
           type="text"
           id={header}
+          bind:value={formData[header]}
           class="w-full p-2 border border-gray-300 rounded"
         />
       </div>

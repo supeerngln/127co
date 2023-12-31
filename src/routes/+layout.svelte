@@ -120,7 +120,7 @@
 				class="text-secondary mb-5 flex items-center space-x-2 px-4"
 				title="Your App is cool"
 			>
-				<img src="./Logo.png" alt="ONE TWENTY SEVEN CO. logo" class="ml-3 h-20 w-30 flex-0" />
+				<img src="/Logo.png" alt="ONE TWENTY SEVEN CO. logo" class="ml-3 h-20 w-30 flex-0" />
 				<span class="text-2xl font-extrabold whitespace-nowrap truncate"></span>
 			</button>
 
