@@ -1,7 +1,6 @@
 import type { Connection } from "mysql2";
 import mysql from "mysql2/promise"
 
-
 let sqlconn: Connection | null = null;
 
 export class Database {

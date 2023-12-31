@@ -1,22 +1,18 @@
-<script>
+<script lang="ts">
   import Breadcrumb from '$lib/components/Breadcrumb.svelte';
   import { Label, Input, Helper } from 'flowbite-svelte';
-  let headers = [
-  "Property_Id",
-  "Employee_Id",
-  "Item_Type",
-  "Item_Status",
-  "Item_LastUpdated",
-  "Supplier_Id",
-  "Location",
-];
-let formData = {};
 
-function handleSubmit() {
-  // Handle form submission logic here
-  console.log(formData);
-}
+  import { itemHeaders as headers } from '$lib/headers';
+
+  let formData: Record<string, any> = {};
+
+  function handleSubmit() {
+    // Handle form submission logic here
+    console.log(formData);
+  }
+
 </script>
+
 <main class="w-full">
   <Breadcrumb items={[
     { href: '/supplies', text: 'Supplies and Inventory' },

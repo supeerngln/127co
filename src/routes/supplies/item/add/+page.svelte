@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Breadcrumb from '$lib/components/Breadcrumb.svelte';
     import { Label, Input, Helper } from 'flowbite-svelte';
     let headers = [
@@ -10,7 +10,7 @@
     "Supplier_Id",
     "Location",
   ];
-  let formData = {};
+  let formData: Record<string, any> = {};
 
   function handleSubmit() {
     // Handle form submission logic here

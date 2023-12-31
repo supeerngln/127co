@@ -4,35 +4,13 @@
     import Breadcrumb from '$lib/components/Breadcrumb.svelte';
 
     import type { PageServerData } from "./$types";
+    import { itemHeaders, supplierHeaders, transactionHeaders } from "$lib/headers";
 
-    export let data: PageServerData;
+    export let data: NonNullable<PageServerData>;
 
-    let itemHeader = [
-        "Property_Id",
-        "Employee_Id",
-        "Item_Type",
-        "Item_Status",
-        "Item_LastUpdated",
-        "Supplier_Id",
-        "Item_Location",
-    ];
-    let supplierHeader = [
-        "Supplier_Id",
-        "Supplier_Name",
-        "Supplier_Address",
-        "Supplier_ContactNumber",
-        "Supplier_ContactEmail",
-    ];
-    let transactionHeader = [
-        "Transaction_Id",
-        "Property_Id",
-        "Transaction_Type",
-        "Transaction_Datetime",
-    ];
-
-    let items = data!['items'];
-    let suppliers = data!['suppliers'];
-    let transactions = data!['transactions'];
+    let items = data['items'];
+    let suppliers = data['suppliers'];
+    let transactions = data['transactions'];
 
     let handleDelete = (id: number) => {
       console.log(`Delete ${id}`);
@@ -58,21 +36,21 @@
     {handleEdit} 
     {handleDelete} 
     primaryKey="Property_Id"
-    headers={itemHeader} 
+    headers={itemHeaders} 
     rows={items} 
   />
   <Table 
     {handleEdit} 
     {handleDelete} 
     primaryKey="Supplier_Id"
-    headers={supplierHeader} 
+    headers={supplierHeaders} 
     rows={suppliers} 
   />
   <Table 
     {handleEdit} 
     {handleDelete} 
     primaryKey="Transaction_Id"
-    headers={transactionHeader} 
+    headers={transactionHeaders} 
     rows={transactions} 
   />
 
