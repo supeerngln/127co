@@ -32,13 +32,13 @@
     });
   </script>
   
-  <div class="nav-list">
-    <ul>
-      {#each menu as item}
-        <li>
-          <a href={item.link} class:active="{$page.url.pathname === item.link}">{item.title}</a>
-        </li>
-      {/each}
-    </ul>
-  </div>
-  
+<div class="nav-list">
+  <ul>
+    {#each menu as item}
+      <li>
+        <a href={item.link} class:active="{$page.url.pathname === item.link}">{item.title}</a>
+      </li>
+    {/each}
+  </ul>
+</div>
+

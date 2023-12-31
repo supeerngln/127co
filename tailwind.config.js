@@ -28,5 +28,3 @@ export default {
   },
   plugins: [require('preline/plugin'),require('flowbite/plugin'),],
 }
-
-// module.exports = config;

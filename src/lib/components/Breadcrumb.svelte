@@ -1,6 +1,6 @@
-<script>
-	export let items = [];
-  </script>
+<script lang="ts">
+	export let items: Array<{href: string, text: string}> = [];
+</script>
   
   <nav class="flex font-bold text-2xl pb-6" aria-label="Breadcrumb">
 	<ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">

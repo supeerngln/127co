@@ -1,7 +1,8 @@
 <script>
-    import Breadcrumb from '$lib/components/Breadcrumb.svelte';
-    import { Label, Input, Helper } from 'flowbite-svelte';
-    let headers = [
+
+  import Breadcrumb from '$lib/components/Breadcrumb.svelte';
+  import { Label, Input, Helper } from 'flowbite-svelte';
+  let headers = [
     "Property_Id",
     "Employee_Id",
     "Item_Type",
@@ -10,12 +11,13 @@
     "Supplier_Id",
     "Location",
   ];
-  let formData = {};
 
+  let formData = {};
   function handleSubmit() {
     // Handle form submission logic here
     console.log(formData);
   }
+
 </script>
   <main class="w-full">
     <Breadcrumb items={[
@@ -43,7 +45,6 @@
         <Input
           type="text"
           id={header}
-          bind:value={formData[header]}
           class="w-full p-2 border border-gray-300 rounded"
         />
       </div>

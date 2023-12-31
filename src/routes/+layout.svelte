@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import '../sideBar.css';
 	import { writable } from 'svelte/store';
 	import { onMount } from 'svelte';
 	// Create a writable store to manage the active link
-	const activeLink = writable(null);
+	const activeLink = writable<string | null>(null);
 
 	// Function to handle link clicks
-	const handleLinkClick = (href) => {
+	const handleLinkClick = (href: string) => {
 		// Update the active link store
 		activeLink.set(href);
 	};
@@ -36,6 +36,7 @@
 		const currentRoute = window.location.pathname; // Adjust this based on your routing setup
 		activeLink.set(currentRoute);
 	});
+
 </script>
 
 <div class="relative min-h-screen md:flex" data-dev-hint="container">
@@ -116,7 +117,6 @@
 			data-dev-hint="optional div for having an extra footer navigation"
 		>
 			<button
-				href="/"
 				class="text-secondary mb-5 flex items-center space-x-2 px-4"
 				title="Your App is cool"
 			>

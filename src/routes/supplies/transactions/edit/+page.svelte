@@ -2,14 +2,14 @@
   import Breadcrumb from '$lib/components/Breadcrumb.svelte';
   import { Label, Input, Helper } from 'flowbite-svelte';
   let headers = [
-  "Property_Id",
-  "Employee_Id",
-  "Item_Type",
-  "Item_Status",
-  "Item_LastUpdated",
-  "Supplier_Id",
-  "Location",
-];
+    "Property_Id",
+    "Employee_Id",
+    "Item_Type",
+    "Item_Status",
+    "Item_LastUpdated",
+    "Supplier_Id",
+    "Location",
+  ];
 let formData = {};
 
 function handleSubmit() {
@@ -43,7 +43,6 @@ function handleSubmit() {
       <Input
         type="text"
         id={header}
-        bind:value={formData[header]}
         class="w-full p-2 border border-gray-300 rounded"
       />
     </div>
