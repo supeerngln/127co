@@ -34,11 +34,11 @@
     let suppliers = data!['suppliers'];
     let transactions = data!['transactions'];
 
-    let handleDelete = () => {
-      console.log("Delete");
+    let handleDelete = (id: number) => {
+      console.log(`Delete ${id}`);
     }
-    let handleEdit = () => {
-      console.log("Edit");
+    let handleEdit = (id: number) => {
+      console.log(`Edit ${id}`);
     }
 
 </script>
@@ -54,9 +54,27 @@
       <span class="text-xl mb-40 text-center font-bold">No exact match found.</span>
   </div>
 
-  <Table {handleEdit} {handleDelete} headers={itemHeader} rows={items} />
-  <Table {handleEdit} {handleDelete} headers={supplierHeader} rows={suppliers} />
-  <Table {handleEdit} {handleDelete} headers={transactionHeader} rows={transactions} />
+  <Table 
+    {handleEdit} 
+    {handleDelete} 
+    primaryKey="Property_Id"
+    headers={itemHeader} 
+    rows={items} 
+  />
+  <Table 
+    {handleEdit} 
+    {handleDelete} 
+    primaryKey="Supplier_Id"
+    headers={supplierHeader} 
+    rows={suppliers} 
+  />
+  <Table 
+    {handleEdit} 
+    {handleDelete} 
+    primaryKey="Transaction_Id"
+    headers={transactionHeader} 
+    rows={transactions} 
+  />
 
   <a
       href="/supplies/item"

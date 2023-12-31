@@ -1,9 +1,10 @@
 <script lang='ts'>
     export let headers: Array<string> = [];
     export let rows: Array<Record<string, any>> = [];
+    export let primaryKey: string;
 
-    export let handleEdit: () => void; 
-    export let handleDelete: () => void; 
+    export let handleEdit: (id: number) => void; 
+    export let handleDelete: (id: number) => void; 
 
   </script>
   
@@ -27,8 +28,8 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">{value}</td>
                   {/each}
                   <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                    <button on:click={handleEdit} type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Edit</button>&nbsp;&nbsp;&nbsp;
-                    <button on:click={handleDelete} type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-active hover:text-hactive disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Delete</button>
+                    <button on:click={() => handleEdit(row[primaryKey])} type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Edit</button>&nbsp;&nbsp;&nbsp;
+                    <button on:click={() => handleDelete(row[primaryKey])} type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-active hover:text-hactive disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Delete</button>
                   </td>
                 </tr>
               {/each}
