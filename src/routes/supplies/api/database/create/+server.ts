@@ -5,8 +5,9 @@ import { itemHeaders, transactionHeaders, supplierHeaders } from "$lib/headers";
 import { Database } from "$lib/server/database";
 
 const isDataValid = (data: JSON, headers: string[]) => {
-  for (const key in headers) {
-    if (!(key in data)) {
+  for (const key in data) {
+    if (!headers.includes(key)) {
+      console.log(`Missing '${key}'`);
       return { success: false, missingKey: key };
     }
   }
@@ -15,10 +16,10 @@ const isDataValid = (data: JSON, headers: string[]) => {
 
 const commaSeparate = (data: string[]) => {
   return data.reduce((total, key, index) => {
-    if (index == itemHeaders.length - 1) {
+    if (index == data.length - 1) {
       return (total += key);
     }
-    return (total += key + " ,");
+    return (total = total + key + ", ");
   }, "");
 };
 
@@ -47,14 +48,23 @@ export const POST: RequestHandler = async ({ request }) => {
     return error(401, `Invalid table ${table}`);
   }
 
-  const { success, missingKey } = isDataValid(data, headers);
+  const formData = JSON.parse(data);
+  console.log(formData);
+
+  const { success, missingKey } = isDataValid(formData, headers);
   if (!success) {
     return error(401, `Missing key ${missingKey}`);
   }
   const headersSeparated = commaSeparate(headers);
-  const values = commaSeparate(headers.map((key) => data[key]));
+  const values = commaSeparate(
+    headers.map((key) => {
+      if (formData[key] === 'NULL') {
+        return 'NULL';
+      }
+      return `'${formData[key]}'`;
+    })
+  );
 
-  await db.query(`INSERT INTO ITEM (${headersSeparated}) (${values});`);
-
+  await db.query(`INSERT INTO ITEM (${headersSeparated}) VALUES (${values});`);
   return json({ success: true });
 };

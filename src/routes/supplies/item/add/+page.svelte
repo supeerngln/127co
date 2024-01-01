@@ -5,9 +5,15 @@
 
   let formData: Record<string, any> = {};
 
-  const handleSubmit = () => {
-    // Handle form submission logic here
-    console.log(formData);
+  const handleSubmit = async () => {
+    const requestData = {
+      data: JSON.stringify(formData),
+      table: "Item",
+    };
+    await fetch("/supplies/api/database/create", {
+      method: "POST",
+      body: JSON.stringify(requestData),
+    });
   };
 </script>
 
