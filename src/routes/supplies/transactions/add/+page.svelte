@@ -4,10 +4,11 @@
   import { transactionHeaders as headers } from "$lib/headers";
 
   let formData: Record<string, any> = {};
-  function handleSubmit() {
+
+  const handleSubmit = () => {
     // Handle form submission logic here
     console.log(formData);
-  }
+  };
 </script>
 
 <main class="w-full">
@@ -18,38 +19,6 @@
       { href: "/supplies/transactions/add", text: "Add an Entry" },
     ]}
   />
-  <div class="mb-6 w-96">
-    <Label for="error" color="red" class="block mb-2">Your name</Label>
-    <Input id="error" color="red" placeholder="" />
-    <Helper class="mt-2" color="red"
-      ><span class="font-medium"
-        >Please enter in date format only (2023-02-01 09:00:00)</span
-      ></Helper
-    >
-    <Helper class="mt-2" color="red"
-      ><span class="font-medium">Please enter characters only (A-Z, a-z)</span
-      ></Helper
-    >
-    <Helper class="mt-2" color="red"
-      ><span class="font-medium">Please enter numbers only (0-9)</span></Helper
-    >
-  </div>
-  <div class="mb-6 w-96">
-    <Label for="error" color="gray" class="block mb-2">Your name</Label>
-    <Input id="error" color="base" placeholder="" />
-    <Helper class="mt-2 hidden" color="red" id="error-date"
-      ><span class="font-medium"
-        >Please enter in date format only (2023-02-01 09:00:00)</span
-      ></Helper
-    >
-    <Helper class="mt-2 hidden" color="red" id="error-char"
-      ><span class="font-medium">Please enter characters only (A-Z, a-z)</span
-      ></Helper
-    >
-    <Helper class="mt-2 hidden" color="red" id="error-num"
-      ><span class="font-medium">Please enter numbers only (0-9)</span></Helper
-    >
-  </div>
   {#each headers as header (header)}
     <div class="mb-3 w-96">
       <Label for={header} class="block mb-2">{header}</Label>
