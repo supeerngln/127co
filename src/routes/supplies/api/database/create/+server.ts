@@ -7,7 +7,6 @@ import { Database } from "$lib/server/database";
 const isDataValid = (data: JSON, headers: string[]) => {
   for (const key in data) {
     if (!headers.includes(key)) {
-      console.log(`Missing '${key}'`);
       return { success: false, missingKey: key };
     }
   }
@@ -49,7 +48,6 @@ export const POST: RequestHandler = async ({ request }) => {
   }
 
   const formData = JSON.parse(data);
-  console.log(formData);
 
   const { success, missingKey } = isDataValid(formData, headers);
   if (!success) {
