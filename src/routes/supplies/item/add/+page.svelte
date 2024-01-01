@@ -6,13 +6,12 @@
   let formData: Record<string, any> = {};
 
   const handleSubmit = async () => {
-    const requestData = {
-      data: JSON.stringify(formData),
-      table: "Item",
-    };
     await fetch("/supplies/api/database/create", {
       method: "POST",
-      body: JSON.stringify(requestData),
+      body: JSON.stringify({
+        data: JSON.stringify(formData),
+        table: "Item",
+      }),
     });
   };
 </script>

@@ -56,13 +56,13 @@ export const POST: RequestHandler = async ({ request }) => {
   const headersSeparated = commaSeparate(headers);
   const values = commaSeparate(
     headers.map((key) => {
-      if (formData[key] === 'NULL') {
-        return 'NULL';
+      if (formData[key] === "NULL") {
+        return "NULL";
       }
       return `'${formData[key]}'`;
-    })
+    }),
   );
 
-  await db.query(`INSERT INTO ITEM (${headersSeparated}) VALUES (${values});`);
+  await db.query(`INSERT INTO ${table} (${headersSeparated}) VALUES (${values});`);
   return json({ success: true });
 };

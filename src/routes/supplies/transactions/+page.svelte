@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import Table from "$lib/components/Table.svelte";
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
 
@@ -11,9 +10,20 @@
 
   const rows = data["transactions"];
 
-  const handleEdit = (id: number) => {};
+  const handleEdit = async (id: number) => {
 
-  const handleDelete = (id: number) => {};
+  };
+
+  const handleDelete = async (id: number) => {
+    await fetch(
+      "/supplies/api/database/delete", {
+        method: "POST",
+        body: JSON.stringify({
+          id,
+          table: "Transaction_History"
+        })
+      });
+  };
 </script>
 
 <main class="w-full">
@@ -33,7 +43,7 @@
     </div>
   </a>
   <Table
-    primaryKey="TRANSACTION_ID"
+    primaryKey="Transaction_Id"
     {headers}
     {rows}
     {handleDelete}

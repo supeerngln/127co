@@ -12,16 +12,20 @@
 
   export let data: NonNullable<PageServerData>;
 
-  let items = data["items"];
-  let suppliers = data["suppliers"];
-  let transactions = data["transactions"];
+  const items = data["items"];
+  const suppliers = data["suppliers"];
+  const transactions = data["transactions"];
 
-  let handleDelete = (id: number) => {
-    console.log(`Delete ${id}`);
+  const handleDelete = async (id: number, table: string) => {
+    await fetch("/supplies/api/database/delete", {
+      method: "POST",
+      body: JSON.stringify({ id, table }),
+    });
   };
-  let handleEdit = (id: number) => {
-    console.log(`Edit ${id}`);
+
+  const handleEdit = (id: number, table: string) => {
   };
+
 </script>
 
 <main class="w-full">
@@ -38,22 +42,22 @@
   </div>
 
   <Table
-    {handleEdit}
-    {handleDelete}
+    handleEdit={(id) => handleEdit(id, "Item")}
+    handleDelete={(id) => handleDelete(id, "Item")}
     primaryKey="Property_Id"
     headers={itemHeaders}
     rows={items}
   />
   <Table
-    {handleEdit}
-    {handleDelete}
+    handleEdit={(id) => handleEdit(id, "Supplier")}
+    handleDelete={(id) => handleDelete(id, "Supplier")}
     primaryKey="Supplier_Id"
     headers={supplierHeaders}
     rows={suppliers}
   />
   <Table
-    {handleEdit}
-    {handleDelete}
+    handleEdit={(id) => handleEdit(id, "Transaction_History")}
+    handleDelete={(id) => handleDelete(id, "Transaction_History")}
     primaryKey="Transaction_Id"
     headers={transactionHeaders}
     rows={transactions}
