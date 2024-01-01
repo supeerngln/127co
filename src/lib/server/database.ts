@@ -1,5 +1,5 @@
 import type { Connection } from "mysql2";
-import mysql from "mysql2/promise"
+import mysql from "mysql2/promise";
 
 let sqlconn: Connection | null = null;
 
@@ -8,11 +8,11 @@ export class Database {
     if (sqlconn) return sqlconn;
     // @ts-ignore
     sqlconn = await mysql.createConnection({
-                host: 'localhost',
-                user: 'root',
-                password: '',
-                database: 'cs127'
-              });
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "cs127",
+    });
     return sqlconn!;
   }
 }

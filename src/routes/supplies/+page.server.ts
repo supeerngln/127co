@@ -1,4 +1,3 @@
-
 import { Database } from "$lib/server/database";
 
 export async function load() {
@@ -12,5 +11,5 @@ export async function load() {
     transactions: transactions[0],
     suppliers: suppliers[0],
     items: items[0],
-  }
+  };
 }
