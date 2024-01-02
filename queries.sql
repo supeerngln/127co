@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Item (
     Item_Status VARCHAR(20),
     Item_LastUpdated DATETIME,
     Supplier_Id INT,
-    Location VARCHAR(100),
+    Item_Location VARCHAR(100),
     FOREIGN KEY (Supplier_Id) REFERENCES Supplier(Supplier_Id)
 );
 
@@ -29,7 +29,6 @@ CREATE TABLE IF NOT EXISTS Transaction_History (
     Property_Id INT,
     Transaction_Type VARCHAR(50),
     Transaction_Datetime DATETIME,
-    Inventory_Id INT,
     FOREIGN KEY (Property_Id) REFERENCES Item(Property_Id)
 );
 
@@ -48,7 +47,7 @@ VALUES
     (10, 'MNO Appliances', '707 Cedar Lane', '555-1098', 'mno@example.com');
 
 -- Insert 10 rows into Item Table
-INSERT INTO Item (Property_Id, Employee_Id, Item_Type, Item_Status, Item_LastUpdated, Supplier_Id, Location)
+INSERT INTO Item (Property_Id, Employee_Id, Item_Type, Item_Status, Item_LastUpdated, Supplier_Id, Item_Location)
 VALUES
     (101, 1001, 'Laptop', 'Available', '2023-01-01 12:00:00', 1, 'Inventory'),
     (102, 1002, 'Chair', 'CurrentlyLoaned', '2023-01-02 10:30:00', 2, 'Office B'),
@@ -62,15 +61,15 @@ VALUES
     (110, 1010, 'Whiteboard', 'CurrentlyLoaned', '2023-01-10 07:25:00', 10, 'Office J');
 
 -- Insert 10 rows into Transaction Table
-INSERT INTO Transaction_History (Transaction_Id, Property_Id, Transaction_Type, Transaction_Datetime, Inventory_Id)
+INSERT INTO Transaction_History (Transaction_Id, Property_Id, Transaction_Type, Transaction_Datetime)
 VALUES
-    (201, 101, 'Loan', '2023-02-01 09:00:00', 1),
-    (202, 102, 'Upgrade', '2023-02-02 14:45:00', 2),
-    (203, 103, 'Repair', '2023-02-03 11:30:00', 3),
-    (204, 104, 'ReturnAfterRepair', '2023-02-04 08:15:00', 4),
-    (205, 105, 'ReturnForUpgrade', '2023-02-05 16:50:00', 5),
-    (206, 106, 'Loan', '2023-02-06 10:40:00', 6),
-    (207, 107, 'Upgrade', '2023-02-07 13:20:00', 7),
-    (208, 108, 'Repair', '2023-02-08 09:55:00', 8),
-    (209, 109, 'ReturnAfterUpgrade', '2023-02-09 15:30:00', 9),
-    (210, 110, 'ReturnForRepair', '2023-02-10 07:05:00', 10);
+    (201, 101, 'Loan', '2023-02-01 09:00:00'),
+    (202, 102, 'Upgrade', '2023-02-02 14:45:00'),
+    (203, 103, 'Repair', '2023-02-03 11:30:00'),
+    (204, 104, 'ReturnAfterRepair', '2023-02-04 08:15:00'),
+    (205, 105, 'ReturnForUpgrade', '2023-02-05 16:50:00'),
+    (206, 106, 'Loan', '2023-02-06 10:40:00'),
+    (207, 107, 'Upgrade', '2023-02-07 13:20:00'),
+    (208, 108, 'Repair', '2023-02-08 09:55:00'),
+    (209, 109, 'ReturnAfterUpgrade', '2023-02-09 15:30:00'),
+    (210, 110, 'ReturnForRepair', '2023-02-10 07:05:00');
