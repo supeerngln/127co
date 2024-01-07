@@ -1,7 +1,6 @@
-import { Database } from "$lib/server/database";
+import db from "$lib/server/database";
 
 export async function load() {
-  const db = await Database.get();
   const items = await db.query("SELECT * FROM ITEM");
 
   return {
