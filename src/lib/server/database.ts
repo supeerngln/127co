@@ -1,25 +1,23 @@
 import mysql, { type Pool, type RowDataPacket } from "mysql2/promise";
 
-let pool: Pool | null = null;
+let pool: Pool = mysql.createPool({
+	host: "localhost",
+	user: "root",
+	password: "",
+	database: "cs127",
+});
 
 export class Database {
   static async get() {
-    if (pool) return pool;
-    // @ts-ignore
-    pool = await mysql.createPool({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "cs127",
-    });
-    return pool!;
+    return await pool.getConnection();
   }
 }
 
 class ORM {
 	[key: string]: any;
-	constructor(pool: mysql.Pool) {
-		pool.execute<mysql.RowDataPacket[]>('SHOW TABLES').then(async ([rows]) => {
+	constructor() {
+		return (async () => {
+			const [rows] = await pool.execute<mysql.RowDataPacket[]>('SHOW TABLES');
 			Object.values(rows).map((row: RowDataPacket) => {
 				const table = row[`Tables_in_cs127`];
 				this[table] = {
@@ -65,15 +63,9 @@ class ORM {
 					}
 				};
 			});
-		});
+			return this;
+		})();
 	}
 }
 
-export default new ORM(
-	await mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "cs127",
-	})
-);
+export default await new ORM();
