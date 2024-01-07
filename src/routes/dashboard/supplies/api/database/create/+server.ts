@@ -2,7 +2,7 @@ import type { RequestHandler } from "./$types";
 import { json, error } from "@sveltejs/kit";
 import { itemHeaders, transactionHeaders, supplierHeaders } from "$lib/headers";
 
-import { Database } from "$lib/server/database";
+import db from "$lib/server/database";
 
 const isDataValid = (data: JSON, headers: string[]) => {
   for (const key in data) {
@@ -31,8 +31,6 @@ export const POST: RequestHandler = async ({ request }) => {
   if (!data) {
     return error(401, "The field data does not exist");
   }
-
-  const db = await Database.get();
 
   const headers =
     table === "Item"
@@ -63,6 +61,6 @@ export const POST: RequestHandler = async ({ request }) => {
     }),
   );
 
-  await db.query(`INSERT INTO ${table} (${headersSeparated}) VALUES (${values});`);
+  await db.execute(`INSERT INTO ${table} (${headersSeparated}) VALUES (${values});`);
   return json({ success: true });
 };

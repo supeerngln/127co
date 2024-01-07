@@ -1,11 +1,9 @@
-import { Database } from "$lib/server/database";
+import db from "$lib/server/database";
 
 export async function load() {
-  const db = await Database.get();
-
-  const transactions = await db.query("SELECT * FROM TRANSACTION_HISTORY");
-  const suppliers = await db.query("SELECT * FROM SUPPLIER");
-  const items = await db.query("SELECT * FROM ITEM");
+  const transactions = await db.execute("SELECT * FROM TRANSACTION_HISTORY");
+  const suppliers = await db.execute("SELECT * FROM SUPPLIER");
+  const items = await db.execute("SELECT * FROM ITEM");
 
   return {
     transactions: transactions[0],

@@ -1,26 +1,22 @@
-import { Database } from "$lib/server/database";
+import db from "$lib/server/database";
+import type { RowDataPacket } from "mysql2";
 import type { PageServerLoad } from "./$types";
 import { redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({ cookies }) => {
-    const db = await Database.get();
-
     const id = cookies.get("auth-token") || null;
-    if (!id) {
+    if (!id)
         throw redirect(302, "/login");
-    }
-
+    
     const role = cookies.get("role");
-    if (!["CEO", "Project Manager", "Application Developer"].includes(role!)) {
+    if (!["CEO", "Project Manager", "Application Developer"].includes(role!))
         throw redirect(302, "/dashboard");
-    }
 
-    const employeeQuery = await db.query("SELECT * FROM Employee WHERE Employee_ID = ?", [id]);
-    const employee = employeeQuery[0];
+    const [employees] = await db.execute<RowDataPacket[]>(`SELECT * FROM Employee WHERE Employee_ID = ${id}`);
+    const employee = employees[0];
 
-    if (!employee) {
+    if (!employee)
         throw redirect(302, "/dashboard");
-    }
 
     let team_leader = null;
     switch (role) {
@@ -34,22 +30,15 @@ export const load: PageServerLoad = async ({ cookies }) => {
             break;
     }
 
-    let options = {};
-    if (team_leader) {
-        options = {
-            where: {
-                Team_Leader_ID: team_leader,
-            },
-        };
-    }
+    let where = '';
+    if (team_leader)
+        where = `WHERE Team_Leader = ${team_leader}`;
 
-    const teamsQuery = await db.query("SELECT * FROM Team ?", options);
-    const teams = teamsQuery[0];
+    const [teams] = await db.execute<RowDataPacket[]>(`SELECT * FROM Team ${where}`);
 
     let all_projects: any = [];
     for (const team of teams) {
-        const projectsQuery = await db.query("SELECT * FROM Project WHERE Project_Team_ID = ?", [team["Team_ID"]]);
-        const projects = projectsQuery[0];
+        const [projects] = await db.execute<RowDataPacket[]>(`SELECT * FROM Project WHERE Project_Team_ID = ${[team["Team_ID"]]}`);
         all_projects.push(...projects);
     }
 

@@ -1,4 +1,5 @@
 import db from '$lib/server/database';
+import type { RowDataPacket } from 'mysql2';
 import { redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
@@ -20,20 +21,10 @@ export const actions: Actions = {
 			throw redirect(303, '/dashboard');
 		}
 
-		const [rows] = await db.Employee.select({
-			where: {
-				Employee_Email: email,
-				Employee_Password: password
-			}
-		});
-		
+		const [rows] = await db.execute<RowDataPacket[]>(`SELECT * FROM Employee WHERE Employee_Email = '${email}' AND Employee_Password = '${password}'`);
+
 		if (rows.length === 0) {
-			const [rows] = await db.Client.select({
-				where: {
-					Client_Email: email,
-					Client_Password: password
-				}
-			});
+			const [rows] = await db.execute<RowDataPacket[]>(`SELECT * FROM Client WHERE Client_Email = '${email}' AND Client_Password = '${password}'`);
 
 			if (rows.length === 0) {
 				return {

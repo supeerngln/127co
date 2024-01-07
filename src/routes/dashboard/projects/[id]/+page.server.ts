@@ -1,4 +1,6 @@
 import db from "$lib/server/database";
+import type { RowDataPacket } from "mysql2";
+
 import type { PageServerLoad } from "./$types";
 import { redirect } from "@sveltejs/kit";
 
@@ -11,34 +13,18 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     if (!["CEO", "Project Manager", "Application Developer"].includes(role!))
         throw redirect(302, "/dashboard");
 
-    const [projects] = await db.Project.select({
-        where: {
-            Project_ID: params.id,
-        },
-    });
+    const [projects] = await db.execute<RowDataPacket[]>(`SELECT * FROM Project WHERE Project_ID = ${params.id}`);
 
     if (projects.length === 0)
         throw redirect(302, "/dashboard/projects");
 
     const project = projects[0];
 
-    const [timelines] = await db.Timeline.select({
-        where: {
-            Timeline_ID: project["Project_Timeline_ID"],
-        },
-    });
-
-    const [teams] = await db.Team.select({
-        where: {
-            Team_ID: project["Project_Team_ID"],
-        },
-    });
-
-    const [contracts] = await db.Contract.select({
-        where: {
-            Contract_ID: project["Project_Contract_ID"],
-        },
-    });
+    const [[timelines, teams, contracts]] = await db.query<RowDataPacket[][]>(
+        `SELECT * FROM Timeline WHERE Timeline_ID = ${project["Project_Timeline_ID"]};` +
+        `SELECT * FROM Team WHERE Team_ID = ${project["Project_Team_ID"]};` +
+        `SELECT * FROM Contract WHERE Contract_ID = ${project["Project_Contract_ID"]};`
+    );
 
     return {
         project,
