@@ -12,14 +12,13 @@
   const handleEdit = async (id: number) => {};
 
   const handleDelete = async (id: number) => {
-    await fetch(
-      "/dashboard/supplies/api/database/delete", {
-        method: "POST",
-        body: JSON.stringify({
-          id,
-          table: "Supplier"
-        })
-      });
+    await fetch("/dashboard/supplies/api/database/delete", {
+      method: "POST",
+      body: JSON.stringify({
+        id,
+        table: "Supplier",
+      }),
+    });
   };
 </script>
 

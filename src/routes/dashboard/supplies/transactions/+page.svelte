@@ -10,19 +10,16 @@
 
   const rows = data["transactions"];
 
-  const handleEdit = async (id: number) => {
-
-  };
+  const handleEdit = async (id: number) => {};
 
   const handleDelete = async (id: number) => {
-    await fetch(
-      "/dashboard/supplies/api/database/delete", {
-        method: "POST",
-        body: JSON.stringify({
-          id,
-          table: "Transaction_History"
-        })
-      });
+    await fetch("/dashboard/supplies/api/database/delete", {
+      method: "POST",
+      body: JSON.stringify({
+        id,
+        table: "Transaction_History",
+      }),
+    });
   };
 </script>
 

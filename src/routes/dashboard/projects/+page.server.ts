@@ -4,45 +4,45 @@ import type { PageServerLoad } from "./$types";
 import { redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({ cookies }) => {
-    const id = cookies.get("auth-token") || null;
-    if (!id)
-        throw redirect(302, "/login");
-    
-    const role = cookies.get("role");
-    if (!["CEO", "Project Manager", "Application Developer"].includes(role!))
-        throw redirect(302, "/dashboard");
+  const id = cookies.get("auth-token") || null;
+  if (!id) throw redirect(302, "/login");
 
-    const [employees] = await db.execute<RowDataPacket[]>(`SELECT * FROM Employee WHERE Employee_ID = ${id}`);
-    const employee = employees[0];
+  const role = cookies.get("role");
 
-    if (!employee)
-        throw redirect(302, "/dashboard");
+  const [employees] = await db.execute<RowDataPacket[]>(
+    `SELECT * FROM Employee WHERE Employee_ID = ${id}`,
+  );
+  const employee = employees[0];
 
-    let team_leader = null;
-    switch (role) {
-        case "CEO":
-            break;
-        case "Project Manager":
-            team_leader = id;
-            break;
-        case "Application Developer":
-            team_leader = employee["Employee_ReportsTo"];
-            break;
-    }
+  let team_leader = null;
+  switch (role) {
+    case "CEO":
+      break;
+    case "Project Manager":
+      team_leader = id;
+      break;
+    case "Application Developer":
+      team_leader = employee["Employee_ReportsTo"];
+      break;
+    default:
+      throw redirect(302, "/dashboard");
+  }
 
-    let where = '';
-    if (team_leader)
-        where = `WHERE Team_Leader = ${team_leader}`;
+  const [teams] = await db.execute<RowDataPacket[]>(
+    `SELECT * FROM Team ${
+      team_leader ? `WHERE Team_Leader = ${team_leader}` : ""
+    }`,
+  );
 
-    const [teams] = await db.execute<RowDataPacket[]>(`SELECT * FROM Team ${where}`);
+  let all_projects: any = [];
+  for (const team of teams) {
+    const [projects] = await db.execute<RowDataPacket[]>(
+      `SELECT * FROM Project WHERE Project_Team_ID = ${[team["Team_ID"]]}`,
+    );
+    all_projects.push(...projects);
+  }
 
-    let all_projects: any = [];
-    for (const team of teams) {
-        const [projects] = await db.execute<RowDataPacket[]>(`SELECT * FROM Project WHERE Project_Team_ID = ${[team["Team_ID"]]}`);
-        all_projects.push(...projects);
-    }
-
-    return {
-        projects: all_projects,
-    };
+  return {
+    projects: all_projects,
+  };
 };

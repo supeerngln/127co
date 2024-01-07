@@ -61,6 +61,8 @@ export const POST: RequestHandler = async ({ request }) => {
     }),
   );
 
-  await db.execute(`INSERT INTO ${table} (${headersSeparated}) VALUES (${values});`);
+  await db.execute(
+    `INSERT INTO ${table} (${headersSeparated}) VALUES (${values});`,
+  );
   return json({ success: true });
 };

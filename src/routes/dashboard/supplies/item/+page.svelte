@@ -9,21 +9,17 @@
 
   const rows = data["items"];
 
-  const handleEdit = async (id: number) => {
-
-  };
+  const handleEdit = async (id: number) => {};
 
   const handleDelete = async (id: number) => {
-    await fetch(
-      "/dashboard/supplies/api/database/delete", {
-        method: "POST",
-        body: JSON.stringify({
-          id,
-          table: "Item"
-        })
-      });
+    await fetch("/dashboard/supplies/api/database/delete", {
+      method: "POST",
+      body: JSON.stringify({
+        id,
+        table: "Item",
+      }),
+    });
   };
-
 </script>
 
 <main class="w-full">

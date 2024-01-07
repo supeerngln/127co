@@ -113,7 +113,9 @@
       <button
         class="text-secondary mb-5 flex items-center space-x-2 px-4"
         title="Your App is cool"
-        on:click={() => {window.location.href = "/" }}
+        on:click={() => {
+          window.location.href = "/";
+        }}
       >
         <img
           src="/Logo.png"
@@ -126,7 +128,8 @@
       <form
         class="flex items-center space-x-2 px-4"
         method="POST"
-        action="/logout">
+        action="/logout"
+      >
         <button
           type="submit"
           class="flex items-center space-x-2 px-4 text-secondary hover:text-accent focus:text-accent focus:bg-afocus"

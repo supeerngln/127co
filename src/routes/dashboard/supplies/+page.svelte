@@ -23,13 +23,13 @@
     });
   };
 
-  const handleEdit = (id: number, table: string) => {
-  };
-
+  const handleEdit = (id: number, table: string) => {};
 </script>
 
 <main class="w-full">
-  <Breadcrumb items={[{ href: "/dashboard/supplies", text: "Supplies and Inventory" }]} />
+  <Breadcrumb
+    items={[{ href: "/dashboard/supplies", text: "Supplies and Inventory" }]}
+  />
 
   <Search class="mb-8">
     <Button class="bg-activeb">Search</Button>
