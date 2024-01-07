@@ -13,7 +13,7 @@
 
   const handleDelete = async (id: number) => {
     await fetch(
-      "/supplies/api/database/delete", {
+      "/dashboard/supplies/api/database/delete", {
         method: "POST",
         body: JSON.stringify({
           id,
@@ -26,12 +26,12 @@
 <main class="w-full">
   <Breadcrumb
     items={[
-      { href: "/supplies", text: "Supplies and Inventory" },
-      { href: "/supplies/supplier", text: "Supplier" },
+      { href: "/dashboard/supplies", text: "Supplies and Inventory" },
+      { href: "/dashboard/supplies/supplier", text: "Supplier" },
     ]}
   />
   <a
-    href="/supplies/supplier/add"
+    href="/dashboard/supplies/supplier/add"
     class="bg-buttonp rounded-lg z-4 border-2 w-40 border-outline p-3 mb-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-2"> add </span>

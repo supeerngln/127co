@@ -15,9 +15,9 @@
 <main class="w-full">
   <Breadcrumb
     items={[
-      { href: "/supplies", text: "Supplies and Inventory" },
-      { href: "/supplies/item", text: "Items" },
-      { href: "/supplies/item/edit", text: "Edit an Entry" },
+      { href: "/dashboard/supplies", text: "Supplies and Inventory" },
+      { href: "/dashboard/supplies/item", text: "Items" },
+      { href: "/dashboard/supplies/item/edit", text: "Edit an Entry" },
     ]}
   />
   {#each headers as header (header)}

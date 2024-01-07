@@ -10,7 +10,7 @@
       data: JSON.stringify(formData),
       table: "Supplier",
     };
-    await fetch("/supplies/api/database/create", {
+    await fetch("/dashboard/supplies/api/database/create", {
       method: "POST",
       body: JSON.stringify(requestData),
     });
@@ -20,9 +20,9 @@
 <main class="w-full">
   <Breadcrumb
     items={[
-      { href: "/supplies", text: "Supplies and Inventory" },
-      { href: "/supplies/supplier", text: "Supplier" },
-      { href: "/supplies/supplier/edit", text: "Edit an Entry" },
+      { href: "/dashboard/supplies", text: "Supplies and Inventory" },
+      { href: "/dashboard/supplies/supplier", text: "Supplier" },
+      { href: "/dashboard/supplies/supplier/edit", text: "Edit an Entry" },
     ]}
   />
   {#each headers as header (header)}

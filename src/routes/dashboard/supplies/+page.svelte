@@ -17,7 +17,7 @@
   const transactions = data["transactions"];
 
   const handleDelete = async (id: number, table: string) => {
-    await fetch("/supplies/api/database/delete", {
+    await fetch("/dashboard/supplies/api/database/delete", {
       method: "POST",
       body: JSON.stringify({ id, table }),
     });
@@ -29,7 +29,7 @@
 </script>
 
 <main class="w-full">
-  <Breadcrumb items={[{ href: "/supplies", text: "Supplies and Inventory" }]} />
+  <Breadcrumb items={[{ href: "/dashboard/supplies", text: "Supplies and Inventory" }]} />
 
   <Search class="mb-8">
     <Button class="bg-activeb">Search</Button>
@@ -64,7 +64,7 @@
   />
 
   <a
-    href="/supplies/item"
+    href="/dashboard/supplies/item"
     class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-5"> devices </span>
@@ -78,7 +78,7 @@
   </a>
 
   <a
-    href="/supplies/transactions"
+    href="/dashboard/supplies/transactions"
     class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-5"> contract </span>
@@ -94,7 +94,7 @@
   </a>
 
   <a
-    href="/supplies/supplier"
+    href="/dashboard/supplies/supplier"
     class="bg-buttonp rounded-lg z-4 border-2 mb-1 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-5"> warehouse </span>

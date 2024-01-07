@@ -6,7 +6,7 @@
   let formData: Record<string, any> = {};
 
   const handleSubmit = async () => {
-    await fetch("/supplies/api/database/create", {
+    await fetch("/dashboard/supplies/api/database/create", {
       method: "POST",
       body: JSON.stringify({
         data: JSON.stringify(formData),
@@ -19,9 +19,9 @@
 <main class="w-full">
   <Breadcrumb
     items={[
-      { href: "/supplies", text: "Supplies and Inventory" },
-      { href: "/supplies/supplier/", text: "Supplier" },
-      { href: "/supplies/supplier/add", text: "Add an Entry" },
+      { href: "/dashboard/supplies", text: "Supplies and Inventory" },
+      { href: "/dashboard/supplies/supplier/", text: "Supplier" },
+      { href: "/dashboard/supplies/supplier/add", text: "Add an Entry" },
     ]}
   />
   {#each headers as header (header)}
