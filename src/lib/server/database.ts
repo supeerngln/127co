@@ -1,18 +1,11 @@
-import type { Connection } from "mysql2";
 import mysql from "mysql2/promise";
 
-let sqlconn: Connection | null = null;
+const pool = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "cs127",
+  multipleStatements: true,
+});
 
-export class Database {
-  static async get() {
-    if (sqlconn) return sqlconn;
-    // @ts-ignore
-    sqlconn = await mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "cs127",
-    });
-    return sqlconn!;
-  }
-}
+export default pool;
