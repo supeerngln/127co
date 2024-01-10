@@ -82,6 +82,7 @@ INSERT INTO Contract_Transaction VALUES
 (20009,	'2022-02-08', 530000, 100000,	190000,	240000,	'Bank Transfer (CitiBank)',	    9),
 (20010,	'2022-06-30', 0,      0,	    0,	    0,	    'Bank Transfer (CitiBank)',	    10);
 
+
 INSERT INTO Expenditure VALUES 
 (33101, 'Employee Salary',  '2023-11-08', 183427,   NULL,   NULL,               20231101),
 (33102, 'Employee Salary',  '2023-11-08', 155575,   NULL,   NULL,               20231102),
