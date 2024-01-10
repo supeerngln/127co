@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "vite dev",
+    "dev": "npm run migrate && vite dev",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "migrate": "mysql -u root < queries.sql",
+    "migrate": "mysql -u root < database/init.sql",
     "format": "npx prettier --write ."
   },
   "devDependencies": {
