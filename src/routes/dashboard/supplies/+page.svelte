@@ -42,22 +42,22 @@
   </div>
 
   <Table
-    handleEdit={(id) => handleEdit(id, "Item")}
-    handleDelete={(id) => handleDelete(id, "Item")}
-    primaryKey="Property_Id"
+    handleEdit={(id) => handleEdit(id, "item")}
+    handleDelete={(id) => handleDelete(id, "item")}
+    primaryKey="Item_Id"
     headers={itemHeaders}
     rows={items}
   />
   <Table
-    handleEdit={(id) => handleEdit(id, "Supplier")}
-    handleDelete={(id) => handleDelete(id, "Supplier")}
+    handleEdit={(id) => handleEdit(id, "supplier")}
+    handleDelete={(id) => handleDelete(id, "supplier")}
     primaryKey="Supplier_Id"
     headers={supplierHeaders}
     rows={suppliers}
   />
   <Table
-    handleEdit={(id) => handleEdit(id, "Item_Transaction")}
-    handleDelete={(id) => handleDelete(id, "Item_Transaction")}
+    handleEdit={(id) => handleEdit(id, "item_transaction")}
+    handleDelete={(id) => handleDelete(id, "item_transaction")}
     primaryKey="Transaction_Id"
     headers={itemTransactionHeaders}
     rows={transactions}

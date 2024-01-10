@@ -6,8 +6,6 @@ import db from "$lib/server/database";
 export const POST: RequestHandler = async ({ request }) => {
   const { table, id } = await request.json();
 
-  console.log(`Deleting ${id} from ${table}`);
-
   let primaryKey;
   switch (table) {
     case "item_transaction":
@@ -23,8 +21,7 @@ export const POST: RequestHandler = async ({ request }) => {
       return error(401, `Invalid ${table} passed`);
   }
 
-  await db.execute(`DELETE FROM ${table} WHERE ${primaryKey}=${id};`);
+  await db.execute(`DELETE FROM ${table} WHERE ${primaryKey}=${id}`);
 
-  console.log(`DELETED ${id} from ${table}`);
   return json({ success: true });
 };
