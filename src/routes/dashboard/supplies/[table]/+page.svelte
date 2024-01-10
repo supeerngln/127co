@@ -9,15 +9,14 @@
   const rows = data["data"] as Array<Record<string, any>>;
   const table = data["table"] as string;
   const department = "supplies";
-  const {name} = Tables[table]
-
+  const { name } = Tables[table];
 </script>
 
 <main class="w-full">
   <Breadcrumb
     items={[
       { href: "/dashboard/supplies", text: "Supplies and Inventory" },
-      { href: `/dashboard/supplies/${table}`, text: name }
+      { href: `/dashboard/supplies/${table}`, text: name },
     ]}
   />
   <a
@@ -29,8 +28,5 @@
       <span>Add an Entry</span>
     </div>
   </a>
-  <Table
-    {table}
-    {rows}
-  />
+  <Table {table} {rows} />
 </main>

@@ -11,7 +11,6 @@
   const { headers, name } = Tables[table];
 
   let formData: Record<string, any> = {};
-
 </script>
 
 <main class="w-full">
@@ -47,9 +46,9 @@
   {/each}
 
   <form method="POST" action="?/add">
-    <input type="hidden" name="table" value={table}/>
+    <input type="hidden" name="table" value={table} />
     {#each headers as header (header)}
-      <input type="hidden" name={header} bind:value={formData[header]}/>
+      <input type="hidden" name={header} bind:value={formData[header]} />
     {/each}
     <button
       type="submit"

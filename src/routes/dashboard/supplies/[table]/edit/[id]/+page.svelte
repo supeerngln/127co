@@ -9,7 +9,7 @@
   export let data: NonNullable<PageServerData>;
   const table = data["table"];
   // @ts-ignore
-  const rows =  data["data"];
+  const rows = data["data"];
 
   // @ts-ignore
   const { headers, name } = Tables[table];
@@ -18,10 +18,9 @@
 
   onMount(() => {
     for (const header of headers) {
-      formData[header] = rows[header]; 
+      formData[header] = rows[header];
     }
   });
-
 </script>
 
 <main class="w-full">
@@ -58,7 +57,7 @@
 
   <form method="POST">
     {#each headers as header (header)}
-      <input type="hidden" name={header} bind:value={formData[header]}/>
+      <input type="hidden" name={header} bind:value={formData[header]} />
     {/each}
     <button
       formaction="?/edit"
@@ -66,5 +65,6 @@
     >
       Edit an Entry
     </button>
-  <form>
+    <form></form>
+  </form>
 </main>

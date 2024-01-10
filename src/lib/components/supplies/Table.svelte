@@ -3,7 +3,7 @@
 
   export let rows: Array<Record<string, any>> = [];
   export let table: string;
-  
+
   // @ts-ignore
   const { primaryKey, headers, department } = Tables[table];
 </script>
@@ -44,12 +44,17 @@
                   class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
                 >
                   <form method="POST">
-                    <input type="hidden" name="table" bind:value={table}/>
-                    <input type="hidden" name="id" bind:value={row[primaryKey]}/>
+                    <input type="hidden" name="table" bind:value={table} />
+                    <input
+                      type="hidden"
+                      name="id"
+                      bind:value={row[primaryKey]}
+                    />
                     <a
                       href={`/dashboard/${department}/${table}/edit/${row[primaryKey]}`}
                       class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                      >Edit</a>
+                      >Edit</a
+                    >
                     <button
                       type="submit"
                       formaction="?/delete"

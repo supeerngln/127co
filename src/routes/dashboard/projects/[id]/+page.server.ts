@@ -22,7 +22,7 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
 
   const [[timelines, teams]] = await db.query<RowDataPacket[][]>(
     `SELECT * FROM Timeline WHERE Timeline_ID = ${project["Project_Timeline_ID"]};` +
-      `SELECT * FROM Team WHERE Team_ID = ${project["Project_Team_ID"]};`
+      `SELECT * FROM Team WHERE Team_ID = ${project["Project_Team_ID"]};`,
   );
 
   return {
