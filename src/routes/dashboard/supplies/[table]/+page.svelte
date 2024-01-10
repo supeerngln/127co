@@ -2,20 +2,22 @@
   import Table from "$lib/components/supplies/Table.svelte";
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import type { PageServerData } from "./$types";
+  import Tables from "$lib/tables";
 
   export let data: NonNullable<PageServerData>;
 
-  const rows = data["data"] as Array<Record<string, any>>;
-  const table = data["table"] as string;
-  const department = "supplies";
+  $: rows = data["data"] as Array<Record<string, any>>;
+  $: table = data["table"] as string;
 
+  // @ts-ignore
+  $: ({ name } = Tables[table]);
 </script>
 
 <main class="w-full">
   <Breadcrumb
     items={[
       { href: "/dashboard/supplies", text: "Supplies and Inventory" },
-      { href: `/dashboard/supplies/${table}`, text: "Items" },
+      { href: `/dashboard/supplies/${table}`, text: name },
     ]}
   />
   <a
@@ -27,8 +29,5 @@
       <span>Add an Entry</span>
     </div>
   </a>
-  <Table
-    {table}
-    {rows}
-  />
+  <Table {table} {rows} />
 </main>

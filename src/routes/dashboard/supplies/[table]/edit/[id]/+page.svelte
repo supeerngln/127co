@@ -7,28 +7,27 @@
   import { onMount } from "svelte";
 
   export let data: NonNullable<PageServerData>;
-  const table = data["table"];
+  $: table = data["table"];
   // @ts-ignore
-  const rows =  data["data"];
+  $: rows = data["data"];
 
   // @ts-ignore
-  const { headers } = Tables[table];
+  $: ({ headers, name } = Tables[table]);
 
   let formData: Record<string, any> = {};
 
   onMount(() => {
     for (const header of headers) {
-      formData[header] = rows[header]; 
+      formData[header] = rows[header];
     }
   });
-
 </script>
 
 <main class="w-full">
   <Breadcrumb
     items={[
       { href: "/dashboard/supplies", text: "Supplies and Inventory" },
-      { href: `/dashboard/supplies/${table}`, text: "Items" },
+      { href: `/dashboard/supplies/${table}`, text: name },
       { href: `/dashboard/supplies/${table}/edit`, text: "Edit an Entry" },
     ]}
   />
@@ -58,7 +57,7 @@
 
   <form method="POST">
     {#each headers as header (header)}
-      <input type="hidden" name={header} bind:value={formData[header]}/>
+      <input type="hidden" name={header} bind:value={formData[header]} />
     {/each}
     <button
       formaction="?/edit"
@@ -66,5 +65,6 @@
     >
       Edit an Entry
     </button>
-  /<form>
+    <form></form>
+  </form>
 </main>
