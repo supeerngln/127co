@@ -55,10 +55,16 @@
     >
   {/each}
 
-  <button
-    on:click={handleSubmit}
-    class="mt-4 bg-accent hover:bg-primary-600 text-white px-4 py-2 rounded"
-  >
-    Edit an Entry
-  </button>
+  <form method="POST">
+    {#each headers as header (header)}
+      <input type="hidden" name={header} bind:value={formData[header]} />
+    {/each}
+    <button
+      formaction="?/edit"
+      class="mt-4 bg-accent hover:bg-primary-600 text-white px-4 py-2 rounded"
+    >
+      Edit an Entry
+    </button>
+    <form></form>
+  </form>
 </main>

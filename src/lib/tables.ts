@@ -165,7 +165,7 @@ const Tables: Record<string, Table> = {
       "Budget_Name",
       "Budget_Category",
       "Budget_Amount",
-      "Property_Id",
+      "Item_Id",
       "Project_Id",
     ],
     department: "finance",

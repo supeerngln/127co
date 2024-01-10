@@ -1,48 +1,48 @@
 -- FINANCE --
 
 CREATE TABLE IF NOT EXISTS Salary (
-    salary_id INT PRIMARY KEY NOT NULL,
-    employee_id INT,
-    salary_date DATE,
-    salary_net DECIMAL(10, 2),
-    salary_gross DECIMAL(10, 2),
-    salary_added DECIMAL(10, 2),
-    salary_deducted DECIMAL(10, 2),
-    FOREIGN KEY (employee_id) REFERENCES Employee(employee_id)
+    Salary_Id INT PRIMARY KEY NOT NULL,
+    Employee_Id INT,
+    Salary_Date DATE,
+    Salary_Net DECIMAL(10, 2),
+    Salary_Gross DECIMAL(10, 2),
+    Salary_Added DECIMAL(10, 2),
+    Salary_Deducted DECIMAL(10, 2),
+    FOREIGN KEY (Employee_Id) REFERENCES Employee(Employee_Id)
 );
 CREATE TABLE IF NOT EXISTS Budget (
-    budget_id INT PRIMARY KEY NOT NULL,
-    budget_name VARCHAR(255), 
-    budget_category VARCHAR(255),
-    budget_amount DECIMAL(10, 2),
-    item_id INT,
-    project_id INT,
-    FOREIGN KEY (item_id) REFERENCES Item(item_id),
-    FOREIGN KEY (project_id) REFERENCES Project(project_id) ON DELETE SET NULL
+    Budget_Id INT PRIMARY KEY NOT NULL,
+    Budget_Name VARCHAR(255), 
+    Budget_Category VARCHAR(255),
+    Budget_Amount DECIMAL(10, 2),
+    Item_Id INT,
+    Project_Id INT,
+    FOREIGN KEY (Item_Id) REFERENCES Item(Item_Id),
+    FOREIGN KEY (Project_Id) REFERENCES Project(Project_Id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Contract_Transaction (
-    ct_id INT PRIMARY KEY NOT NULL,
-    ct_date DATE,
-    ct_total_amount DECIMAL(10, 2),
-    ct_payment DECIMAL(10, 2),       
-    ct_balance DECIMAL(10, 2),       
-    ct_total_paid DECIMAL(10, 2) DEFAULT 0.00,      
-    ct_payment_type VARCHAR(255),       
-    project_id INT,
-    FOREIGN KEY (project_id) REFERENCES Project(Project_id) ON DELETE SET NULL
+    CT_Id INT PRIMARY KEY NOT NULL,
+    CT_Date DATE,
+    CT_Total_Amount DECIMAL(10, 2),
+    CT_Payment DECIMAL(10, 2),       
+    CT_Balance DECIMAL(10, 2),       
+    CT_Total_Paid DECIMAL(10, 2) DEFAULT 0.00,      
+    CT_Payment_Type VARCHAR(255),       
+    Project_Id INT,
+    FOREIGN KEY (Project_Id) REFERENCES Project(Project_Id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Expenditure (
-    expense_id INT PRIMARY KEY NOT NULL,
-    expense_name VARCHAR(255), 
-    expense_date DATE,
-    expense_amount DECIMAL(10, 2),
-    CT_id INT,
-    expense_project_status varchar(255),
-    salary_id INT,
-    FOREIGN KEY (CT_id) REFERENCES Contract_Transaction(CT_id),
-    FOREIGN KEY (salary_id) REFERENCES salary(salary_id)
+    Expense_Id INT PRIMARY KEY NOT NULL,
+    Expense_Name VARCHAR(255), 
+    Expense_Date DATE,
+    Expense_Amount DECIMAL(10, 2),
+    CT_Id INT,
+    Expense_Project_Status varchar(255),
+    Salary_Id INT,
+    FOREIGN KEY (CT_Id) REFERENCES Contract_Transaction(CT_Id),
+    FOREIGN KEY (Salary_Id) REFERENCES Salary(Salary_Id)
 );
 
 INSERT INTO Salary VALUES

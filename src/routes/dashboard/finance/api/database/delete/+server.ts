@@ -5,6 +5,7 @@ import db from "$lib/server/database";
 
 export const POST: RequestHandler = async ({ request }) => {
   const { table, id } = await request.json();
+  console.log(`DELETED ${id} from ${table}`);
 
   let primaryKey;
   switch (table) {
