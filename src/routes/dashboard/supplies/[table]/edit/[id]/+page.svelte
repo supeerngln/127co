@@ -9,6 +9,7 @@
   import { Label, Input, Helper } from "flowbite-svelte";
   import Tables from "$lib/tables";
   import Alerts from "$lib/components/Alerts.svelte";
+  import { alerts } from "$lib/store";
 
   import { onMount } from "svelte";
 
@@ -19,7 +20,6 @@
 
   // @ts-ignore
   $: ({ headers, name } = Tables[table]);
-  let alerts: Array<{message: string, type: "fail" | "success"}>= [];
   let formData: Record<string, any> = {};
 
   onMount(() => {
@@ -36,12 +36,11 @@
 			body: data
 		});
 		const result: ActionResult = deserialize(await response.text());
-    console.log(result)
 		if (result.type === 'success') {
 			await invalidateAll();
 		}
-    alerts = [
-      ...alerts,
+    $alerts = [
+      ...$alerts,
       // @ts-ignore
       { message: result.data.message, type: result.data.success ? "success" : "fail"}
     ]
@@ -50,7 +49,6 @@
 </script>
 
 <main class="w-full">
-  <Alerts data={alerts} />
   <Breadcrumb
     items={[
       { href: "/dashboard/supplies", text: "Supplies and Inventory" },

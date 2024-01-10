@@ -8,14 +8,14 @@
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import { Label, Input, Helper } from "flowbite-svelte";
   import Tables from "$lib/tables";
-  import Alerts from "$lib/components/Alerts.svelte";
+
+  import { alerts } from "$lib/store";
 
   export let data: NonNullable<PageServerData>;
   $: table = data["table"];
   // @ts-ignore
   $: ({ name, headers } = Tables[table]);
 
-  let alerts: Array<{message: string, type: "fail" | "success"}>= [];
   let formData: Record<string, any> = {};
 
   // @ts-ignore
@@ -29,8 +29,8 @@
 		if (result.type === 'success') {
 			await invalidateAll();
 		}
-    alerts = [
-      ...alerts,
+    $alerts = [
+      ...$alerts,
       // @ts-ignore
       { message: result.data.message, type: result.data.success ? "success" : "fail"}
     ]
@@ -39,7 +39,6 @@
 </script>
 
 <main class="w-full">
-  <Alerts data={alerts}/>
   <Breadcrumb
     items={[
       { href: "/dashboard/supplies", text: "Supplies and Inventory" },
