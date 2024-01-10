@@ -2,13 +2,13 @@
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import { Label, Input, Helper } from "flowbite-svelte";
   import type { PageServerData } from "./$types";
+  import { enhance } from "$app/forms";
   import Tables from "$lib/tables";
 
   export let data: NonNullable<PageServerData>;
-  const table = data["table"];
-
+  $: table = data["table"];
   // @ts-ignore
-  const { headers, name } = Tables[table];
+  $: ({name, headers} = Tables[table]);
 
   let formData: Record<string, any> = {};
 </script>
@@ -45,7 +45,7 @@
     >
   {/each}
 
-  <form method="POST" action="?/add">
+  <form method="POST" action="?/add" use:enhance>
     <input type="hidden" name="table" value={table} />
     {#each headers as header (header)}
       <input type="hidden" name={header} bind:value={formData[header]} />

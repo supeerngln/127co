@@ -7,12 +7,12 @@
   import { onMount } from "svelte";
 
   export let data: NonNullable<PageServerData>;
-  const table = data["table"];
+  $: table = data["table"];
   // @ts-ignore
-  const rows = data["data"];
+  $: rows = data["data"];
 
   // @ts-ignore
-  const { headers, name } = Tables[table];
+  $: ({ headers, name } = Tables[table]);
 
   let formData: Record<string, any> = {};
 
