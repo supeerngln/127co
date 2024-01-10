@@ -1,7 +1,13 @@
 <script lang="ts">
     import Breadcrumb from "$lib/components/Breadcrumb.svelte";
     import { Label, Input, Helper } from "flowbite-svelte";
+<<<<<<< HEAD
+    import { requestHeaders, membershipHeaders, cmPayoutHeaders, 
+         savingsHeaders, csTransactionHeaders,
+         loansHeaders, clTransactionHeaders } from "$lib/headers";
+=======
     import { requestHeaders as headers } from "$lib/headers";
+>>>>>>> 1d99c967236541bae72b4a6cab2bc7ff81d69a8d
     import type { PageServerData } from "./$types";
 
   
@@ -11,6 +17,42 @@
   
     const table = data["table"];
 
+<<<<<<< HEAD
+    const pageTitle =
+    table === "request"
+      ? "Request"
+      : table === "membership"
+        ? "Membership"
+        : table === "cm_payout"
+          ? "Member Payouts"
+          : table === "savingsaccounts"
+            ? "Savings Accounts"
+            : table === "cs_transaction"
+              ? "Savings Transactions"
+              : table === "loanrecords"
+                ? "Loan Records"
+                : table === "cl_transaction"
+                  ? "Loan Transactions"
+                  : undefined;
+    const headers =
+    table === "request"
+      ? requestHeaders
+      : table === "membership"
+        ? membershipHeaders
+        : table === "cm_payout"
+          ? cmPayoutHeaders
+          : table === "savingsaccounts"
+            ? savingsHeaders
+            : table === "cs_transaction"
+              ? csTransactionHeaders
+              : table === "loanrecords"
+                ? loansHeaders
+                : table === "cl_transaction"
+                  ? clTransactionHeaders
+                  : undefined;
+
+=======
+>>>>>>> 1d99c967236541bae72b4a6cab2bc7ff81d69a8d
   
     const handleSubmit = async () => {
       await fetch("/dashboard/cooperative/api/database/create", {
@@ -20,8 +62,14 @@
           table: table,
         }),
       });
+<<<<<<< HEAD
+
+     
+    };
+=======
     };
 
+>>>>>>> 1d99c967236541bae72b4a6cab2bc7ff81d69a8d
   </script>
   
 
@@ -30,8 +78,13 @@
     <Breadcrumb
       items={[
         { href: "/dashboard/cooperative", text: "Cooperative" },
+<<<<<<< HEAD
+        { href: `/dashboard/cooperative/${table}/`, text: pageTitle },
+        { href: `/dashboard/cooperative/${table}/add`, text: "Add an Entry" },
+=======
         { href: `/dashboard/cooperative/request/`, text: table },
         { href: `/dashboard/cooperative/request/add`, text: "Add an Entry" },
+>>>>>>> 1d99c967236541bae72b4a6cab2bc7ff81d69a8d
       ]}
     />
     {#each headers as header (header)}
