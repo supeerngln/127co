@@ -15,3 +15,4 @@ SOURCE database/human_resources.sql
 SOURCE database/supplies.sql
 source database/cooperative.sql
 -- SOURCE database/finance.sql
+source database/bootcamp.sql
