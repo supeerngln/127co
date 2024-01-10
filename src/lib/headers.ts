@@ -1,4 +1,3 @@
-
 export const itemHeaders = [
   "Item_Id",
   "Item_Type",
