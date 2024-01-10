@@ -1,19 +1,27 @@
 <script lang="ts">
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import { Label, Input, Helper } from "flowbite-svelte";
+  import Tables from "$lib/tables";
   import type { PageServerData } from "./$types";
 
-  export let data: NonNullable<PageServerData>;
+  import { onMount } from "svelte";
 
+  export let data: NonNullable<PageServerData>;
   const table = data["table"];
-  const headers = data["headers"];
+  // @ts-ignore
+  const rows =  data["data"];
+
+  // @ts-ignore
+  const { headers } = Tables[table];
 
   let formData: Record<string, any> = {};
 
-  const handleSubmit = () => {
-    // Handle form submission logic here
-    console.log(formData);
-  };
+  onMount(() => {
+    for (const header of headers) {
+      formData[header] = rows[header]; 
+    }
+  });
+
 </script>
 
 <main class="w-full">
@@ -48,10 +56,15 @@
     >
   {/each}
 
-  <button
-    on:click={handleSubmit}
-    class="mt-4 bg-accent hover:bg-primary-600 text-white px-4 py-2 rounded"
-  >
-    Edit an Entry
-  </button>
+  <form method="POST">
+    {#each headers as header (header)}
+      <input type="hidden" name={header} bind:value={formData[header]}/>
+    {/each}
+    <button
+      formaction="?/edit"
+      class="mt-4 bg-accent hover:bg-primary-600 text-white px-4 py-2 rounded"
+    >
+      Edit an Entry
+    </button>
+  /<form>
 </main>

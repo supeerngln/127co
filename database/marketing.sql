@@ -1,7 +1,7 @@
 -- MARKETING AND CUSTOMER ACQUISITION --
 
 -- Create Client Table
-CREATE TABLE IF NOT EXISTS Supplier (
+CREATE TABLE IF NOT EXISTS Client (
     Client_ID INT(20) PRIMARY KEY,
     Client_CompanyName VARCHAR(30),
     Client_RepFirstName VARCHAR(30),
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Supplier (
 );
 
 -- Create Contract Table
-CREATE TABLE IF NOT EXISTS Item (
+CREATE TABLE IF NOT EXISTS Contract (
     Contract_ID INT(20) PRIMARY KEY,
     Contract_LegalPerson VARCHAR(30),
     Contract_SignedDate DATE,
@@ -35,9 +35,7 @@ CREATE TABLE IF NOT EXISTS Item (
     FOREIGN KEY (Signatory_ClientID) REFERENCES Client(Client_ID),
     FOREIGN KEY (Signatory_EmployeeID) REFERENCES Employee(Employee_ID),
     FOREIGN KEY (Transaction_ID) REFERENCES Contract_Transaction(CT_ID)
-
 );
-
 
 -- Insert 10 rows into  Client Table
 INSERT INTO Client (Client_ID, Client_CompanyName, Client_RepFirstName, Client_RepLastName, Client_RepContactNum, Client_SecRepFirstName, Client_SecRepLastName, Client_SecRepContactNum, Client_Address, Client_Email, Client_TelNo)

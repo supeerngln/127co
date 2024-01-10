@@ -2,23 +2,16 @@
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import { Label, Input, Helper } from "flowbite-svelte";
   import type { PageServerData } from "./$types";
+  import Tables from "$lib/tables";
 
   export let data: NonNullable<PageServerData>;
-
   const table = data["table"];
-  const headers = data["headers"];
+
+  // @ts-ignore
+  const { headers } = Tables[table];
 
   let formData: Record<string, any> = {};
 
-  const handleSubmit = async () => {
-    await fetch("/dashboard/supplies/api/database/create", {
-      method: "POST",
-      body: JSON.stringify({
-        data: JSON.stringify(formData),
-        table: table,
-      }),
-    });
-  };
 </script>
 
 <main class="w-full">
@@ -53,10 +46,16 @@
     >
   {/each}
 
-  <button
-    on:click={handleSubmit}
-    class="mt-4 bg-accent hover:bg-primary-600 text-white px-4 py-2 rounded"
-  >
-    Add an Entry
-  </button>
+  <form method="POST" action="?/add">
+    <input type="hidden" name="table" value={table}/>
+    {#each headers as header (header)}
+      <input type="hidden" name={header} bind:value={formData[header]}/>
+    {/each}
+    <button
+      type="submit"
+      class="mt-4 bg-accent hover:bg-primary-600 text-white px-4 py-2 rounded"
+    >
+      Add an Entry
+    </button>
+  </form>
 </main>
