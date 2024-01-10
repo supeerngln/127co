@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Search, Button } from "flowbite-svelte";
-    import Table from "$lib/components/Table.svelte";
+    import Table from "$lib/components/marketing/Table.svelte";
     import Breadcrumb from "$lib/components/Breadcrumb.svelte";
 
     import type { PageServerData } from "../contract/$types";
