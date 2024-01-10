@@ -23,7 +23,6 @@ export const transactionHeaders = [
   "Transaction_Datetime",
 ];
 
-<<<<<<< HEAD
 export const salaryHeaders = [
   "Salary_Id",
   "Employee_Id",
@@ -62,7 +61,7 @@ export const ctransactionHeaders = [
   "CT_Payment_Type",
   "Contract_Id",
 ];
-=======
+
 export const requestHeaders = [
   "Request_ID",
   "Employee_ID",
@@ -128,4 +127,3 @@ export const clTransactionHeaders = [
   "Transaction_Time",
   "Amount",
 ];
->>>>>>> 1d99c967236541bae72b4a6cab2bc7ff81d69a8d
