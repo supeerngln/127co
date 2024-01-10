@@ -43,8 +43,7 @@
                   <td
                     class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
                   >
-                    <form method="POST" 
-                      use:enhance >
+                    <form method="POST">
                       <input type="hidden" name="table" id={row[primaryKey]} bind:value={table} />
                       <input
                         type="hidden"

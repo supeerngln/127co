@@ -6,7 +6,7 @@
   <Breadcrumb items={[{ href: "/dashboard/finance", text: "Finance" }]}/>
 
   <a
-    href="/dashboard/finance/salary"
+    href="/dashboard/finance/Salary"
     class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-5"> man </span>
@@ -20,7 +20,7 @@
   </a>
 
   <a
-    href="/dashboard/finance/budget"
+    href="/dashboard/finance/Budget"
     class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-5"> wallet </span>
@@ -34,7 +34,7 @@
   </a>
 
   <a
-    href="/dashboard/finance/expenditure"
+    href="/dashboard/finance/Expenditure"
     class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-5"> book </span>
@@ -48,7 +48,7 @@
   </a>
 
   <a
-    href="/dashboard/finance/contract_transaction"
+    href="/dashboard/finance/Contract_Transaction"
     class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-5"> receipt </span>
