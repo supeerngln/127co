@@ -1,31 +1,33 @@
 <script lang="ts">
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import { Label, Input, Helper } from "flowbite-svelte";
+  import Tables from "$lib/tables";
   import type { PageServerData } from "./$types";
 
-  export let data: NonNullable<PageServerData>;
+  import { onMount } from "svelte";
 
+  export let data: NonNullable<PageServerData>;
   const table = data["table"];
-  const headers = data["headers"];
+  // @ts-ignore
+  const rows = data["data"];
+
+  // @ts-ignore
+  const { headers, name } = Tables[table];
 
   let formData: Record<string, any> = {};
 
-  const handleSubmit = async () => {
-    await fetch("/dashboard/finance/api/database/edit", {
-      method: "POST",
-      body: JSON.stringify({
-        data: JSON.stringify(formData),
-        table: table,
-      }),
-    });
-  };
+  onMount(() => {
+    for (const header of headers) {
+      formData[header] = rows[header];
+    }
+  });
 </script>
 
 <main class="w-full">
   <Breadcrumb
     items={[
       { href: "/dashboard/finance", text: "Finance" },
-      { href: `/dashboard/finance/${table}`, text: "Items" },
+      { href: `/dashboard/finance/${table}`, text: name },
       { href: `/dashboard/finance/${table}/edit`, text: "Edit an Entry" },
     ]}
   />

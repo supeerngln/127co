@@ -1,4 +1,4 @@
-import type { PageServerLoad, Actions } from "./$types";
+import type { PageServerLoad, Actions } from "../$types";
 import { redirect, error } from "@sveltejs/kit";
 
 import db from "$lib/server/database";
@@ -9,6 +9,7 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
   if (!id) throw redirect(302, "/login");
 
   const table = params.table;
+
   const data = await db.execute(`SELECT * FROM ${params.table}`);
   return {
     data: data[0],
