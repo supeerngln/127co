@@ -56,8 +56,8 @@ VALUES
 -- Insert 5 rows into Contract Table
 INSERT INTO Contract (Contract_ID, Project_ID, Signatory_ClientID, Signatory_EmployeeID, Transaction_ID, Contract_LegalPerson, Contract_SignedDate, Contract_StartDate, Contract_EstimatedEndDate, Contract_ActualEndDate, Contract_ProjectDurationYears, Contract_MaintenanceYears, Contract_Status, Contract_FileLink)
 VALUES
-(4000, 1, 5892, 20160076, 2000, 'Atty. Leni Hillario', '2018-09-18 14:42:00', '2018-10-31 08:15:00', '2020-10-31 23:10:00', '2020-11-30 15:55:00', 2.00, 3, 'finished', 'http://tinyurl.com/ID4000-Contract'),
-(4001, 2, 7310, 20160076, 2001, 'Atty. Chel Diaz', '2018-09-01 03:30:00', '2018-11-28 14:42:00', '2019-11-28 06:45:00', '2019-12-28 09:00:00', 1.00, 4, 'finished', 'http://tinyurl.com/ID4001-Contract'),
-(4002, 3, 2468, 20160076, 2002, 'Atty. Albee Reyes', '2018-09-04 20:18:00', '2018-10-31 08:15:00', '2019-10-31 09:00:00', '2019-11-3 15:55:00', 1.00, 5, 'finished', 'http://tinyurl.com/ID4002-Contract'),
-(4003, 4, 9035, 20160076, 2003, 'Atty. Maki Bao', '2018-09-02 08:15:00', '2018-10-30 14:42:00', '2021-10-30 15:55:00', '2021-11-30 06:45:00', 3.00, 3, 'finished', 'http://tinyurl.com/ID4003-Contract'),
-(4004, 5, 1179, 20160076, 2004, 'Atty. Carlos Alejandre', '2018-09-05 14:42:00', '2018-11-30 03:30:00', '2020-11-30 06:45:00', '2020-12-30 23:10:00', 2.00, 4, 'finished', 'http://tinyurl.com/ID4004-Contract');
+(4000, 1, 5892, 20160076, 20001, 'Atty. Leni Hillario', '2018-09-18 14:42:00', '2018-10-31 08:15:00', '2020-10-31 23:10:00', '2020-11-30 15:55:00', 2.00, 3, 'finished', 'http://tinyurl.com/ID4000-Contract'),
+(4001, 2, 7310, 20160076, 20002, 'Atty. Chel Diaz', '2018-09-01 03:30:00', '2018-11-28 14:42:00', '2019-11-28 06:45:00', '2019-12-28 09:00:00', 1.00, 4, 'finished', 'http://tinyurl.com/ID4001-Contract'),
+(4002, 3, 2468, 20160076, 20003, 'Atty. Albee Reyes', '2018-09-04 20:18:00', '2018-10-31 08:15:00', '2019-10-31 09:00:00', '2019-11-3 15:55:00', 1.00, 5, 'finished', 'http://tinyurl.com/ID4002-Contract'),
+(4003, 4, 9035, 20160076, 20004, 'Atty. Maki Bao', '2018-09-02 08:15:00', '2018-10-30 14:42:00', '2021-10-30 15:55:00', '2021-11-30 06:45:00', 3.00, 3, 'finished', 'http://tinyurl.com/ID4003-Contract'),
+(4004, 5, 1179, 20160076, 20005, 'Atty. Carlos Alejandre', '2018-09-05 14:42:00', '2018-11-30 03:30:00', '2020-11-30 06:45:00', '2020-12-30 23:10:00', 2.00, 4, 'finished', 'http://tinyurl.com/ID4004-Contract');

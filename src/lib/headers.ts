@@ -42,6 +42,7 @@ export const budgetHeaders = [
   "Budget_Category",
   "Budget_Amount",
   "Property_Id",
+  "Project_Id",
 ];
 
 export const expenseHeaders = [
@@ -62,7 +63,7 @@ export const ctransactionHeaders = [
   "CT_Balance",
   "CT_Total_Paid",
   "CT_Payment_Type",
-  "Contract_Id",
+  "Project_Id",
 ];
 
 export const requestHeaders = [
