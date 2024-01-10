@@ -7,7 +7,7 @@
   import {
     itemHeaders,
     supplierHeaders,
-    transactionHeaders,
+    itemTransactionHeaders,
   } from "$lib/headers";
 
   export let data: NonNullable<PageServerData>;
@@ -56,10 +56,10 @@
     rows={suppliers}
   />
   <Table
-    handleEdit={(id) => handleEdit(id, "Transaction_History")}
-    handleDelete={(id) => handleDelete(id, "Transaction_History")}
+    handleEdit={(id) => handleEdit(id, "Item_Transaction")}
+    handleDelete={(id) => handleDelete(id, "Item_Transaction")}
     primaryKey="Transaction_Id"
-    headers={transactionHeaders}
+    headers={itemTransactionHeaders}
     rows={transactions}
   />
 
@@ -78,7 +78,7 @@
   </a>
 
   <a
-    href="/dashboard/supplies/transactions"
+    href="/dashboard/supplies/item_transaction"
     class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-5"> contract </span>
