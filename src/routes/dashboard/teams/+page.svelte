@@ -24,7 +24,11 @@
           </p>
         </div>
         <p class="font-normal text-gray-700 dark:text-gray-400">
-          Led by {teams.Team_Leader.Employee_FirstName} {teams.Team_Leader.Employee_MiddleName ? teams.Team_Leader.Employee_MiddleName : ''} {teams.Team_Leader.Employee_LastName}
+          Led by {teams.Team_Leader.Employee_FirstName}
+          {teams.Team_Leader.Employee_MiddleName
+            ? teams.Team_Leader.Employee_MiddleName
+            : ""}
+          {teams.Team_Leader.Employee_LastName}
         </p>
       </a>
     {/each}

@@ -20,12 +20,13 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
 
   const team = teams[0];
 
-  const [[team_leader, team_members, team_projects, team_software]] = await db.query<RowDataPacket[][]>(
-    `SELECT * FROM Employee WHERE Employee_ID = ${team["Team_Leader_ID"]};` +
-    `SELECT * FROM Employee WHERE Employee_ReportsTo = ${team["Team_Leader_ID"]};` +
-    `SELECT * FROM Project WHERE Project_Team_ID = ${params.id};` +
-    `SELECT * FROM Team_Software WHERE Team_ID = ${params.id}`,
-  );
+  const [[team_leader, team_members, team_projects, team_software]] =
+    await db.query<RowDataPacket[][]>(
+      `SELECT * FROM Employee WHERE Employee_ID = ${team["Team_Leader_ID"]};` +
+        `SELECT * FROM Employee WHERE Employee_ReportsTo = ${team["Team_Leader_ID"]};` +
+        `SELECT * FROM Project WHERE Project_Team_ID = ${params.id};` +
+        `SELECT * FROM Team_Software WHERE Team_ID = ${params.id}`,
+    );
 
   team["Team_Leader"] = team_leader[0];
   team["Team_Members"] = team_members;

@@ -37,7 +37,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
   for (const team of teams) {
     const [[team_leader, team_members]] = await db.query<RowDataPacket[][]>(
       `SELECT * FROM Employee WHERE Employee_ID = ${team["Team_Leader_ID"]};` +
-      `Select * from Employee where Employee_Reportsto = ${team["Team_Leader_ID"]};`,
+        `Select * from Employee where Employee_Reportsto = ${team["Team_Leader_ID"]};`,
     );
     team["Team_Leader"] = team_leader[0];
     team["Team_Members"] = team_members;

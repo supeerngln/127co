@@ -6,11 +6,21 @@
 
 <div class="container">
   <h1>{data.team.Team_Name}</h1>
-  <p>Led by {data.team.Team_Leader.Employee_FirstName} {data.team.Team_Leader.Employee_MiddleName ? data.team.Team_Leader.Employee_MiddleName : ''} {data.team.Team_Leader.Employee_LastName}</p>
+  <p>
+    Led by {data.team.Team_Leader.Employee_FirstName}
+    {data.team.Team_Leader.Employee_MiddleName
+      ? data.team.Team_Leader.Employee_MiddleName
+      : ""}
+    {data.team.Team_Leader.Employee_LastName}
+  </p>
   <h2>Members:</h2>
   <ul>
     {#each data.team.Team_Members as member}
-      <li>{member.Employee_FirstName} {member.Employee_MiddleName ? member.Employee_MiddleName : ''} {member.Employee_LastName}</li>
+      <li>
+        {member.Employee_FirstName}
+        {member.Employee_MiddleName ? member.Employee_MiddleName : ""}
+        {member.Employee_LastName}
+      </li>
     {/each}
   </ul>
   <h2>Projects:</h2>

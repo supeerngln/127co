@@ -40,11 +40,5 @@
       <span>Add an Entry</span>
     </div>
   </a>
-  <Table
-    {primaryKey}
-    {handleDelete}
-    {handleEdit}
-    {headers}
-    {rows}
-  />
+  <Table {primaryKey} {handleDelete} {handleEdit} {headers} {rows} />
 </main>
