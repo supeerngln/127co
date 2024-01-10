@@ -14,4 +14,4 @@ SOURCE database/projects.sql
 SOURCE database/supplies.sql
 source database/cooperative.sql
 SOURCE database/finance.sql
-SOURCE database/marketing.sql
+--SOURCE database/marketing.sql
