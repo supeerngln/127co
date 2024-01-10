@@ -10,9 +10,14 @@
 
   let formData: Record<string, any> = {};
 
-  const handleSubmit = () => {
-    // Handle form submission logic here
-    console.log(formData);
+  const handleSubmit = async() => {
+    await fetch("/dashboard/finance/api/database/edit", {
+      method: "POST",
+      body: JSON.stringify({
+        data: JSON.stringify(formData),
+        table: table,
+      }),
+    });
   };
 </script>
 
