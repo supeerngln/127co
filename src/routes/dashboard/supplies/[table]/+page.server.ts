@@ -1,8 +1,11 @@
-
 import type { PageServerLoad } from "./$types";
 import { redirect } from "@sveltejs/kit";
 import db from "$lib/server/database";
-import { itemTransactionHeaders, itemHeaders, supplierHeaders } from "$lib/headers"
+import {
+  itemTransactionHeaders,
+  itemHeaders,
+  supplierHeaders,
+} from "$lib/headers";
 
 export const load: PageServerLoad = async ({ cookies, params }) => {
   const id = cookies.get("auth-token") || null;
@@ -35,6 +38,6 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     data: data[0],
     table: table,
     headers: headers,
-    primaryKey: primaryKey
+    primaryKey: primaryKey,
   };
 };
