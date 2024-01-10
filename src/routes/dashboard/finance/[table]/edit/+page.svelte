@@ -10,14 +10,9 @@
 
   let formData: Record<string, any> = {};
 
-  const handleSubmit = async () => {
-    await fetch("/dashboard/finance/api/database/create", {
-      method: "POST",
-      body: JSON.stringify({
-        data: JSON.stringify(formData),
-        table: table,
-      }),
-    });
+  const handleSubmit = () => {
+    // Handle form submission logic here
+    console.log(formData);
   };
 </script>
 
@@ -26,7 +21,7 @@
     items={[
       { href: "/dashboard/finance", text: "Finance" },
       { href: `/dashboard/finance/${table}`, text: "Items" },
-      { href: `/dashboard/finance/${table}/add`, text: "Add an Entry" },
+      { href: `/dashboard/finance/${table}/edit`, text: "Edit an Entry" },
     ]}
   />
   {#each headers as header (header)}
@@ -57,6 +52,6 @@
     on:click={handleSubmit}
     class="mt-4 bg-accent hover:bg-primary-600 text-white px-4 py-2 rounded"
   >
-    Add an Entry
+    Edit an Entry
   </button>
 </main>
