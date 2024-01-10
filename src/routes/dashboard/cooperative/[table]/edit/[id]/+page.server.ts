@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     return error(404, "Invalid table");
   }
   const data = await db.execute(
-    `SELECT * FROM ${tableName} WHERE ${table.primaryKey}=${id}`,
+    `SELECT * FROM ${tableName} WHERE ${table.primaryKey}='${id}'`,
   );
 
   return {
