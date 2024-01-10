@@ -1,67 +1,54 @@
 <script lang="ts">
-    import { Search, Button } from "flowbite-svelte";
-    import Table from "$lib/components/Table.svelte";
     import Breadcrumb from "$lib/components/Breadcrumb.svelte";
-  
-    import type { PageServerData } from "./$types";
-    import {
-      salaryHeaders,
-      budgetHeaders,
-      expenseHeaders,
-      ctransactionHeaders
-    } from "$lib/headers";
-  
-    export let data: NonNullable<PageServerData>;
-  
-    const salary = data["salary"];
-    const budget = data["budget"];
-    const expense = data["expense"];
-    const contract_transaction = data["ctransaction"];
-  
-    const handleDelete = async (id: number, table: string) => {
-      await fetch("/dashboard/supplies/api/database/delete", {
-        method: "POST",
-        body: JSON.stringify({ id, table }),
-      });
-    };
-  
-    const handleEdit = (id: number, table: string) => {};
-  </script>
+</script>
   
   <main class="w-full">
     <Breadcrumb
       items={[{ href: "/dashboard/finance", text: "Finance" }]}
     />
 
-    <Table
-      handleEdit={(id) => handleEdit(id, "Salary")}
-      handleDelete={(id) => handleDelete(id, "Salary")}
-      primaryKey="Salary_Id"
-      headers={salaryHeaders}
-      rows={salary}
-    />
-    
-    <Table
-      handleEdit={(id) => handleEdit(id, "Budget")}
-      handleDelete={(id) => handleDelete(id, "Budget")}
-      primaryKey="Budget_Id"
-      headers={budgetHeaders}
-      rows={budget}
-    />
+    <a href="/dashboard/finance/salary" class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive">
+      <span class="text-3xl material-symbols-outlined mr-5"> man </span>
+      <div class="flex w-full flex-col h-full">
+        <span>Salary</span>
+        <span class="text-subtext z-4">View the salaries of each employee</span>
+      </div>
+      <span class="relative z-4 right-100 bottom-0 material-symbols-outlined">
+        navigate_next
+      </span>
+    </a>
 
-    <Table
-      primaryKey="Expense_Id"
-      headers={expenseHeaders}
-      rows={expense}
-    />
-  
+    <a href="/dashboard/finance/budget" class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive">
+      <span class="text-3xl material-symbols-outlined mr-5"> wallet </span>
+      <div class="flex w-full flex-col h-full">
+        <span>Budget</span>
+        <span class="text-subtext z-4">View the summary of budgets</span>
+      </div>
+      <span class="relative z-4 right-100 bottom-0 material-symbols-outlined">
+        navigate_next
+      </span>
+    </a>
 
-    <Table
-      handleEdit={(id) => handleEdit(id, "Contract_Transaction")}
-      handleDelete={(id) => handleDelete(id, "Contract_Transaction")}
-      primaryKey="CT_Id"
-      headers={ctransactionHeaders}
-      rows={contract_transaction}
-    />
+    <a href="/dashboard/finance/expenditure" class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive">
+      <span class="text-3xl material-symbols-outlined mr-5"> money </span>
+      <div class="flex w-full flex-col h-full">
+        <span>Expenditure</span>
+        <span class="text-subtext z-4">Track the expenses of the company</span>
+      </div>
+      <span class="relative z-4 right-100 bottom-0 material-symbols-outlined">
+        navigate_next
+      </span>
+    </a>
+
+    <a href="/dashboard/finance/contract_transaction" class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive">
+      <span class="text-3xl material-symbols-outlined mr-5"> receipt </span>
+      <div class="flex w-full flex-col h-full">
+        <span>Contract Transactions</span>
+        <span class="text-subtext z-4">Track the transactions made from the contracts</span>
+      </div>
+      <span class="relative z-4 right-100 bottom-0 material-symbols-outlined">
+        navigate_next
+      </span>
+    </a>
   </main>
   
