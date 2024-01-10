@@ -1,16 +1,26 @@
 <script lang="ts">
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import { Label, Input, Helper } from "flowbite-svelte";
-  import type { PageServerData } from "./$types";
   import Tables from "$lib/tables";
+  import type { PageServerData } from "./$types";
+
+  import { onMount } from "svelte";
 
   export let data: NonNullable<PageServerData>;
   const table = data["table"];
+  // @ts-ignore
+  const rows = data["data"];
 
   // @ts-ignore
   const { headers, name } = Tables[table];
 
   let formData: Record<string, any> = {};
+
+  onMount(() => {
+    for (const header of headers) {
+      formData[header] = rows[header];
+    }
+  });
 </script>
 
 <main class="w-full">
@@ -18,7 +28,7 @@
     items={[
       { href: "/dashboard/cooperative", text: "Cooperative" },
       { href: `/dashboard/cooperative/${table}`, text: name },
-      { href: `/dashboard/cooperative/${table}/add`, text: "Add an Entry" },
+      { href: `/dashboard/cooperative/${table}/edit`, text: "Edit an Entry" },
     ]}
   />
   {#each headers as header (header)}
@@ -45,16 +55,16 @@
     >
   {/each}
 
-  <form method="POST" action="?/add">
-    <input type="hidden" name="table" value={table} />
+  <form method="POST">
     {#each headers as header (header)}
       <input type="hidden" name={header} bind:value={formData[header]} />
     {/each}
     <button
-      type="submit"
+      formaction="?/edit"
       class="mt-4 bg-accent hover:bg-primary-600 text-white px-4 py-2 rounded"
     >
-      Add an Entry
+      Edit an Entry
     </button>
+    <form></form>
   </form>
 </main>
