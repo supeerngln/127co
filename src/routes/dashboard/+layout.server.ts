@@ -22,6 +22,11 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
       label: "Projects",
       icon: "bookmark_manager",
     },
+    {
+      href: "/dashboard/teams",
+      label: "Teams",
+      icon: "groups",
+    },
     { href: "/dashboard/marketing", label: "Marketing", icon: "campaign" },
     {
       href: "/dashboard/cooperative",
