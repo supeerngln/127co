@@ -16,6 +16,7 @@
 	<TableHead>
 		<TableBodyCell>Timesheet ID</TableBodyCell>
 		<TableBodyCell>Employee ID</TableBodyCell>
+		<TableBodyCell>Employee Name</TableBodyCell>
 		<TableBodyCell>Time In</TableBodyCell>
 		<TableBodyCell>Time Out</TableBodyCell>
 		<TableHeadCell>
@@ -30,6 +31,7 @@
 			<TableBodyRow>
 				<TableBodyCell>{log.Timesheet_ID}</TableBodyCell>
 				<TableBodyCell>{log.Employee_ID}</TableBodyCell>
+				<TableBodyCell>{log.Employee_FirstName + " " + log.Employee_LastName}</TableBodyCell>
 				<TableBodyCell>{formatDateTime(log.Timesheet_TimeIn)}</TableBodyCell>
 				<TableBodyCell>{formatDateTime(log.Timesheet_TimeOut)}</TableBodyCell>
 				<TableBodyCell>

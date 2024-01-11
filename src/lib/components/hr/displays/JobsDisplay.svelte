@@ -14,6 +14,7 @@
 <Table striped={true}>
 	<TableHead>
 		<TableHeadCell>Employee ID</TableHeadCell>
+		<TableHeadCell>Employee Name</TableHeadCell>
 		<TableHeadCell>Position</TableHeadCell>
 		<TableHeadCell>Department</TableHeadCell>
 		<TableHeadCell>Status</TableHeadCell>
@@ -28,7 +29,9 @@
 	<TableBody class="divide-y">
 		{#each jobs as job}
 			<TableBodyRow>
+				<TableBodyCell>{job.Job_ID}</TableBodyCell>
 				<TableBodyCell>{job.Employee_ID}</TableBodyCell>
+				<TableBodyCell>{job.Employee_FirstName + " " + job.Employee_LastName}</TableBodyCell>
 				<TableBodyCell>{job.Job_Position}</TableBodyCell>
 				<TableBodyCell>{job.Job_Department}</TableBodyCell>
 				<TableBodyCell>{job.Employee_Status}</TableBodyCell>

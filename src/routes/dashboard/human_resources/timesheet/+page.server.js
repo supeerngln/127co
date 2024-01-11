@@ -3,9 +3,9 @@ import * as db from "$lib/util/hr/db/mysql";
 export async function load() {
     try {
         let q = {
-            fields: ['*'],
+            fields: ['*','Employee.Employee_FirstName', 'Employee.Employee_LastName'],
             alias: null,
-            from: 'timesheet',
+            from: 'Timesheet NATURAL JOIN Employee',
             where: null,
             groupBy: null,
             having: null,

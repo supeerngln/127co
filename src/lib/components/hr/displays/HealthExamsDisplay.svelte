@@ -16,8 +16,8 @@
 	<Table striped={true}>
 		<TableHead>
 			<TableHeadCell>Heath Exam ID</TableHeadCell>
-			<TableHeadCell>Employee Name</TableHeadCell>
 			<TableHeadCell>Employee ID</TableHeadCell>
+			<TableHeadCell>Employee Name</TableHeadCell>
 			<TableHeadCell>Date and Time</TableHeadCell>
 			<TableHeadCell>Height</TableHeadCell>
 			<TableHeadCell>Weight</TableHeadCell>
@@ -36,8 +36,8 @@
 			{#each exams as exam}
 				<TableBodyRow>
 					<TableBodyCell>{exam.HE_ID}</TableBodyCell>
-					<TableBodyCell>{exam.Employee_FirstName + " " +exam.Employee_LastName}</TableBodyCell>
 					<TableBodyCell>{exam.Employee_ID}</TableBodyCell>
+					<TableBodyCell>{exam.Employee_FirstName + " " + exam.Employee_LastName}</TableBodyCell>
 					<TableBodyCell>{formatDateTime(exam.HE_Date)}</TableBodyCell>
 					<TableBodyCell>{exam.HE_Height}</TableBodyCell>
 					<TableBodyCell>{exam.HE_Weight}</TableBodyCell>
