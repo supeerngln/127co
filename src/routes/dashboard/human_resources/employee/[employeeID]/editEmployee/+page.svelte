@@ -8,6 +8,5 @@
 </script>
 
 <hr />
-<h1>Editing Employee ID: {employee.Employee_ID}</h1>
-<EditEmployeeForm {employee} {form} />
+<EditEmployeeForm {employee} {form} {storedReportsTo}/>
 <hr />
