@@ -235,7 +235,7 @@ const Tables: Record<string, Table> = {
     ],
     department: "marketing",
     primaryKey: "Client_ID",
-    name: "Contract"
+    name: "Client"
   },
 
   Contract: {
