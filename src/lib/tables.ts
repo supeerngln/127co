@@ -204,6 +204,47 @@ const Tables: Record<string, Table> = {
     name: "Contract Transactions"
   },
   
+  
+    Client: {
+    headers: [
+      "Client_ID",
+      "Client_CompanyName",
+      "Client_RepFirstName",
+      "Client_RepLastName",
+      "Client_RepContactNum",
+      "Client_SecRepFirstName",
+      "Client_SecRepLastName",
+      "Client_SecRepContactNum",
+      "Client_Address",
+      "Client_Email",
+      "Client_TelNo",
+    ],
+    department: "marketing",
+    primaryKey: "Client_ID",
+    name: "Contract"
+  },
+
+  Contract: {
+    headers: [
+      "Contract_ID",
+      "Contract_LegalPerson",
+      "Contract_SignedDate",
+      "Contract_StartDate",
+      "Contract_EstimatedEndDate",
+      "Contract_ActualEndDate",
+      "Contract_ProjectDurationYears",
+      "Contract_MaintenanceYears",
+      "Contract_Status",
+      "Contract_FileLink",
+      "Project_ID",
+      "Signatory_ClientID",
+      "Signatory_EmployeeID",
+      "Transaction_ID",
+    ],
+    department: "marketing",
+    primaryKey: "Contract_ID",
+    name: "Contract"
+  },
 };
 
 export default Tables;
