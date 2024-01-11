@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Client (
 
 -- Create Contract Table
 CREATE TABLE IF NOT EXISTS Contract (
-    Contract_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Contract_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Contract_LegalPerson VARCHAR(30) NOT NULL,
     Contract_SignedDate DATETIME NOT NULL,
     Contract_StartDate DATETIME NOT NULL,
