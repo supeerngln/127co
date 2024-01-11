@@ -32,7 +32,7 @@
         <TableBodyRow>
           <TableBodyCell>{employee.Employee_ID}</TableBodyCell>
           <TableBodyCell>
-            <a href="/employee/{employee.Employee_ID}">
+            <a href="./employee/{employee.Employee_ID}">
               {employee.Employee_FirstName}
               {employee.Employee_MiddleName ? employee.Employee_MiddleName : ""}
               {employee.Employee_LastName}
