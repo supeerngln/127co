@@ -104,6 +104,7 @@
                     <button
                       type="submit"
                       class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-active hover:text-hactive disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                      style="background:transparent;"
                       >Delete</button
                     >
                   </form>
