@@ -85,6 +85,31 @@
           ]}
         />
       </div>
+        {:else if link.href === "/dashboard/marketing"}
+      <div class="w-full">
+        <a
+          href="/dashboard/marketing"
+          class="text-2xl font-bold flex items-center pb-6"
+        >
+          Marketing and Customer Acquisition
+        </a>
+        <DescriptiveLink
+          links={[
+            {
+              href: "/dashboard/marketing/Client",
+              label: "Client",
+              icon: "people",
+              description: "Centralizes client data for easy access and management.",
+            },
+            {
+              href: "/dashboard/marketing/Contract",
+              label: "Contract",
+              icon: "contract",
+              description: "Houses a complete record of contract agreements.",
+            },
+          ]}
+        />
+      </div>
     {/if}
   {/each}
 </div>
