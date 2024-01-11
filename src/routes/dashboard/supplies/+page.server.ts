@@ -4,14 +4,14 @@ import { error, redirect } from "@sveltejs/kit";
 import Tables from "$lib/tables";
 
 export async function load() {
-  // const transactions = await db.execute("SELECT * FROM ITEM_TRANSACTION");
-  // const suppliers = await db.execute("SELECT * FROM SUPPLIER");
-  // const items = await db.execute("SELECT * FROM ITEM");
+  const transactions = await db.execute("SELECT * FROM ITEM_TRANSACTION");
+  const suppliers = await db.execute("SELECT * FROM SUPPLIER");
+  const items = await db.execute("SELECT * FROM ITEM");
 
   return {
-    // transactions: transactions[0],
-    // suppliers: suppliers[0],
-    // items: items[0],
+    transactions: transactions[0],
+    suppliers: suppliers[0],
+    items: items[0],
   };
 }
 
@@ -48,9 +48,6 @@ export const actions: Actions = {
     } catch (e) {
       return { success: true, rows: [] }
     }
-
-    console.log(sql);
-    console.log(results[0]);
     return { success: true, rows: results[0] }
   }
 };
