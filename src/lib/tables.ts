@@ -143,6 +143,67 @@ const Tables: Record<string, Table> = {
     primaryKey: "CLTransaction_ID",
     name: "Loan Transactions",
   },
+
+  Salary: {
+    headers: [
+      "Salary_Id",
+      "Employee_Id",
+      "Salary_Date",
+      "Salary_Net",
+      "Salary_Gross",
+      "Salary_Added",
+      "Salary_Deducted",
+    ],
+    department: "finance",
+    primaryKey: "Salary_Id",
+    name: "Salary"
+  },
+
+  Budget: {
+    headers: [
+      "Budget_Id",
+      "Budget_Name",
+      "Budget_Category",
+      "Budget_Amount",
+      "Item_Id",
+      "Project_Id",
+    ],
+    department: "finance",
+    primaryKey: "Budget_Id",
+    name: "Budget"
+  },
+
+  Expenditure: {
+    headers: [
+      "Expense_Id",
+      "Expense_Name",
+      "Expense_Date",
+      "Expense_Amount",
+      "CT_Id",
+      "Expense_Project_Status",
+      "Salary_Id",
+    ],
+    department: "finance",
+    primaryKey: "Expense_Id",
+    name: "Expenditure"
+  },
+
+  Contract_Transaction: {
+    headers: [
+      "CT_Id",
+      "CT_Date",
+      "CT_Total_Amount",
+      "CT_Payment",
+      "CT_Balance",
+      "CT_Total_Paid",
+      "CT_Payment_Type",
+      "Project_Id",
+    ],
+    department: "finance",
+    primaryKey: "CT_Id",
+    name: "Contract Transactions"
+  },
+  
   
     Client: {
     headers: [
