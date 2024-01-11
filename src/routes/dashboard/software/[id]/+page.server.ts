@@ -13,27 +13,16 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     throw redirect(302, "/dashboard");
 
   const [softwares] = await db.execute<RowDataPacket[]>(
-    `SELECT * FROM Software WHERE Software_Name = ${params.id.split("-")[0]}`,
+    `SELECT * FROM Software WHERE Software_Name = '${
+      params.id.split("_")[0]
+    }' AND Software_Version = ${params.id.split("_")[1]}`,
   );
 
-  if (teams.length === 0) throw redirect(302, "/dashboard/teams");
+  if (softwares.length === 0) throw redirect(302, "/dashboard/software");
 
-  const team = teams[0];
-
-  const [[team_leader, team_members, team_projects, team_software]] =
-    await db.query<RowDataPacket[][]>(
-      `SELECT * FROM Employee WHERE Employee_ID = ${team["Team_Leader_ID"]};` +
-        `SELECT * FROM Employee WHERE Employee_ReportsTo = ${team["Team_Leader_ID"]};` +
-        `SELECT * FROM Project WHERE Project_Team_ID = ${params.id};` +
-        `SELECT * FROM Team_Software WHERE Team_ID = ${params.id}`,
-    );
-
-  team["Team_Leader"] = team_leader[0];
-  team["Team_Members"] = team_members;
-  team["Team_Projects"] = team_projects;
-  team["Team_Software"] = team_software;
+  const software = softwares[0];
 
   return {
-    team,
+    software,
   };
 };
