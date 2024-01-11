@@ -45,7 +45,7 @@
 		{/if}
 	</div>
 	<div>
-		<Label for="reports-to" class="mb-2">Senpai:</Label>
+		<Label for="reports-to" class="mb-2">Reports To:</Label>
 		<Input type="text" name="reports-to" id="reports-to" value={reportsTo} />
 
 		{#if error['reports-to']}
