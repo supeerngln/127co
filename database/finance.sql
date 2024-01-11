@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS Salary (
     Salary_Gross DECIMAL(10, 2),
     Salary_Added DECIMAL(10, 2),
     Salary_Deducted DECIMAL(10, 2),
-    FOREIGN KEY (Employee_Id) REFERENCES Employee(Employee_Id) ON UPDATE CASCADE
+    FOREIGN KEY (Employee_Id) REFERENCES Employee(Employee_Id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 CREATE TABLE IF NOT EXISTS Budget (
     Budget_Id INT PRIMARY KEY NOT NULL,
@@ -54,7 +54,8 @@ CREATE TABLE IF NOT EXISTS Profit (
     Profit_Net DECIMAL(10, 2)
 );
 
-INSERT INTO Salary VALUES
+
+INSERT INTO Salary (Salary_Id, Employee_Id, Salary_Date, Salary_Net, Salary_Gross, Salary_Added, Salary_Deducted) VALUES
 (20231101, 20160001, '2023-11-08', 183427,  152234, 32435, 1232),
 (20231102, 20170004, '2023-11-08', 155575,  82445,  76543, 3413),
 (20231103, 20180006, '2023-11-08', 93408,   73434,  23431, 3457),
