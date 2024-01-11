@@ -24,7 +24,12 @@
 
   onMount(() => {
     for (const header of headers) {
-      formData[header] = rows[header];
+      const value = rows[header];
+      if (value instanceof Date) {
+        formData[header] = value.toISOString().slice(0, 19).replace('T', ' ');
+        continue;
+      }
+      formData[header] = value;
     }
   });
 

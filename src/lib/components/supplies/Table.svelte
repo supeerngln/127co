@@ -61,10 +61,17 @@
             {#each rows as row (row)}
               <tr class="hover:bg-tableh dark:hover:bg-gray-700">
                 {#each Object.values(row) as value (value)}
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
-                    >{value}</td
-                  >
+                  {#if value instanceof Date}
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
+                      >{value.toLocaleString()}</td
+                    >
+                  {:else}
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200"
+                      >{value}</td
+                    >
+                  {/if}
                 {/each}
                 <td
                   class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium"
