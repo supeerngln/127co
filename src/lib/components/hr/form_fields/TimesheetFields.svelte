@@ -20,7 +20,7 @@
 	</div>
 	<div>
 		<Label for="time-in" class="mb-2">Time In:</Label>
-		<Input type="datetime-local" name="time-in" id="time-in" value={timeIn} required />
+		<Input type="datetime-local" step="1" name="time-in" id="time-in" value={timeIn} required />
 
 		{#if error['time-in']}
 			<span style="color:red;">{error['time-in']}</span>
@@ -28,7 +28,7 @@
 	</div>
 	<div>
 		<Label for="time-out" class="mb-2">Time Out:</Label>
-		<Input type="datetime-local" name="time-out" id="time-out" value={timeOut} />
+		<Input type="datetime-local" step="1" name="time-out" id="time-out" value={timeOut} />
 
 		{#if error['time-out']}
 			<span style="color:red;">{error['time-out']}</span>
