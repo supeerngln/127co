@@ -42,9 +42,13 @@ export async function load() {
 
 export const actions = {
     delete: async ({ request }) => {
-        const formData = await request.formData();
-        const id = formData.get('id');
-        queryDelete(id);
+        try {
+            const formData = await request.formData();
+            const id = formData.get('id');
+            queryDelete(id);
+        } catch (e) {
+            console.error("Error occured", e.message);
+        }
     }
 }
 
