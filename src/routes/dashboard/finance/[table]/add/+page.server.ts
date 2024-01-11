@@ -38,9 +38,13 @@ export const actions: Actions = {
       values.push(`'${value}'`);
     }
 
-    await db.execute(
-      `INSERT INTO ${tableName} (${headers.join(", ")}) VALUES (${values})`,
-    );
-    return { success: true };
+    try 
+    {
+      await db.execute(`INSERT INTO ${tableName} (${headers.join(", ")}) VALUES (${values})`,);
+    }
+    catch (e: any){
+      return {sucess: false, message: e.message}
+    }
+    return { success: true, message: "Entry Added!" };
   },
 };

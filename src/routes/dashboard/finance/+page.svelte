@@ -64,7 +64,7 @@
   </a>
 
   <a
-    href="/dashboard/finance/profit"
+    href="/dashboard/finance/Profit"
     class="bg-buttonp rounded-lg z-4 mb-1 border-2 border-outline p-4 flex items-center hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-5"> money </span>

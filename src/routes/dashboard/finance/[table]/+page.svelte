@@ -6,10 +6,9 @@
 
   export let data: NonNullable<PageServerData>;
 
-  const rows = data["data"] as Array<Record<string, any>>;
-  const table = data["table"] as string;
-  const department = "finance";
-  const { name } = Tables[table];
+  $: rows = data["data"] as Array<Record<string, any>>;
+  $: table = data["table"] as string;
+  $: ({ name } = Tables[table]);
 </script>
 
 <main class="w-full">
