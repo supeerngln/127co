@@ -4,7 +4,7 @@
   import { searchKeywordsEmployee } from "$lib/util/hr/searchUtilHR";
   import { Button, TableSearch } from "flowbite-svelte";
   import { Section } from "flowbite-svelte-blocks";
-  export let data;
+  export let data, form;
 
   let eMap = {};
   data.data.forEach((e) => {
@@ -32,6 +32,10 @@
     ]}
   />
   <Section classSection="p-3 sm:p-5">
+    {#if form !== null}
+      <p style="color:red;">{form.error}</p>
+      <p style="color:red;">{form.recommend}</p>
+    {/if}
     <TableSearch
       placeHolder="Search keywords"
       hoverable={true}

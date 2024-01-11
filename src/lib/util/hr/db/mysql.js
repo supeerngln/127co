@@ -87,12 +87,19 @@ export const del = async (q) => {
             });
         
         return {
-            data: results
+            data: results,
+            error: null,
+            recommend: null
         }
     }  catch (e) {
         console.error("Error occured", e.message);
         if (e.message.startsWith("Cannot delete or update a parent row: a foreign key constraint fails")) {
             console.error("Please update or delete any entries (in all tables) that reference this employee id")
+        }
+        return {
+            data: null,
+            error: e.message,
+            recommend: "Please update or delete any entries (in all tables) that reference this employee id"
         }
     }
 }

@@ -45,7 +45,8 @@ export const actions = {
         try {
             const formData = await request.formData();
             const id = formData.get('id');
-            queryDelete(id);
+            let results = queryDelete(id);
+            return results
         } catch (e) {
             console.error("Error occured", e.message);
         }
@@ -58,5 +59,5 @@ function queryDelete(id) {
         from: 'Employee',
         where: `Employee.Employee_Id = ${id}`
     };
-    db.del(q);
+    return db.del(q);
 }
