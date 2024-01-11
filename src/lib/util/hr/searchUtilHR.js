@@ -29,6 +29,8 @@ export const searchKeywordsJob = (job) => {
 export const searchKeywordsHE = (HE) => {
     return `
         ${HE.HE_ID}
+        ${HE.Employee_FirstName}
+        ${HE.Employee_LastNameName}
         ${HE.HE_Height}
         ${HE.HE_Weight}
         ${HE.HE_BloodType}
