@@ -10,6 +10,8 @@
   import Table from "$lib/components/supplies/Table.svelte";
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import type { PageServerData } from './$types';
+  import Layout from '../+layout.svelte';
+  import { onMount } from 'svelte';
 
   export let data: PageServerData;
 
@@ -25,8 +27,7 @@
 
   let selectTable = 'Item'
   let query: string;
-  let rows: Array<Record<string, any>> = [];
-
+  let rows: Array<Record<string, any>> = items;
 
   // @ts-ignore
   async function handleSubmit(event) {
@@ -63,7 +64,20 @@
       <Dropdown containerClass="w-40">
         {#each tables as label}
           <DropdownItem
-            on:click={() => { selectTable = label; }}
+            on:click={() => { 
+              selectTable = label; 
+              switch (selectTable) {
+                case "Item":
+                  rows = items;
+                  break;
+                case "Item_Transaction":
+                  rows = transactions;
+                  break;
+                case "Supplier":
+                  rows = suppliers;
+                  break;
+              }
+            }}
             class={selectTable === label ? 'underline' : ''}>
             {label}
           </DropdownItem>
@@ -80,14 +94,12 @@
 
   {#if rows.length > 0}
     <Table rows={rows} table={selectTable}/>
-  {:else if rows.length == 0 }
-    {#if selectTable == "Item"}
-      <Table rows={items} table={selectTable}/>
-    {:else if selectTable == "Item_Transaction"}
-      <Table rows={transactions} table={selectTable}/>
-    {:else}
-      <Table rows={suppliers} table={selectTable}/>
-    {/if}
+  {:else}
+    <div class="ml-9 mb-20">
+      <span class="text-xl mb-40 text-center font-bold"
+        >No exact match found.</span
+      >
+    </div>
   {/if}
 
   <a
