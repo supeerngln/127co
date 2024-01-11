@@ -54,13 +54,6 @@ CREATE TABLE IF NOT EXISTS Profit (
     Profit_Net DECIMAL(10, 2)
 );
 
-Salary_Id INT PRIMARY KEY NOT NULL,
-    Employee_Id INT,
-    Salary_Date DATE,
-    Salary_Net DECIMAL(10, 2),
-    Salary_Gross DECIMAL(10, 2),
-    Salary_Added DECIMAL(10, 2),
-    Salary_Deducted DECIMAL(10, 2),
 
 INSERT INTO Salary (Salary_Id, Employee_Id, Salary_Date, Salary_Net, Salary_Gross, Salary_Added, Salary_Deducted) VALUES
 (20231101, 20160001, '2023-11-08', 183427,  152234, 32435, 1232),
