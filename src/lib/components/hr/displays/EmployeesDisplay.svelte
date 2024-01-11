@@ -1,5 +1,5 @@
 <script>
-  import { formatDate } from "$lib/util/utilsHR.js";
+  import { formatDate } from "$lib/util/hr/utilsHR.js";
   import {
     Table,
     TableBody,
@@ -41,7 +41,7 @@
           <TableBodyCell>
             {#if employee.Job_Position === "Unassigned"}
               <p>{employee.Job_Position.toUpperCase()}</p>
-              <form method="post" action={"job/add?/insert"}>
+              <form method="post" action={"./job/add?/insert"}>
                 <input
                   type="hidden"
                   name="employee-id"
@@ -67,7 +67,7 @@
           <TableBodyCell>
             <form
               method="POST"
-              action={`/employee/${employee.Employee_ID}/editEmployee?/edit`}
+              action={`./employee/${employee.Employee_ID}/editEmployee?/edit`}
             >
               <Button type="submit">Edit</Button>
             </form>

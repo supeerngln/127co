@@ -1,5 +1,5 @@
 <script>
-	import { formatDateTime } from '$lib/util/utilsHR.js';
+	import { formatDateTime } from '$lib/util/hr/utilsHR.js';
 	import {
 		Table,
 		TableBody,
@@ -44,7 +44,7 @@
 					<TableBodyCell>{exam.HE_DoctorName}</TableBodyCell>
 					<TableBodyCell>{exam.HE_Assessment}</TableBodyCell>
 					<TableBodyCell>
-						<form method="POST" action="health-exam/{exam.HE_ID}/edit?/edit">
+						<form method="POST" action="./health-exam/{exam.HE_ID}/edit?/edit">
 							<Button type="submit">Edit</Button>
 						</form>
 					</TableBodyCell>

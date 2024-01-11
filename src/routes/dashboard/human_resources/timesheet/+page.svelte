@@ -2,8 +2,8 @@
   import TimeSheetDisplay from "$lib/components/hr/displays/TimeSheetsDisplay.svelte";
   import { Button } from "flowbite-svelte";
   import { TableSearch } from "flowbite-svelte";
-  import { searchKeywordsTS } from "$lib/util/searchUtilHR";
-  import { formatDate2 } from "$lib/util/utilsHR";
+  import { searchKeywordsTS } from "$lib/util/hr/searchUtilHR";
+  import { formatDate2 } from "$lib/util/hr/utilsHR";
 
   export let data;
 
@@ -35,7 +35,7 @@
   });
 </script>
 
-<Button href="/timesheet/add">Add Timesheet</Button>
+<Button href="./timesheet/add">Add Timesheet</Button>
 
 <br />
 <input

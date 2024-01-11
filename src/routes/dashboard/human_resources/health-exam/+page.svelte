@@ -2,8 +2,8 @@
   import HealthExamsDisplay from "$lib/components/hr/displays/HealthExamsDisplay.svelte";
   import { Button } from "flowbite-svelte";
   import { TableSearch } from "flowbite-svelte";
-  import { searchKeywordsHE } from "$lib/util/searchutilHR";
-  import { formatDate2 } from "$lib/util/utilsHR";
+  import { searchKeywordsHE } from "$lib/util/hr/searchUtilHR";
+  import { formatDate2 } from "$lib/util/hr/utilsHR";
 
   export let data;
   let searchTerm = "";
@@ -47,7 +47,7 @@
   });
 </script>
 
-<Button href="/health-exam/add">Add Health Exam</Button>
+<Button href="./health-exam/add">Add Health Exam</Button>
 
 <br />
 

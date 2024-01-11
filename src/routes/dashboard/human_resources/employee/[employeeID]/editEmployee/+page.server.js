@@ -1,5 +1,5 @@
-import * as db from "$lib/db/mysql";
-import { hasNoNumbers } from "$lib/util/utilsHR";
+import * as db from "$lib/util/hr/db/mysql";
+import { hasNoNumbers } from "$lib/util/hr/utilsHR";
 import { fail } from "@sveltejs/kit";
 
 var id;

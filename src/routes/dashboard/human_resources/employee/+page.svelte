@@ -1,7 +1,7 @@
 <script>
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import EmployeesDisplay from "$lib/components/hr/displays/EmployeesDisplay.svelte";
-  import { searchKeywordsEmployee } from "$lib/util/searchUtilHR";
+  import { searchKeywordsEmployee } from "$lib/util/hr/searchUtilHR";
   import { Button, TableSearch } from "flowbite-svelte";
   import { Section } from "flowbite-svelte-blocks";
   export let data;
@@ -42,7 +42,7 @@
           Returned {filteredItems.length}
           {filteredItems.length <= 1 ? "result" : "results"}
         </p>
-        <Button href="employee/add" class="mt-2 mb-2">Add Employee</Button>
+        <Button href="./employee/add" class="mt-2 mb-2">Add Employee</Button>
       </div>
       <EmployeesDisplay data={filteredItems} {eMap} />
     </TableSearch>
