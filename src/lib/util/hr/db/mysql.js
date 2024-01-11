@@ -1,35 +1,21 @@
 import mysql from 'mysql2/promise';
 import pool from '$lib/server/database'
 
-/*
-let mysqlconn = null;
-
-let dbname = "cmsc127";
-
-export function mysqlconnFn() {
-    if (!mysqlconn) {
-        mysqlconn = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password:'',
-            database: dbname
-        })
-    }
-    return mysqlconn;
-}
-*/
-
 const conn = pool;
 
 //https://en.wikipedia.org/wiki/Select_(SQL)
 export async function get(q) {
-    let results = await conn.query(selectQuery(q))
-        .then(function([rows, fields]){
-            return rows;
-        });
-
-    return {
-        data: results
+    try {
+        let results = await conn.query(selectQuery(q))
+            .then(function([rows, fields]){
+                return rows;
+            });
+    
+        return {
+            data: results
+        }
+    } catch (e) {
+        console.error("Error occured", e.message);
     }
 };
 
@@ -59,14 +45,18 @@ function selectQuery(q) {
 }
 
 export async function add(q) {
-    //q = {table, fields[], values[]}
-    let results = await conn.query(insertQuery(q))
-        .then(function([rows,fields]) {
-            return rows;
-        });
-
-    return {
-        data: results
+    try {
+        //q = {table, fields[], values[]}
+        let results = await conn.query(insertQuery(q))
+            .then(function([rows,fields]) {
+                return rows;
+            });
+    
+        return {
+            data: results
+        }
+    } catch (e) {
+        console.error("Error occured", e.message);
     }
 };
 
@@ -90,13 +80,17 @@ function insertQuery(q) {
 }
 
 export const del = async (q) => {
-    let results = await conn.query(deleteQuery(q))
-        .then(function([rows, fields]){
-            return rows;
-        });
-    
-    return {
-        data: results
+    try {
+        let results = await conn.query(deleteQuery(q))
+            .then(function([rows, fields]){
+                return rows;
+            });
+        
+        return {
+            data: results
+        }
+    }  catch (e) {
+        console.error("Error occured", e.message);
     }
 }
 
@@ -106,13 +100,17 @@ function deleteQuery(q) {
 }
 
 export async function update(q) {
-    let results = await conn.query(updateQuery(q))
-        .then(function([rows, fields]){
-            return rows;
-        });
-    
-    return {
-        data: results
+    try {
+        let results = await conn.query(updateQuery(q))
+            .then(function([rows, fields]){
+                return rows;
+            });
+        
+        return {
+            data: results
+        }
+    }  catch (e) {
+        console.error("Error occured", e.message);
     }
 }
 
