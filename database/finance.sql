@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS Salary (
     Salary_Gross DECIMAL(10, 2),
     Salary_Added DECIMAL(10, 2),
     Salary_Deducted DECIMAL(10, 2),
-    FOREIGN KEY (Employee_Id) REFERENCES Employee(Employee_Id) ON UPDATE CASCADE
+    FOREIGN KEY (Employee_Id) REFERENCES Employee(Employee_Id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 CREATE TABLE IF NOT EXISTS Budget (
     Budget_Id INT PRIMARY KEY NOT NULL,
@@ -54,7 +54,8 @@ CREATE TABLE IF NOT EXISTS Profit (
     Profit_Net DECIMAL(10, 2)
 );
 
-INSERT INTO Salary VALUES
+
+INSERT INTO Salary (Salary_Id, Employee_Id, Salary_Date, Salary_Net, Salary_Gross, Salary_Added, Salary_Deducted) VALUES
 (20231101, 20160001, '2023-11-08', 183427,  152234, 32435, 1232),
 (20231102, 20170004, '2023-11-08', 155575,  82445,  76543, 3413),
 (20231103, 20180006, '2023-11-08', 93408,   73434,  23431, 3457),
@@ -66,7 +67,7 @@ INSERT INTO Salary VALUES
 (20231109, 20230012, '2023-11-08', 76581,   45345,  36578, 5342),
 (20231110, 20220001, '2023-11-08', 76325,   45345,  32556, 1576);
 
-INSERT INTO Budget VALUES 
+INSERT INTO Budget (Budget_Id, Budget_Name, Budget_Category, Budget_Amount, Item_Id, Project_Id) VALUES 
 (1111, 'Laptop',    'Item',     100000, 101,    NULL),
 (1112, 'Dos',       'Project',  500000, NULL,   2),
 (1113, 'Printer',   'Item',     20000,  103,    NULL),
@@ -79,7 +80,7 @@ INSERT INTO Budget VALUES
 (1120, 'Traveler',  'Project',	600000,	NULL,   10);
 
 
-INSERT INTO Contract_Transaction VALUES 
+INSERT INTO Contract_Transaction (CT_Id, CT_Date, CT_Total_Amount, CT_Payment, CT_Balance, CT_Total_Paid, CT_Payment_Type, Project_Id) VALUES 
 (20001, '2020-11-30', 300000, 50000,    0,	    250000, 'Bank Transfer (CitiBank)',     1),
 (20002, '2019-12-28', 500000, 150000,   0,	    350000, 'Bank Transfer (BDO)', 		    2),
 (20003, '2019-11-30', 870000, 90000,    0,	    780000, 'Bank Transfer (BPI)',  	    3),
@@ -92,7 +93,7 @@ INSERT INTO Contract_Transaction VALUES
 (20010,	'2022-06-30', 0,      0,	    0,	    0,	    'Bank Transfer (CitiBank)',	    10);
 
 
-INSERT INTO Expenditure VALUES 
+INSERT INTO Expenditure (Expense_Id, Expense_Name, Expense_Date, Expense_Amount, CT_Id, Expense_Project_Status, Salary_Id) VALUES 
 (33101, 'Employee Salary',  '2023-11-08', 183427,   NULL,   NULL,               20231101),
 (33102, 'Employee Salary',  '2023-11-08', 155575,   NULL,   NULL,               20231102),
 (33103, 'Project',          '2020-11-30', 130000,   20001,      'Mid-Development',  NULL),
@@ -104,7 +105,7 @@ INSERT INTO Expenditure VALUES
 (33109,	'Employee Salary',  '2023-11-08', 76581,    NULL,   NULL, 		        20231109),
 (33110,	'Project',	        '2021-11-30', 23645,    20004,      'In Progress', 	    NULL);
 
-INSERT INTO Profit VALUES 
+INSERT INTO Profit (Profit_Id, Profit_Date, Profit_Gross, Profit_Expense_Amount, Profit_CT_Payment, Profit_Net) VALUES 
 (111,	'2023-11-08',	1202392,	23142,		100000,		1279250),
 (112, 	'2023-11-09',	1279250,	345465,		155000,		1088785),
 (113,	'2023-11-10',	1088785,	43567,		400000,		1445218),
