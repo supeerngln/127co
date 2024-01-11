@@ -91,6 +91,9 @@ export const del = async (q) => {
         }
     }  catch (e) {
         console.error("Error occured", e.message);
+        if (e.message.startsWith("Cannot delete or update a parent row: a foreign key constraint fails")) {
+            console.error("Please update or delete any entries (in all tables) that reference this employee id")
+        }
     }
 }
 
