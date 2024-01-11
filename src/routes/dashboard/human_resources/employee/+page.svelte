@@ -24,7 +24,7 @@
   });
 </script>
 
-<main class="w-full">
+<main>
   <Breadcrumb
     items={[
       { href: "/dashboard/human_resources", text: "Human Resources" },
@@ -46,7 +46,9 @@
           Returned {filteredItems.length}
           {filteredItems.length <= 1 ? "result" : "results"}
         </p>
-        <Button href="./employee/add" class="mt-2 mb-2">Add Employee</Button>
+        <Button pill href="./employee/add" class="mt-2 mb-2">
+          Add Employee</Button
+        >
       </div>
       <EmployeesDisplay data={filteredItems} {eMap} />
     </TableSearch>

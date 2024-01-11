@@ -13,7 +13,7 @@
 </script>
 
 <div class="overflow-x-auto">
-  <Table striped={true} hoverable={true}>
+  <Table striped={true} hoverable={true} class="text-center">
     <TableHead>
       <TableHeadCell>Employee ID</TableHeadCell>
       <TableHeadCell>Name</TableHeadCell>
@@ -22,8 +22,6 @@
       <TableHeadCell>Reports To</TableHeadCell>
       <TableHeadCell>
         <span class="sr-only">Edit</span>
-      </TableHeadCell>
-      <TableHeadCell>
         <span class="sr-only">Delete</span>
       </TableHeadCell>
     </TableHead>
@@ -38,7 +36,7 @@
               {employee.Employee_LastName}
             </a>
           </TableBodyCell>
-          <TableBodyCell>
+          <TableBodyCell class="text-center">
             {#if employee.Job_Position === "Unassigned"}
               <p>{employee.Job_Position.toUpperCase()}</p>
               <form method="post" action={"./job/add?/insert"}>
@@ -47,7 +45,7 @@
                   name="employee-id"
                   value={employee.Employee_ID}
                 />
-                <Button type="submit">Add Job</Button>
+                <Button pill class="px-7 py-1" type="submit">Add Job</Button>
               </form>
             {:else}
               {employee.Job_Position}
@@ -64,15 +62,13 @@
               N/A
             {/if}
           </TableBodyCell>
-          <TableBodyCell>
+          <TableBodyCell class="flex gap-3">
             <form
               method="POST"
               action={`./employee/${employee.Employee_ID}/editEmployee?/edit`}
             >
-              <Button type="submit">Edit</Button>
+              <Button pill type="submit">Edit</Button>
             </form>
-          </TableBodyCell>
-          <TableBodyCell>
             <form method="POST" action="?/delete">
               <input
                 type="hidden"
@@ -80,7 +76,7 @@
                 hidden
                 value={employee.Employee_ID}
               />
-              <Button type="submit">Delete</Button>
+              <Button pill type="submit">Delete</Button>
             </form>
           </TableBodyCell>
         </TableBodyRow>
