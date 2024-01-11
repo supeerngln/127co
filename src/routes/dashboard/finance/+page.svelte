@@ -26,7 +26,7 @@
     <span class="text-3xl material-symbols-outlined mr-5"> wallet </span>
     <div class="flex w-full flex-col h-full">
       <span>Budget</span>
-      <span class="text-subtext z-4">View the summary of budgets</span>
+      <span class="text-subtext z-4">View the summary of budgets alloted</span>
     </div>
     <span class="relative z-4 right-100 bottom-0 material-symbols-outlined">
       navigate_next
