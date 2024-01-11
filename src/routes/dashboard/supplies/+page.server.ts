@@ -8,10 +8,43 @@ export async function load() {
   const suppliers = await db.execute("SELECT * FROM SUPPLIER");
   const items = await db.execute("SELECT * FROM ITEM");
 
+  const statistics: Record<string, number> = {
+    "Loaned": 0,
+    "Available": 0,
+    "Being Repaired": 0,
+    "Being Upgraded": 0,
+    "Needing Repair": 0,
+    "Needing Upgrade": 0,
+  };
+
+  for (const item of items[0]) {
+    switch (item.Item_Status) {
+      case "Available":
+        statistics["Available"] += 1;
+        break;
+      case "CurrentlyLoaned":
+        statistics["Loaned"] += 1;
+        break;
+      case "CurrentlyInRepair":
+        statistics["Being Repaired"] += 1;
+        break;
+      case "CurrentlyInUpgrade":
+        statistics["Being Upgraded"] += 1;
+        break;
+      case "NeedsRepair":
+        statistics["Needing Repair"] += 1;
+        break;
+      case "NeedsUpgrade":
+        statistics["Needing Upgrade"] += 1;
+        break;
+    }
+  }
+
   return {
     transactions: transactions[0],
     suppliers: suppliers[0],
     items: items[0],
+    statistics,
   };
 }
 

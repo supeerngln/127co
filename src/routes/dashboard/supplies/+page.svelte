@@ -10,8 +10,7 @@
   import Table from "$lib/components/supplies/Table.svelte";
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import type { PageServerData } from './$types';
-  import Layout from '../+layout.svelte';
-  import { onMount } from 'svelte';
+  import Statistics from '$lib/components/supplies/Statistics.svelte';
 
   export let data: PageServerData;
 
@@ -24,6 +23,7 @@
   let transactions = data.transactions;
   let suppliers = data.suppliers;
   let items = data.items;
+  let statistics = data.statistics;
 
   let selectTable = 'Item'
   let query: string;
@@ -54,6 +54,9 @@
   <Breadcrumb
     items={[{ href: "/dashboard/supplies", text: "Supplies and Inventory" }]}
   />
+
+
+  <Statistics data={statistics}/>
 
   <form class="flex mb-5" method="POST" on:submit|preventDefault={handleSubmit} action="?/search">
     <div class="relative">
@@ -101,6 +104,7 @@
       >
     </div>
   {/if}
+
 
   <a
     href="/dashboard/supplies/Item"
