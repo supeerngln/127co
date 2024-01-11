@@ -3,5 +3,5 @@
   import Alerts from "$lib/components/Alerts.svelte";
 </script>
 
-<Alerts data={$alerts}/>
-<slot/>
+<Alerts data={$alerts} />
+<slot />

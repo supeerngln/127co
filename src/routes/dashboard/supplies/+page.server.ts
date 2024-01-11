@@ -31,9 +31,9 @@ export const actions: Actions = {
         `DELETE FROM ${tableName} WHERE ${table.primaryKey}=${id}`,
       );
     } catch (e: any) {
-      return { success: false, message: e.message }
+      return { success: false, message: e.message };
     }
 
-    return { success: true, message: "Successfully deleted entry. "};
+    return { success: true, message: "Successfully deleted entry. " };
   },
 };

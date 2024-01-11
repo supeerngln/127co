@@ -26,7 +26,7 @@
     for (const header of headers) {
       const value = rows[header];
       if (value instanceof Date) {
-        formData[header] = value.toISOString().slice(0, 19).replace('T', ' ');
+        formData[header] = value.toISOString().slice(0, 19).replace("T", " ");
         continue;
       }
       formData[header] = value;
@@ -34,23 +34,26 @@
   });
 
   // @ts-ignore
-	async function handleSubmit(event) {
-		const data = new FormData(event.currentTarget);
-		const response = await fetch(event.currentTarget.action, {
-			method: 'POST',
-			body: data
-		});
-		const result: ActionResult = deserialize(await response.text());
-		if (result.type === 'success') {
-			await invalidateAll();
-		}
+  async function handleSubmit(event) {
+    const data = new FormData(event.currentTarget);
+    const response = await fetch(event.currentTarget.action, {
+      method: "POST",
+      body: data,
+    });
+    const result: ActionResult = deserialize(await response.text());
+    if (result.type === "success") {
+      await invalidateAll();
+    }
     $alerts = [
       ...$alerts,
       // @ts-ignore
-      { message: result.data.message, type: result.data.success ? "success" : "fail"}
-    ]
-		applyAction(result);
-	}
+      {
+        message: result.data.message,
+        type: result.data.success ? "success" : "fail",
+      },
+    ];
+    applyAction(result);
+  }
 </script>
 
 <main class="w-full">
