@@ -1,18 +1,17 @@
 <script lang="ts">
   import { Search, Button, Dropdown, DropdownItem } from 'flowbite-svelte';
   import { SearchOutline, ChevronDownSolid } from 'flowbite-svelte-icons';
-  import { enhance } from '$app/forms';
 
   import type { ActionResult } from "@sveltejs/kit";
 
   import { applyAction, deserialize } from "$app/forms";
   import { invalidateAll } from "$app/navigation";
-  import Tables from "$lib/tables";
 
   import Table from "$lib/components/supplies/Table.svelte";
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
+  import type { PageServerData } from './$types';
 
-  import { alerts } from '$lib/store';
+  export let data: PageServerData;
 
   const tables = [
     "Item",
@@ -20,11 +19,14 @@
     "Supplier",
   ]
 
+  let transactions = data.transactions;
+  let suppliers = data.suppliers;
+  let items = data.items;
+
   let selectTable = 'Item'
   let query: string;
   let rows: Array<Record<string, any>> = [];
 
-  let headers = Tables[selectTable];
 
   // @ts-ignore
   async function handleSubmit(event) {
@@ -41,10 +43,10 @@
     if (result.data.success) {
       // @ts-ignore
       rows = result.data.rows;
-      console.log(rows)
     }
     applyAction(result);
   }
+
 </script>
 
 <main class="w-full">
@@ -76,7 +78,17 @@
     <input type="hidden" name="table" bind:value={selectTable}/>
   </form>
 
+  {#if rows.length > 0}
     <Table rows={rows} table={selectTable}/>
+  {:else if rows.length == 0 }
+    {#if selectTable == "Item"}
+      <Table rows={items} table={selectTable}/>
+    {:else if selectTable == "Item_Transaction"}
+      <Table rows={transactions} table={selectTable}/>
+    {:else}
+      <Table rows={suppliers} table={selectTable}/>
+    {/if}
+  {/if}
 
   <a
     href="/dashboard/supplies/Item"
