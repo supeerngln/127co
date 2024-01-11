@@ -13,6 +13,7 @@
 
 <Table striped={true}>
 	<TableHead>
+		<TableHeadCell>Job ID</TableHeadCell>
 		<TableHeadCell>Employee ID</TableHeadCell>
 		<TableHeadCell>Employee Name</TableHeadCell>
 		<TableHeadCell>Position</TableHeadCell>
