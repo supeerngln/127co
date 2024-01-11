@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS Salary (
     Salary_Gross DECIMAL(10, 2),
     Salary_Added DECIMAL(10, 2),
     Salary_Deducted DECIMAL(10, 2),
-    FOREIGN KEY (Employee_Id) REFERENCES Employee(Employee_Id)
+    FOREIGN KEY (Employee_Id) REFERENCES Employee(Employee_Id) ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Budget (
     Budget_Id INT PRIMARY KEY NOT NULL,
@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS Budget (
     Budget_Amount DECIMAL(10, 2),
     Item_Id INT,
     Project_Id INT,
-    FOREIGN KEY (Item_Id) REFERENCES Item(Item_Id),
-    FOREIGN KEY (Project_Id) REFERENCES Project(Project_Id) ON DELETE SET NULL
+    FOREIGN KEY (Item_Id) REFERENCES Item(Item_Id) ON UPDATE CASCADE ON DELETE SET NULL,
+    FOREIGN KEY (Project_Id) REFERENCES Project(Project_Id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Contract_Transaction (
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS Contract_Transaction (
     CT_Total_Paid DECIMAL(10, 2) DEFAULT 0.00,      
     CT_Payment_Type VARCHAR(255),       
     Project_Id INT,
-    FOREIGN KEY (Project_Id) REFERENCES Project(Project_Id) ON DELETE SET NULL
+    FOREIGN KEY (Project_Id) REFERENCES Project(Project_Id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Expenditure (
@@ -41,8 +41,17 @@ CREATE TABLE IF NOT EXISTS Expenditure (
     CT_Id INT,
     Expense_Project_Status varchar(255),
     Salary_Id INT,
-    FOREIGN KEY (CT_Id) REFERENCES Contract_Transaction(CT_Id),
-    FOREIGN KEY (Salary_Id) REFERENCES Salary(Salary_Id)
+    FOREIGN KEY (CT_Id) REFERENCES Contract_Transaction(CT_Id) ON UPDATE CASCADE,
+    FOREIGN KEY (Salary_Id) REFERENCES Salary(Salary_Id) ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Profit (
+    Profit_Id INT PRIMARY KEY NOT NULL,
+    Profit_Date DATE,
+    Profit_Gross DECIMAL(10, 2),
+    Profit_Expense_Amount DECIMAL(10, 2),
+    Profit_CT_Payment DECIMAL(10, 2), 
+    Profit_Net DECIMAL(10, 2)
 );
 
 INSERT INTO Salary VALUES
@@ -94,3 +103,15 @@ INSERT INTO Expenditure VALUES
 (33108,	'Employee Salary',  '2023-11-08', 83381,    NULL,   NULL,  		        20231108),
 (33109,	'Employee Salary',  '2023-11-08', 76581,    NULL,   NULL, 		        20231109),
 (33110,	'Project',	        '2021-11-30', 23645,    20004,      'In Progress', 	    NULL);
+
+INSERT INTO Profit VALUES 
+(111,	'2023-11-08',	1202392,	23142,		100000,		1279250),
+(112, 	'2023-11-09',	1279250,	345465,		155000,		1088785),
+(113,	'2023-11-10',	1088785,	43567,		400000,		1445218),
+(114,	'2023-11-11',	1445218,	55679,		90000,		1479539),
+(115,	'2023-11-12',	1479539,	84530,		50000,		1445009),
+(116,	'2023-11-13',	1445009,	34827,		75000,		1485182),
+(117,	'2023-11-14',	1485182, 	34556,		50000,		1500626),
+(118,	'2023-11-15',	1500626,	32424,		200500,		1668702),
+(119,	'2023-11-16',	1668702,	143856,		300000,		1824846),
+(120,	'2023-11-17',	1824846,	435576,		500000,		1889270);

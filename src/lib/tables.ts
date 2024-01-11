@@ -203,6 +203,20 @@ const Tables: Record<string, Table> = {
     primaryKey: "CT_Id",
     name: "Contract Transactions"
   },
+
+  Profit: {
+    headers: [
+      "Profit_Id",
+      "Profit_Date",
+      "Profit_Gross",
+      "Profit_Expense_Amount",
+      "Profit_CT_Payment",
+      "Profit_Net",
+    ],
+    department: "finance",
+    primaryKey: "Profit_Id",
+    name: "Profit"
+  },
   
   
     Client: {
