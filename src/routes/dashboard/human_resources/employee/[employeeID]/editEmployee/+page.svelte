@@ -8,5 +8,5 @@
 </script>
 
 <hr />
-<EditEmployeeForm {employee} {form} {storedReportsTo}/>
+<EditEmployeeForm {employee} {form}/>
 <hr />
