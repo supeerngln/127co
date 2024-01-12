@@ -19,7 +19,7 @@
 
   // @ts-ignore
   $: ({ headers, name } = Tables[table]);
-  let alerts: Array<{message: string, type: "fail" | "success"}>= [];
+  let alerts: Array<{ message: string; type: "fail" | "success" }> = [];
   let formData: Record<string, any> = {};
 
   onMount(() => {
@@ -29,28 +29,30 @@
   });
 
   // @ts-ignore
-	async function handleSubmit(event) {
-		const data = new FormData(event.currentTarget);
-		const response = await fetch(event.currentTarget.action, {
-			method: 'POST',
-			body: data
-		});
-		const result: ActionResult = deserialize(await response.text());
-		if (result.type === 'success') {
-			await invalidateAll();
-		}
+  async function handleSubmit(event) {
+    const data = new FormData(event.currentTarget);
+    const response = await fetch(event.currentTarget.action, {
+      method: "POST",
+      body: data,
+    });
+    const result: ActionResult = deserialize(await response.text());
+    if (result.type === "success") {
+      await invalidateAll();
+    }
     alerts = [
       ...alerts,
       // @ts-ignore
-      { message: result.data.message, type: result.data.success ? "success" : "fail"}
-    ]
-		applyAction(result);
-	}
+      {
+        message: result.data.message,
+        type: result.data.success ? "success" : "fail",
+      },
+    ];
+    applyAction(result);
+  }
 </script>
 
 <main class="w-full">
-
-  <Alerts data={alerts}/>
+  <Alerts data={alerts} />
 
   <Breadcrumb
     items={[

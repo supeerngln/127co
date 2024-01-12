@@ -15,7 +15,7 @@
   export let data: NonNullable<PageServerData>;
   $: table = data["table"];
   $: rows = data["data"];
-  
+
   // @ts-ignore
   $: ({ headers, name } = Tables[table]);
   let formData: Record<string, any> = {};
@@ -97,7 +97,8 @@
     >
       Edit an Entry
     </button>
-  <form>
-    <form></form>
+    <form>
+      <form></form>
+    </form>
   </form>
 </main>

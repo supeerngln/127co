@@ -4,8 +4,6 @@
   import type { PageServerData } from "./$types";
   import Tables from "$lib/tables";
 
-
-
   export let data: NonNullable<PageServerData>;
 
   $: rows = data["data"] as Array<Record<string, any>>;
@@ -13,6 +11,7 @@
   $: department = "cooperative";
   const { name } = Tables[table];
 </script>
+
 <main class="w-full">
   <Breadcrumb
     items={[
@@ -28,8 +27,6 @@
     <div class="flex flex-col h-full">
       <span>Add an Entry</span>
     </div>
-
   </a>
   <Table {table} {rows} />
-
 </main>

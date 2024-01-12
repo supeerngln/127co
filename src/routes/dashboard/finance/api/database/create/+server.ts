@@ -54,14 +54,15 @@ export const POST: RequestHandler = async ({ request }) => {
     default:
       return error(401, `Invalid table ${table}`);
   }
-  
+
   const formData = JSON.parse(data);
   const { success, missingKey } = isDataValid(formData, headers);
   if (!success) {
     return error(401, `Missing key ${missingKey}`);
   }
   const headersSeparated = headers.join(" ,");
-  const values = commaSeparate(headers.map((key) => {
+  const values = commaSeparate(
+    headers.map((key) => {
       if (formData[key] === "NULL") {
         return "NULL";
       }

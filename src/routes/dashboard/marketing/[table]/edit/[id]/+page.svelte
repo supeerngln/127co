@@ -59,7 +59,10 @@
 <main class="w-full">
   <Breadcrumb
     items={[
-      { href: "/dashboard/marketing", text: "Marketing and Customer Acquisition" },
+      {
+        href: "/dashboard/marketing",
+        text: "Marketing and Customer Acquisition",
+      },
       { href: `/dashboard/marketing/${table}`, text: name },
       { href: `/dashboard/marketing/${table}/edit`, text: "Edit an Entry" },
     ]}

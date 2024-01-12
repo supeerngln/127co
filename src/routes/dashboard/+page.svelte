@@ -85,7 +85,7 @@
           ]}
         />
       </div>
-        {:else if link.href === "/dashboard/marketing"}
+    {:else if link.href === "/dashboard/marketing"}
       <div class="w-full">
         <a
           href="/dashboard/marketing"
@@ -99,7 +99,8 @@
               href: "/dashboard/marketing/Client",
               label: "Client",
               icon: "people",
-              description: "Centralizes client data for easy access and management.",
+              description:
+                "Centralizes client data for easy access and management.",
             },
             {
               href: "/dashboard/marketing/Contract",

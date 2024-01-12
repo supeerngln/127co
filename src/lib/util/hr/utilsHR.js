@@ -1,15 +1,15 @@
 export function formatDate(dateTime) {
-    var formatted = dateTime.toLocaleString('default', {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric' 
-      });
-    return formatted
+  var formatted = dateTime.toLocaleString("default", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+  return formatted;
 }
 
-export function formatDate2(dateTime){
+export function formatDate2(dateTime) {
   //should return YYYY-MM-DD
-  return formatDateTime(dateTime).substring(0,10);
+  return formatDateTime(dateTime).substring(0, 10);
 }
 
 export function formatDateTime(dateTime) {
@@ -26,8 +26,8 @@ export function formatDateTime(dateTime) {
 export function formatDateTimeForForm(dateTime) {
   if (dateTime instanceof Date) {
     return formatDateTime(dateTime);
-  }
-  else { //string
+  } else {
+    //string
     return dateTime;
   }
 }
@@ -38,10 +38,10 @@ export function formatDateForForm(dateTime) {
     const month = padZero(dateTime.getMonth() + 1);
     const day = padZero(dateTime.getDate());
 
-    return `${year}-${month}-${day}`
-  }
-  else { //string
-    return dateTime.substring(0, 10)
+    return `${year}-${month}-${day}`;
+  } else {
+    //string
+    return dateTime.substring(0, 10);
   }
 }
 
@@ -50,11 +50,11 @@ function padZero(value) {
 }
 
 export function genRD(x) {
-  var digits = '';
+  var digits = "";
 
   // Prevents digits to have zero in the most significant digit
   if (x >= 1) {
-    digits += (Math.floor(Math.random() * 9)+1);
+    digits += Math.floor(Math.random() * 9) + 1;
   }
 
   for (var i = 1; i < x; i++) {
@@ -65,7 +65,14 @@ export function genRD(x) {
 }
 
 export function generateEmail(fname, mname, lname, company = "onetwentyseven") {
-  return (fname.charAt(0) + (mname? mname.charAt(0): "") + lname.replaceAll(/[^a-zA-Z]/g, '') + "@" + company + ".com").toLowerCase();
+  return (
+    fname.charAt(0) +
+    (mname ? mname.charAt(0) : "") +
+    lname.replaceAll(/[^a-zA-Z]/g, "") +
+    "@" +
+    company +
+    ".com"
+  ).toLowerCase();
 }
 
 export function hasNoNumbers(string) {
@@ -77,7 +84,8 @@ export function isNumber(value) {
 }
 
 export function isValidDateTime(string) {
-  const dateTimeRegex = /^\d{4}-\d{2}-\d{2}(T|\s)(?:[01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/;
+  const dateTimeRegex =
+    /^\d{4}-\d{2}-\d{2}(T|\s)(?:[01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/;
   return dateTimeRegex.test(string);
 }
 
@@ -87,7 +95,7 @@ export function isValidDate(string) {
 }
 
 export function isValidTime(string) {
-  const regex = /^(?:[01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/
+  const regex = /^(?:[01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/;
   return regex.test(string);
 }
 
@@ -97,6 +105,7 @@ export function isValidYear(string) {
 }
 
 export function isValidPhoneNumber(string) {
-  const regex = /^(\(?(\+\d{1,2})?\)?\s?|0)?(\(\d{1,4}\))?\s?(\d{3}[-|\s]?\d{3}[-|\s]?\d{4}|\d{10})$/;
+  const regex =
+    /^(\(?(\+\d{1,2})?\)?\s?|0)?(\(\d{1,4}\))?\s?(\d{3}[-|\s]?\d{3}[-|\s]?\d{4}|\d{10})$/;
   return regex.test(string);
 }

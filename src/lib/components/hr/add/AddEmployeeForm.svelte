@@ -1,19 +1,15 @@
 <script>
-	import EmployeeFields from '../form_fields/EmployeeFields.svelte';
-	import PDSFields from '../form_fields/PDSFields.svelte';
-	import { Button } from 'flowbite-svelte';
+  import EmployeeFields from "../form_fields/EmployeeFields.svelte";
+  import PDSFields from "../form_fields/PDSFields.svelte";
+  import { Button } from "flowbite-svelte";
 
-	export let form;
+  export let form;
 </script>
 
 <form method="post" action="?/insert">
-	<EmployeeFields 
-		employee = {form?.employee ?? null} 
-		error = {form?.error ?? {}}/>
-	<PDSFields
-		pds={form?.pds ?? null} 
-		error = {form?.error ?? {}}/>
-	<Button type="submit">Add New Employee</Button>
+  <EmployeeFields employee={form?.employee ?? null} error={form?.error ?? {}} />
+  <PDSFields pds={form?.pds ?? null} error={form?.error ?? {}} />
+  <Button type="submit">Add New Employee</Button>
 </form>
 
 <style>
