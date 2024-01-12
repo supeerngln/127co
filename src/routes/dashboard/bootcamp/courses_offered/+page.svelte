@@ -1,14 +1,15 @@
 <script lang="ts">
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import type { PageServerData } from "./$types";
+  import Menu from "$lib/components/Menu.svelte";
   export let data: PageServerData;
 
-  // Function to handle clicking on a course box//
-  function handleCourseClick(id) {
-    // For now, just log the clicked course's ID
-    window.location.href = `/dashboard/bootcamp/courses_offered/${id}`;
-    // You can add further functionality here, such as navigation or displaying details
-  }
+  let filtered_proj = data.projects;
+  let show_add = true;
+  let query: string = "";
+  let selected_type: string = "";
+  let selected_status: string = "";
+
 </script>
 
 <main class="w-full">
@@ -19,19 +20,53 @@
     ]}
   />
   <h1 class="text-3xl font-bold text-gray-900 dark:text-white"> Courses Offered </h1>
-  <!-- <a href="/dashboard/bootcamp/courses_offered/add"
-    class="bg-buttonp rounded-lg z-4 border-2 w-40 border-outline hover:bg-buttonphover active:bg-buttonpactive"
-  >
-    <span class="text-3xl material-symbols-outlined mr-2"> add </span>
-      Add an Entry
+  <p class="text-gray-700 dark:text-gray-400 mb-4">
+    View and manage the courses offered by the bootcamp.
+  </p>
+  
+  <div class="flex items-center justify-center">
+    <div class="flex items-center">
+      <input
+        class="text-gray-700 block rounded-md px-4 py-2 text-sm mr-2"
+        name="search"
+        type="text"
+        placeholder="Search"
+        aria-label="Search"
+        bind:value={query}
+      />
+      <Menu
+        name="Select Status"
+        items={[
+          "In Development",
+          "For Deployment",
+          "For Monitoring",
+          "For Presentation",
+          "Done",
+          "Terminated",
+        ]}
+        bind:selected_item={selected_status}
+      />
+      <Menu
+        name="Category"
+        items={["Soft Skills", "Technical Skills"]}
+        bind:selected_item={selected_type}
+      />
+    </div>
+  </div>
 
-  </a> -->
   
 
 
   <!-- Course listing -->
   <div class="project grid grid-cols-3 gap-5">
     <!-- Iterate through courseList and create clickable boxes -->
+    <a href="/dashboard/bootcamp/courses_offered/add"
+    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    
+    >
+      <span class="text-3xl material-symbols-outlined mr-2"> add </span>
+      Add a new Course
+    </a>
     {#each data.Courses as course}
       <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}"
         class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
@@ -77,7 +112,7 @@
             </div>
           </div>
         </div>
-        <a href="/dashboard/bootcamp/courses_offered/enroll">
+        <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/enroll">
           <button on:click|stopPropagation class="mt-2 mb-2">Enroll</button>
         </a>
       </a>
