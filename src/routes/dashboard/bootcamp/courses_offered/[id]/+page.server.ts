@@ -35,6 +35,8 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
      WHERE co.Course_ID = "${courseId}"`
   );
 
+  
+
   // Employee names
   const enrollments = enrollmentResult || [];
 
