@@ -44,8 +44,8 @@ export const actions: Actions = {
         `INSERT INTO ${tableName} (${headers.join(", ")}) VALUES (${values})`,
       );
     } catch (e: any) {
-      return { success: false, message: e.message };
+      return { success: false, message: "Failed to add entry."};
     }
-    return { success: true };
+    return { success: true, message: "Successfully added entry." };
   },
 };

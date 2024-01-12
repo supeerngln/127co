@@ -8,7 +8,6 @@
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import { Label, Input, Helper } from "flowbite-svelte";
   import Tables from "$lib/tables";
-  import Alerts from "$lib/components/Alerts.svelte";
   import { alerts } from "$lib/store";
 
   import { onMount } from "svelte";
@@ -45,9 +44,10 @@
     }
     $alerts = [
       ...$alerts,
-      // @ts-ignore
       {
+        // @ts-ignore
         message: result.data.message,
+        // @ts-ignore
         type: result.data.success ? "success" : "fail",
       },
     ];
