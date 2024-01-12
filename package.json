@@ -17,7 +17,6 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@types/node": "^20.10.6",
     "autoprefixer": "^10.4.16",
-    "flowbite-svelte-blocks": "^0.5.1",
     "mysql2": "^3.6.5",
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
@@ -33,6 +32,7 @@
   "dependencies": {
     "flowbite": "^2.2.1",
     "flowbite-svelte": "^0.44.21",
+    "flowbite-svelte-blocks": "^0.5.1",
     "flowbite-svelte-icons": "^0.4.5",
     "preline": "^2.0.3"
   }
