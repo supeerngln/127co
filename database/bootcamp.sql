@@ -38,16 +38,16 @@ CREATE TABLE IF NOT EXISTS Instructor (
 );
 
 INSERT INTO Course_Offered (Course_ID, Employee_ID, Course_Name, Course_Category, Course_Duration, Course_Capacity, Course_Schedule) VALUES 
-('JAV100', 20160001, 'Java Development Fundamentals', 'Technical Skills', '3 months (6 hours/week)', '15', 'MWF 10:00 AM - 12:00 PM'),
-('LEA100', 20170004, 'Advanced Spring Framework', 'Technical Skills', '2.5 months (6 hours/week)', '15', 'TThSat 2:00 PM - 4:00 PM'),
-('FRO100', 20180006, 'Web Development with Laravel Framework', 'Technical Skills', '3 months (6 hours/week)', '15', 'MWF 2:00 PM - 4:00 PM'),
-('EFF100', 20170056, 'Frontend Essentials: HTML, CSS, and UI/UX Basics', 'Technical Skills', '2 months (6 hours/week)', '15', 'TThSat 7:00 PM - 9:00 PM'),
-('FIN100', 20180025, 'Project Management', 'Technical Skills', '3 months (6 hours/week)', '15', 'MWF 4:00 PM - 6:00 PM'),
-('STR100', 20190013, 'Stress Management and Work-Life Balance', 'Soft Skills', '2.5 months (6 hours/week)', '15', 'TThSat 4:00 PM - 6:00 PM'),
-('WEB100', 20190014, 'Yoga and Mindfulness', 'Soft Skills', '3 months (6 hours/week)', '15', 'MWF 5:00 AM - 7:00 AM'),
-('ADV100', 20230007, 'Leadership and Team Management', 'Soft Skills', '3 months (6 hours/week)', '15', 'TThSat 8:00 AM - 10:00 AM'),
-('PRO100', 20230012, 'Financial Literacy: Investing and Personal Finance', 'Soft Skills', '2 months (6 hours/week)', '15', 'MWF 5:00 PM - 7:00 PM'),
-('COM100', 20220001, 'Effective Communication and Presentation Skills', 'Soft Skills', '2.5 months (6 hours/week)', '15', 'TThSat 5:00 PM - 7:00 PM');
+('JAV100', '20230008', 'Java Development Fundamentals', 'Technical Skills', '3 months (6 hours/week)', '15', 'MWF 10:00 AM - 12:00 PM'),
+('ADV100', '20230010', 'Advanced Spring Framework', 'Technical Skills', '2.5 months (6 hours/week)', '15', 'TThSat 2:00 PM - 4:00 PM'),
+('WEB100', '20230010', 'Web Development with Laravel Framework', 'Technical Skills', '3 months (6 hours/week)', '15', 'MWF 2:00 PM - 4:00 PM'),
+('FRO100', '20230011', 'Frontend Essentials: HTML, CSS, and UI/UX Basics', 'Technical Skills', '2 months (6 hours/week)', '15', 'TThSat 7:00 PM - 9:00 PM'),
+('PRO100', '20230008', 'Project Management', 'Technical Skills', '3 months (6 hours/week)', '15', 'MWF 4:00 PM - 6:00 PM'),
+('STR100', '20230009', 'Stress Management and Work-Life Balance', 'Soft Skills', '2.5 months (6 hours/week)', '15', 'TThSat 4:00 PM - 6:00 PM'),
+('YOG100', '20230011', 'Yoga and Mindfulness', 'Soft Skills', '3 months (6 hours/week)', '15', 'MWF 5:00 AM - 7:00 AM'),
+('LEA100', '20230008', 'Leadership and Team Management', 'Soft Skills', '3 months (6 hours/week)', '15', 'TThSat 8:00 AM - 10:00 AM'),
+('FIN100', '20230009', 'Financial Literacy: Investing and Personal Finance', 'Soft Skills', '2 months (6 hours/week)', '15', 'MWF 5:00 PM - 7:00 PM'),
+('EFF100', '20230009', 'Effective Communication and Presentation Skills', 'Soft Skills', '2.5 months (6 hours/week)', '15', 'TThSat 5:00 PM - 7:00 PM');
 
 INSERT INTO Course_Enrolled (Enrollment_ID, Course_ID, Employee_ID, Start_Date, End_Date, Grade) VALUES 
 ('EI101', 'JAV100', 20160001, '2023-02-15', '2023-05-15', 96),
