@@ -11,13 +11,26 @@
   }
 </script>
 
-<div class="container">
+<main class="w-full">
   <Breadcrumb
     items={[
       { href: "/dashboard/bootcamp", text: "Bootcamp" },
       { href: "/dashboard/bootcamp/courses_offered", text: "Courses Offered" },
     ]}
   />
+  <h1 class="text-3xl font-bold text-gray-900 dark:text-white"> Courses Offered </h1>
+  <a href="/dashboard/bootcamp/courses_offered/add"
+    class="bg-buttonp rounded-lg z-4 border-2 w-40 border-outline hover:bg-buttonphover active:bg-buttonpactive"
+  >
+    <span class="text-3xl material-symbols-outlined mr-2"> add </span>
+      Add an Entry
+
+  </a>
+  <a href="/dashboard/bootcamp/courses_offered/enroll">
+    <button on:click|stopPropagation class="mt-2 mb-2">Enroll</button>
+  </a>
+
+
   <!-- Course listing -->
   <div class="project grid grid-cols-3 gap-5">
     <!-- Iterate through courseList and create clickable boxes -->
@@ -67,10 +80,8 @@
             </div>
           </div>
         </div>
-        <a href="/dashboard/bootcamp/courses_offered/enroll">
-          <button on:click|stopPropagation class="mt-2 mb-2">Enroll</button>
-        </a>
+
       </div>
     {/each}
   </div>
-</div>
+</main>

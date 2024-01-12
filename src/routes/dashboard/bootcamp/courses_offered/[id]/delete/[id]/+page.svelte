@@ -8,7 +8,7 @@
   console.log(enrollees.Course_ID);
 </script>
 
-<main class="w-full p-4">  
+<main class="w-full">  
     <Breadcrumb items={[
         { href: "/dashboard/bootcamp", text: "Bootcamp" },
         { href: "/dashboard/bootcamp/courses_offered", text: "Courses Offered" },
