@@ -11,31 +11,30 @@ export async function load() {
             having: null,
             orderBy: null
         }
-
-        return db.get(q);
-    } catch (error) {
-        console.error('Got an Error!!!');
-        console.log(error);
-        return error;
-    }
+    return db.get(q);
+  } catch (error) {
+    console.error("Got an Error!!!");
+    console.log(error);
+    return error;
+  }
 }
 
 export const actions = {
-    delete: async ({ request }) => {
-        try {
-            const formData = await request.formData();
-            const id = formData.get('id');
-            queryDelete(id);
-        }  catch (e) {
-            console.error("Error occured", e.message);
-        }
+  delete: async ({ request }) => {
+    try {
+      const formData = await request.formData();
+      const id = formData.get("id");
+      queryDelete(id);
+    } catch (e) {
+      console.error("Error occured", e.message);
     }
-}
+  },
+};
 
 function queryDelete(id) {
-    let q = {
-        from: 'Health_Exam',
-        where: `HE_ID = ${id}`,
-    };
-    db.del(q);
+  let q = {
+    from: "Health_Exam",
+    where: `HE_ID = ${id}`,
+  };
+  db.del(q);
 }

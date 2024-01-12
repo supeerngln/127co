@@ -38,23 +38,38 @@
           </p>
           <div class="mt-2 space-y-1">
             <div class="flex items-center">
-              <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1">Instructor:</span>
-              <span class="text-xs">{course.Employee_FirstName}</span>
+              <span
+                class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1"
+                >Instructor:</span
+              >
+              <span class="text-xs">{`${course.Employee_FirstName} ${course.Employee_LastName}`}</span>
             </div>
             <div class="flex items-center">
-              <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1">Capacity:</span>
+              <span
+                class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1"
+                >Capacity:</span
+              >
               <span class="text-xs">{course.Course_Capacity}</span>
             </div>
             <div class="flex items-center">
-              <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1">Schedule:</span>
+              <span
+                class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1"
+                >Schedule:</span
+              >
               <span class="text-xs">{course.Course_Schedule}</span>
             </div>
             <div class="flex items-center">
-              <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1">Duration:</span>
+              <span
+                class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1"
+                >Duration:</span
+              >
               <span class="text-xs">{course.Course_Duration}</span>
             </div>
           </div>
         </div>
+        <a href="/dashboard/bootcamp/courses_offered/enroll">
+          <button on:click|stopPropagation class="mt-2 mb-2">Enroll</button>
+        </a>
       </div>
     {/each}
   </div>

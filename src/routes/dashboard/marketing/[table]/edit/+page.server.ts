@@ -1,9 +1,6 @@
 import type { PageServerLoad } from "./$types";
 import { redirect } from "@sveltejs/kit";
-import {
-  clientHeaders,
-  contractHeaders
-} from "$lib/headers";
+import { clientHeaders, contractHeaders } from "$lib/headers";
 
 export const load: PageServerLoad = async ({ cookies, params }) => {
   const id = cookies.get("auth-token") || null;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Chart } from 'flowbite-svelte';
+  import { Chart } from "flowbite-svelte";
 
   export let data: Record<string, number>;
 
@@ -7,12 +7,12 @@
     series: Object.values(data),
     chart: {
       height: 320,
-      width: '100%',
-      type: 'donut'
+      width: "100%",
+      type: "donut",
     },
     stroke: {
-      colors: ['transparent'],
-      lineCap: ''
+      colors: ["transparent"],
+      lineCap: "",
     },
     plotOptions: {
       pie: {
@@ -21,63 +21,62 @@
             show: true,
             name: {
               show: true,
-              fontFamily: 'Inter, sans-serif',
-              offsetY: 20
+              fontFamily: "Inter, sans-serif",
+              offsetY: 20,
             },
             total: {
               showAlways: true,
               show: true,
-              label: 'Total Items',
-              fontFamily: 'Inter, sans-serif',
+              label: "Total Items",
+              fontFamily: "Inter, sans-serif",
               formatter: function (w) {
                 const sum = w.globals.seriesTotals.reduce((a, b) => {
                   return a + b;
                 }, 0);
                 return `${sum}`;
-              }
+              },
             },
             value: {
               show: true,
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: "Inter, sans-serif",
               offsetY: -20,
-              formatter: (value: number) => value
-            }
+              formatter: (value: number) => value,
+            },
           },
-          size: '80%'
-        }
-      }
+          size: "80%",
+        },
+      },
     },
     grid: {
       padding: {
-        top: -2
-      }
+        top: -2,
+      },
     },
     labels: Object.keys(data),
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     legend: {
-      position: 'bottom',
-      fontFamily: 'Inter, sans-serif'
+      position: "bottom",
+      fontFamily: "Inter, sans-serif",
     },
     yaxis: {
       labels: {
-        formatter: (value: number) => value
-      }
+        formatter: (value: number) => value,
+      },
     },
     xaxis: {
       labels: {
-        formatter: (value: number) => value
+        formatter: (value: number) => value,
       },
       axisTicks: {
-        show: false
+        show: false,
       },
       axisBorder: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 </script>
 
 <Chart {options} class="py-6" />
-

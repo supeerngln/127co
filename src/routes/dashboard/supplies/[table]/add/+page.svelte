@@ -31,9 +31,10 @@
     }
     $alerts = [
       ...$alerts,
-      // @ts-ignore
       {
+        // @ts-ignore
         message: result.data.message,
+        // @ts-ignore
         type: result.data.success ? "success" : "fail",
       },
     ];

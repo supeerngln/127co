@@ -156,7 +156,7 @@ const Tables: Record<string, Table> = {
     ],
     department: "finance",
     primaryKey: "Salary_Id",
-    name: "Salary"
+    name: "Salary",
   },
 
   Budget: {
@@ -170,7 +170,7 @@ const Tables: Record<string, Table> = {
     ],
     department: "finance",
     primaryKey: "Budget_Id",
-    name: "Budget"
+    name: "Budget",
   },
 
   Expenditure: {
@@ -185,7 +185,7 @@ const Tables: Record<string, Table> = {
     ],
     department: "finance",
     primaryKey: "Expense_Id",
-    name: "Expenditure"
+    name: "Expenditure",
   },
 
   Contract_Transaction: {
@@ -201,7 +201,7 @@ const Tables: Record<string, Table> = {
     ],
     department: "finance",
     primaryKey: "CT_Id",
-    name: "Contract Transactions"
+    name: "Contract Transactions",
   },
 
   Profit: {
@@ -215,11 +215,10 @@ const Tables: Record<string, Table> = {
     ],
     department: "finance",
     primaryKey: "Profit_Id",
-    name: "Profit"
+    name: "Profit",
   },
-  
-  
-    Client: {
+
+  Client: {
     headers: [
       "Client_ID",
       "Client_CompanyName",
@@ -235,7 +234,7 @@ const Tables: Record<string, Table> = {
     ],
     department: "marketing",
     primaryKey: "Client_ID",
-    name: "Client"
+    name: "Client",
   },
 
   Contract: {
@@ -257,7 +256,7 @@ const Tables: Record<string, Table> = {
     ],
     department: "marketing",
     primaryKey: "Contract_ID",
-    name: "Contract"
+    name: "Contract",
   },
 };
 

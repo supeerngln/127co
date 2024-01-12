@@ -50,8 +50,10 @@ export const actions: Actions = {
       .join(", ");
 
     try {
-      await db.execute(`UPDATE ${tableName} SET ${zipped} WHERE ${primaryKey}=${id}`,);
-    } catch (e: any){
+      await db.execute(
+        `UPDATE ${tableName} SET ${zipped} WHERE ${primaryKey}=${id}`,
+      );
+    } catch (e: any) {
       return { success: false, message: e.message };
     }
     return { success: true, message: "Entry edited!" };

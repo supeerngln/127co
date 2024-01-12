@@ -13,7 +13,12 @@
 
 <main class="w-full">
   <Breadcrumb
-    items={[{ href: "/dashboard/marketing", text: "Marketing and Customer Acquisition" }]}
+    items={[
+      {
+        href: "/dashboard/marketing",
+        text: "Marketing and Customer Acquisition",
+      },
+    ]}
   />
 
   <!-- <Search class="mb-8">
@@ -36,7 +41,9 @@
     <span class="text-3xl material-symbols-outlined mr-5"> people </span>
     <div class="flex w-full flex-col h-full">
       <span>Client</span>
-      <span class="text-subtext z-4">Centralizes client data for easy access and management.</span>
+      <span class="text-subtext z-4"
+        >Centralizes client data for easy access and management.</span
+      >
     </div>
     <span class="relative z-4 right-100 bottom-0 material-symbols-outlined">
       navigate_next
@@ -58,5 +65,4 @@
       navigate_next
     </span>
   </a>
-
 </main>

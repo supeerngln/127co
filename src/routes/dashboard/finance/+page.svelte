@@ -3,7 +3,7 @@
 </script>
 
 <main class="w-full">
-  <Breadcrumb items={[{ href: "/dashboard/finance", text: "Finance" }]}/>
+  <Breadcrumb items={[{ href: "/dashboard/finance", text: "Finance" }]} />
 
   <a
     href="/dashboard/finance/Salary"

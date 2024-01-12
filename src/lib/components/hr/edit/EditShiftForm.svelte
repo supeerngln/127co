@@ -13,7 +13,6 @@
       { text: "Edit" },
     ]}
   />
-
   <form method="post" action="?/update">
     <Input type="hidden" name="id" hidden value={shift.Shift_ID} />
     <ShiftFields shift={form?.shift ?? shift} error={form?.error ?? {}} />

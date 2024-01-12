@@ -12,7 +12,6 @@
       { text: "PDS" },
     ]}
   />
-
   <div class="flex flex-col items-center">
     <div class="pb-3">
       <Avatar border size="lg" />

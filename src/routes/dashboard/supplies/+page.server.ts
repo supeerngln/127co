@@ -9,8 +9,8 @@ export async function load() {
   const items = await db.execute("SELECT * FROM ITEM");
 
   const statistics: Record<string, number> = {
-    "Loaned": 0,
-    "Available": 0,
+    Loaned: 0,
+    Available: 0,
     "Being Repaired": 0,
     "Being Upgraded": 0,
     "Needing Repair": 0,
@@ -69,7 +69,7 @@ export const actions: Actions = {
 
     return { success: true, message: "Successfully deleted entry. " };
   },
-  search: async ({cookies, request}) => {
+  search: async ({ cookies, request }) => {
     const data = await request.formData();
     const query = data.get("query");
     const table = data.get("table");
@@ -79,8 +79,8 @@ export const actions: Actions = {
     try {
       results = await db.execute(sql);
     } catch (e) {
-      return { success: true, rows: [] }
+      return { success: true, rows: [] };
     }
-    return { success: true, rows: results[0] }
-  }
+    return { success: true, rows: results[0] };
+  },
 };
