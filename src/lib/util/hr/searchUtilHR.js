@@ -17,6 +17,8 @@ export const searchKeywordsJob = (job) => {
     return (
         `${job.Job_ID}
         ${job.Employee_ID}
+        ${job.Employee_FirstName}
+        ${job.Employee_LastName}
         ${job.Job_Position}
         ${job.Job_Department}
         ${job.Employee_Status}
@@ -44,7 +46,6 @@ export const searchKeywordsHE = (HE) => {
 export const searchKeywordsTS = (TS) => {
     return `
         ${TS.Employee_FirstName}
-        ${TS.Employee_MiddleName? TS.Employee_MiddleName:''}
         ${TS.Employee_LastName}
         ${TS.Timesheet_ID}
         ${TS.Employee_ID}
