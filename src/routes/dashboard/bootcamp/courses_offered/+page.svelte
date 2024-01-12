@@ -42,7 +42,7 @@
                 class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1"
                 >Instructor:</span
               >
-              <span class="text-xs">{course.Employee_FirstName}</span>
+              <span class="text-xs">{`${course.Employee_FirstName} ${course.Employee_LastName}`}</span>
             </div>
             <div class="flex items-center">
               <span
@@ -67,6 +67,9 @@
             </div>
           </div>
         </div>
+        <a href="/dashboard/bootcamp/courses_offered/enroll">
+          <button on:click|stopPropagation class="mt-2 mb-2">Enroll</button>
+        </a>
       </div>
     {/each}
   </div>
