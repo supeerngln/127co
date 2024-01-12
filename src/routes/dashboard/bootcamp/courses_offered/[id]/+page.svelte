@@ -73,7 +73,7 @@
               <td class="py-2">{enrollment.Enrollment_ID}</td>
               <td class="py-2">{enrollment.Name}</td>
               <td class="py-2">{formatDate(enrollment.Start_Date)}</td>
-              <td class="py-2">{formatDate(enrollment.End_Date)}</td>
+              <td class="py-2">{enrollment.End_Date ? formatDate(enrollment.End_Date) : "Not Yet Finished"}</td>
               <td class="py-2">{enrollment.Grade}</td>
               <td class="py-2">
                 <!-- Add edit and delete buttons -->  

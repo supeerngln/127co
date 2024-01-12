@@ -3,7 +3,7 @@
     import { Hr } from "flowbite-svelte";
     import type { PageData } from "./$types";
     export let data: PageData;
-    const { enrollees, employeeNames } = data;
+    const { enrollees, employeeNames, remainingSlots, newEnrollment_ID } = data;
   
     let editedEnrollmentID: any;
     let employeeID: any;
@@ -12,12 +12,12 @@
     let editedDateStarted = currentDate;
     let names = employeeNames.map((employeeNames) => employeeNames.names)
 
- 
 
     function getEmployeeID(selectedName: string): string {
         const employee = employeeNames.find((employeeNames) => employeeNames.names === selectedName);
         return employee ? employee.Employee_ID : '';
     }
+
 
 
 </script>
@@ -32,9 +32,20 @@
       ]}/>
     
     <h1 class="text-3xl font-semibold">Enroll {enrollees.Course_Name}</h1>
-    <h3 class="text-subtext">Enroll an employee to this course.</h3>
+    
+    <!-- Display course details -->
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <p><strong>Course ID:</strong> {enrollees.Course_ID} <strong class="ml-4">Course Category:</strong> {enrollees.Course_Category}
+        <p><strong>Instructor:</strong> {enrollees.Employee_FirstName} {enrollees.Employee_LastName } 
+          <strong class="ml-4">Course Schedule:</strong> {enrollees.Course_Schedule}
+        <p><strong>Remaining Slots:</strong> {remainingSlots.slots}</p>
 
-    <form method="POST" >
+      </div>
+    </div>
+      
+    <form method="POST" class="mt-6">
+      <h3 class="text-subtext">Enroll an employee to this course.</h3>
       <label for="enrollmentID">Enrollment ID:</label>
       <br>
       <input 
@@ -42,7 +53,7 @@
         type="text" 
         id="enrollmentID" 
         name="enrollmentID"
-        value={editedEnrollmentID}
+        value={newEnrollment_ID.new}
         style="margin-bottom: 10px;" 
         disabled>
 
@@ -65,7 +76,9 @@
         {/each}
       </select>
 
-      <label for="Employee_ID">{getEmployeeID(selectedName)}</label>
+      <input id="employeeID" name="employeeID"
+        class="hidden"
+        value={getEmployeeID(selectedName)}>
 
       <br>
       <label for="dateStarted">Date Started:</label>
@@ -76,7 +89,7 @@
         id="dateStarted" 
         name="dateStarted"
         placeholder={currentDate}
-        value={editedDateStarted}
+        bind:value={editedDateStarted}
         style="margin-bottom: 10px;">
 
       <br>
