@@ -56,7 +56,7 @@
   });
 </script>
 
-<main>
+<main class="w-full">
   <Breadcrumb
     items={[
       { href: "/dashboard/human_resources", text: "Human Resources" },
@@ -102,7 +102,7 @@
             Returned {filteredItems.length}
             {filteredItems.length <= 1 ? "result" : "results"}
           </p>
-          <Button pill href="./timesheet/add" class="mt-2 mb-2">
+          <Button pill href="./health-exam/add" class="mt-2 mb-2">
             Add Health Exam
           </Button>
         </div>

@@ -59,6 +59,3 @@
     {/each}
   </TableBody>
 </Table>
-
-<style>
-</style>

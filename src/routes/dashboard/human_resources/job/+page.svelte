@@ -19,7 +19,7 @@
   });
 </script>
 
-<main>
+<main class="w-full">
   <Breadcrumb
     items={[
       { href: "/dashboard/human_resources", text: "Human Resources" },

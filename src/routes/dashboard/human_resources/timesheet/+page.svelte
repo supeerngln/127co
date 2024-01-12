@@ -17,11 +17,6 @@
   export let data;
 
   let searchTerm = "";
-  let selected;
-  let searchFilters = [
-    { value: true, name: "Keyword" },
-    { value: false, name: "Date" },
-  ];
   let searchByKeyword = true;
   let filterTimeIn = true;
   let dateSearch = null;
