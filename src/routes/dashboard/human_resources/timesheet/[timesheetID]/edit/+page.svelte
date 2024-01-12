@@ -8,8 +8,5 @@
 </script>
 
 <hr />
-<h1>
-  Editing Timesheet ID: {log.Timesheet_ID} of Employee ID: {log.Employee_ID}
-</h1>
 <EditTimesheetForm {log} {form} />
 <hr />

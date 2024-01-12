@@ -8,6 +8,5 @@
 </script>
 
 <hr />
-<h1>Editing Employee ID: {pds.Employee_ID}</h1>
 <EditPDSForm {pds} {form} />
 <hr />

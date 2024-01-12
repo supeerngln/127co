@@ -43,22 +43,24 @@ export async function load() {
 }
 
 export const actions = {
-  delete: async ({ request }) => {
-    try {
-      const formData = await request.formData();
-      const id = formData.get("id");
-      queryDelete(id);
-    } catch (e) {
-      console.error("Error occured", e.message);
+    delete: async ({ request }) => {
+        try {
+            const formData = await request.formData();
+            const id = formData.get('id');
+            let results = queryDelete(id);
+            return results
+        } catch (e) {
+            console.error("Error occured", e.message);
+        }
     }
   },
 };
 
 //delete is a reserved word so I'm using an alternative function name : (
 function queryDelete(id) {
-  let q = {
-    from: "Employee",
-    where: `Employee.Employee_Id = ${id}`,
-  };
-  db.del(q);
+    let q = {
+        from: 'Employee',
+        where: `Employee.Employee_Id = ${id}`
+    };
+    return db.del(q);
 }

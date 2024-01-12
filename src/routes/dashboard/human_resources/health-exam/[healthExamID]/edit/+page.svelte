@@ -8,6 +8,5 @@
 </script>
 
 <hr />
-<h1>Editing Health Exam ID: {exam.HE_ID}</h1>
 <EditHealthExamForm {form} {exam} />
 <hr />

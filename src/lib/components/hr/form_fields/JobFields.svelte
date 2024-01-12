@@ -31,7 +31,6 @@
       value={employeeID}
       disabled={!isNew}
     />
-
     {#if error["employee-id"]}
       <span style="color:red;">{error["employee-id"]}</span>
     {/if}
@@ -89,6 +88,3 @@
     {/if}
   </div>
 </div>
-
-<style>
-</style>

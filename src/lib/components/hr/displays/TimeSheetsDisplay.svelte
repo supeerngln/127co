@@ -12,16 +12,15 @@
   export let logs;
 </script>
 
-<Table striped={true}>
+<Table striped={true} hoverable={true} shadow class="text-center">
   <TableHead>
     <TableBodyCell>Timesheet ID</TableBodyCell>
     <TableBodyCell>Employee ID</TableBodyCell>
+    <TableBodyCell>Employee Name</TableBodyCell>
     <TableBodyCell>Time In</TableBodyCell>
     <TableBodyCell>Time Out</TableBodyCell>
     <TableHeadCell>
       <span class="sr-only">Edit</span>
-    </TableHeadCell>
-    <TableHeadCell>
       <span class="sr-only">Delete</span>
     </TableHeadCell>
   </TableHead>
@@ -30,26 +29,24 @@
       <TableBodyRow>
         <TableBodyCell>{log.Timesheet_ID}</TableBodyCell>
         <TableBodyCell>{log.Employee_ID}</TableBodyCell>
+        <TableBodyCell
+          >{log.Employee_FirstName + " " + log.Employee_LastName}</TableBodyCell
+        >
         <TableBodyCell>{formatDateTime(log.Timesheet_TimeIn)}</TableBodyCell>
         <TableBodyCell>{formatDateTime(log.Timesheet_TimeOut)}</TableBodyCell>
-        <TableBodyCell>
+        <TableBodyCell class="flex gap-3">
           <form
             method="POST"
             action="./timesheet/{log.Timesheet_ID}/edit?/edit"
           >
-            <Button type="submit">Edit</Button>
+            <Button pill type="submit">Edit</Button>
           </form>
-        </TableBodyCell>
-        <TableBodyCell>
           <form method="POST" action="?/delete">
             <input type="hidden" name="id" hidden value={log.Timesheet_ID} />
-            <Button type="submit">Delete</Button>
+            <Button pill type="submit">Delete</Button>
           </form>
         </TableBodyCell>
       </TableBodyRow>
     {/each}
   </TableBody>
 </Table>
-
-<style>
-</style>

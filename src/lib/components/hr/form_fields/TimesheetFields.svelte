@@ -32,6 +32,7 @@
     <Label for="time-in" class="mb-2">Time In:</Label>
     <Input
       type="datetime-local"
+      step="1"
       name="time-in"
       id="time-in"
       value={timeIn}
@@ -46,6 +47,7 @@
     <Label for="time-out" class="mb-2">Time Out:</Label>
     <Input
       type="datetime-local"
+      step="1"
       name="time-out"
       id="time-out"
       value={timeOut}
@@ -56,6 +58,3 @@
     {/if}
   </div>
 </div>
-
-<style>
-</style>

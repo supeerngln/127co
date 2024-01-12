@@ -4,7 +4,7 @@
   import { searchKeywordsEmployee } from "$lib/util/hr/searchUtilHR";
   import { Button, TableSearch } from "flowbite-svelte";
   import { Section } from "flowbite-svelte-blocks";
-  export let data;
+  export let data, form;
 
   let eMap = {};
   data.data.forEach((e) => {
@@ -24,7 +24,7 @@
   });
 </script>
 
-<main class="w-full">
+<main>
   <Breadcrumb
     items={[
       { href: "/dashboard/human_resources", text: "Human Resources" },
@@ -32,6 +32,10 @@
     ]}
   />
   <Section classSection="p-3 sm:p-5">
+    {#if form !== null}
+      <p style="color:red;">{form.error === null ? '': form.error}</p>
+      <p style="color:red;">{form.recommend === null ? '': form.recommend}</p>
+    {/if}
     <TableSearch
       placeHolder="Search keywords"
       hoverable={true}
@@ -42,7 +46,9 @@
           Returned {filteredItems.length}
           {filteredItems.length <= 1 ? "result" : "results"}
         </p>
-        <Button href="./employee/add" class="mt-2 mb-2">Add Employee</Button>
+        <Button pill href="./employee/add" class="mt-2 mb-2">
+          Add Employee</Button
+        >
       </div>
       <EmployeesDisplay data={filteredItems} {eMap} />
     </TableSearch>

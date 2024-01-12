@@ -79,21 +79,27 @@ function insertQuery(q) {
 }
 
 export const del = async (q) => {
-  try {
-    let results = await conn.query(deleteQuery(q)).then(function ([
-      rows,
-      fields,
-    ]) {
-      return rows;
-    });
-
-    return {
-      data: results,
-    };
-  } catch (e) {
-    console.error("Error occured", e.message);
-  }
-};
+    try {
+        let results = await conn.query(deleteQuery(q))
+            .then(function([rows, fields]){
+                return rows;
+            });
+        
+        return {
+            error: null,
+            recommend: null
+        }
+    }  catch (e) {
+        console.error("Error occured", e.message);
+        if (e.message.startsWith("Cannot delete or update a parent row: a foreign key constraint fails")) {
+            console.error("Please update or delete any entries (in all tables) that reference this employee id")
+        }
+        return {
+            error: e.message,
+            recommend: "Please update or delete any entries (in all tables) that reference this employee id"
+        }
+    }
+}
 
 function deleteQuery(q) {
   let query = `DELETE FROM ${q.from} WHERE ${q.where}`;
