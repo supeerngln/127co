@@ -19,24 +19,21 @@
     ]}
   />
   <h1 class="text-3xl font-bold text-gray-900 dark:text-white"> Courses Offered </h1>
-  <a href="/dashboard/bootcamp/courses_offered/add"
+  <!-- <a href="/dashboard/bootcamp/courses_offered/add"
     class="bg-buttonp rounded-lg z-4 border-2 w-40 border-outline hover:bg-buttonphover active:bg-buttonpactive"
   >
     <span class="text-3xl material-symbols-outlined mr-2"> add </span>
       Add an Entry
 
-  </a>
-  <a href="/dashboard/bootcamp/courses_offered/enroll">
-    <button on:click|stopPropagation class="mt-2 mb-2">Enroll</button>
-  </a>
+  </a> -->
+  
 
 
   <!-- Course listing -->
   <div class="project grid grid-cols-3 gap-5">
     <!-- Iterate through courseList and create clickable boxes -->
     {#each data.Courses as course}
-      <div
-        on:click={() => handleCourseClick(course.Course_ID)}
+      <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}"
         class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
       >
         <div class="mb-4">
@@ -80,8 +77,10 @@
             </div>
           </div>
         </div>
-
-      </div>
+        <a href="/dashboard/bootcamp/courses_offered/enroll">
+          <button on:click|stopPropagation class="mt-2 mb-2">Enroll</button>
+        </a>
+      </a>
     {/each}
   </div>
 </main>
