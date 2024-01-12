@@ -33,8 +33,8 @@
   />
   <Section classSection="p-3 sm:p-5">
     {#if form !== null}
-      <p style="color:red;">{form.error}</p>
-      <p style="color:red;">{form.recommend}</p>
+      <p style="color:red;">{form.error === null ? '': form.error}</p>
+      <p style="color:red;">{form.recommend === null ? '': form.recommend}</p>
     {/if}
     <TableSearch
       placeHolder="Search keywords"

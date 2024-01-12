@@ -87,7 +87,6 @@ export const del = async (q) => {
             });
         
         return {
-            data: results,
             error: null,
             recommend: null
         }
@@ -97,7 +96,6 @@ export const del = async (q) => {
             console.error("Please update or delete any entries (in all tables) that reference this employee id")
         }
         return {
-            data: null,
             error: e.message,
             recommend: "Please update or delete any entries (in all tables) that reference this employee id"
         }
