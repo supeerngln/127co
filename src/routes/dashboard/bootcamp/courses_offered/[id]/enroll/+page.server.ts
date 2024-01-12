@@ -47,20 +47,28 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     WHERE co.Course_ID = "${courseID}"`
   );
 
+  const [enrolled] = await db.execute<RowDataPacket[]>(
+    `SELECT ce.Employee_ID, ce.Start_Date
+    FROM Course_Enrolled ce
+    WHERE ce.Course_ID = "${courseID}"`
+  );
+
   const [newEnrollmentID] = await db.execute<RowDataPacket[]>(
     `SELECT generateEnrollmentID() AS new`
   );
-
+    
  
 
 
-  const enrollees = enrollmentResult[0];
+  const instructor = enrollmentResult[0];
   const employeeNames = employees;
+  const enrollees = enrolled;
   const remainingSlots = slots[0];
   const newEnrollment_ID = newEnrollmentID[0];
 
+
   return {
-    enrollees, employeeNames, remainingSlots, newEnrollment_ID
+    instructor, employeeNames, remainingSlots, newEnrollment_ID, enrollees
   };
 };
 

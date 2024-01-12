@@ -3,7 +3,7 @@
     import { Hr } from "flowbite-svelte";
     import type { PageData } from "./$types";
     export let data: PageData;
-    const { enrollees, employeeNames, remainingSlots, newEnrollment_ID } = data;
+    const { instructor, employeeNames, remainingSlots, newEnrollment_ID, enrollees } = data;
   
     let editedEnrollmentID: any;
     let employeeID: any;
@@ -11,14 +11,24 @@
     let currentDate: string = new Date().toISOString().split("T")[0];
     let editedDateStarted = currentDate;
     let names = employeeNames.map((employeeNames) => employeeNames.names)
+    let enrolled = new Map<string, string>();
 
+    enrollees.forEach(enrollee => {
+      enrolled.set(
+      enrollee.Employee_ID, 
+      new Date(enrollee.Start_Date).toISOString().split("T")[0]
+    );});
 
+    console.log(enrolled)
     function getEmployeeID(selectedName: string): string {
         const employee = employeeNames.find((employeeNames) => employeeNames.names === selectedName);
         return employee ? employee.Employee_ID : '';
     }
 
-
+    function checker(ID: string) : boolean {
+        const employee = enrollees.find((enrollees) => enrollees.Employee_ID === ID);
+        return employee ? true : false;
+    }
 
 </script>
   
@@ -26,19 +36,19 @@
     <Breadcrumb items={[
         { href: "/dashboard/bootcamp", text: "Bootcamp" },
         { href: "/dashboard/bootcamp/courses_offered", text: "Courses Offered" },
-        { href: `/dashboard/bootcamp/courses_offered/${enrollees.Course_ID}/enroll`,
-          text: "Enroll " + enrollees.Course_Name
+        { href: `/dashboard/bootcamp/courses_offered/${instructor.Course_ID}/enroll`,
+          text: "Enroll " + instructor.Course_Name
         }
       ]}/>
     
-    <h1 class="text-3xl font-semibold">Enroll {enrollees.Course_Name}</h1>
+    <h1 class="text-3xl font-semibold">Enroll {instructor.Course_Name}</h1>
     
     <!-- Display course details -->
     <div class="grid grid-cols-2 gap-4">
       <div>
-        <p><strong>Course ID:</strong> {enrollees.Course_ID} <strong class="ml-4">Course Category:</strong> {enrollees.Course_Category}
-        <p><strong>Instructor:</strong> {enrollees.Employee_FirstName} {enrollees.Employee_LastName } 
-          <strong class="ml-4">Course Schedule:</strong> {enrollees.Course_Schedule}
+        <p><strong>Course ID:</strong> {instructor.Course_ID} <strong class="ml-4">Course Category:</strong> {instructor.Course_Category}
+        <p><strong>Instructor:</strong> {instructor.Employee_FirstName} {instructor.Employee_LastName } 
+          <strong class="ml-4">Course Schedule:</strong> {instructor.Course_Schedule}
         <p><strong>Remaining Slots:</strong> {remainingSlots.slots}</p>
 
       </div>
@@ -91,9 +101,10 @@
         placeholder={currentDate}
         bind:value={editedDateStarted}
         style="margin-bottom: 10px;">
+      <label for="s">{editedDateStarted}, {getEmployeeID(selectedName)}</label>
 
       <br>
-      <button type="submit">Enroll</button>
+      <button type="submit" class="mt-2 mb-2">Enroll</button>
       <a href="/dashboard/bootcamp/courses_offered">Cancel</a>
       </form>
   </main>
