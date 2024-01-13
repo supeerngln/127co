@@ -4,11 +4,12 @@ import type { PageServerLoad, Actions } from "./$types";
 import { redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({ cookies, params }) => {
+  const courseID = params.id;
+  
+  const [courses] = await db.execute<RowDataPacket[]>(
+    `SELECT * FROM Course_Offered WHERE Course_ID = "${courseID}"`
+  );
 
-
-
-
-  // All Employees
   const [instructors] = await db.execute<RowDataPacket[]>(
     `SELECT 
       e.Employee_ID,
@@ -20,21 +21,20 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     WHERE j.Job_Position = "Instructor"`
   );
 
-
-  const [courses] = await db.execute<RowDataPacket[]>(
+  const [listcourseID] = await db.execute<RowDataPacket[]>(
     `SELECT Course_ID FROM Course_Offered`
   );
 
-    
- 
+  const course = courses[0];
   const employeeNames = instructors;
-  const courseID = courses;
+  const courseIDs = listcourseID;
 
 
+return { 
+  course, employeeNames, courseIDs
+  };  
 
-  return {
-    employeeNames, courseID
-  };
+
 };
 
 export const actions = { 
@@ -49,36 +49,36 @@ export const actions = {
     console.log(data.get("courseCapacity"));
     console.log(data.get("courseCategory"));
 
-    const employeeID = data.get("employeeID");
-    const courseID = data.get("courseID");
-    const courseName = data.get("courseName");
-    const courseInstructor = data.get("employeeID");
-    const courseSchedule = data.get("courseSchedule");
-    const courseDuration = data.get("courseDuration");
-    const courseCapacity = data.get("courseCapacity");
-    const courseCategory = data.get("courseCategory");
+    // const employeeID = data.get("employeeID");
+    // const courseID = data.get("courseID");
+    // const courseName = data.get("courseName");
+    // const courseInstructor = data.get("employeeID");
+    // const courseSchedule = data.get("courseSchedule");
+    // const courseDuration = data.get("courseDuration");
+    // const courseCapacity = data.get("courseCapacity");
+    // const courseCategory = data.get("courseCategory");
 
 
-    const [course_add] = await db.execute<ResultSetHeader[]>(
-      `INSERT INTO Course_Offered 
-        (Course_ID, Employee_ID, Course_Name, Course_Category, Course_Duration, Course_Capacity, Course_Schedule)
-        VALUES
-            ("${courseID}", 
-            "${employeeID}", 
-            "${courseName}", 
-            "${courseCategory}", 
-            "${courseDuration}", 
-            "${courseCapacity}", 
-            "${courseSchedule}")`
+    // const [course_add] = await db.execute<ResultSetHeader[]>(
+    //   `INSERT INTO Course_Offered 
+    //     (Course_ID, Employee_ID, Course_Name, Course_Category, Course_Duration, Course_Capacity, Course_Schedule)
+    //     VALUES
+    //         ("${courseID}", 
+    //         "${employeeID}", 
+    //         "${courseName}", 
+    //         "${courseCategory}", 
+    //         "${courseDuration}", 
+    //         "${courseCapacity}", 
+    //         "${courseSchedule}")`
 
-    );
+    // );
 
-    const [instructor_add] = await db.execute<ResultSetHeader[]>(
-        `INSERT INTO Instructor
-        (Employee_ID, Course_ID)
-        VALUES
-            ("${employeeID}", "${courseID}")`
-    );
+    // const [instructor_add] = await db.execute<ResultSetHeader[]>(
+    //     `INSERT INTO Instructor
+    //     (Employee_ID, Course_ID)
+    //     VALUES
+    //         ("${employeeID}", "${courseID}")`
+    // );
 
 
     // console.log(params.id);

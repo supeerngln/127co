@@ -3,19 +3,18 @@
     import type { PageServerData } from "./$types";
     import Menu from "$lib/components/Menu.svelte";
     export let data: PageServerData;
-    const { employeeNames, courseID } = data;
+    const { course, employeeNames, courseIDs } = data;
+    let courseIDMap = courseIDs.map((courseIDs) => courseIDs.Course_ID)
     let names = employeeNames.map((employeeNames) => employeeNames.names)
-    let courseIDMap = courseID.map((courseID) => courseID.Course_ID)
-    
-
-    let courseName: string;
+   
+    let courseName = course.Course_Name;
+    let courseDur = course.Course_Duration;
+    let courseSched1 = course.Course_Schedule.substring(0, 6);
+    let courseSched2 = course.Course_Schedule.substring(7, 12);
+    let courseSched3 = course.Course_Schedule.substring(15, 20);
     let selectedName:string;
     let newcourseID: string;
-    let courseSched1: string;
-    let courseSched2: string;  
-    let courseSched3: string;
     let courseSchedule: string;
-
 
     function getEmployeeID(selectedName: string): string {
         const employee = employeeNames.find((employeeNames) => employeeNames.names === selectedName);
@@ -36,8 +35,6 @@
         return newCourseID;
     }
 
-
-    $: {newcourseID = generateCourseID(courseName);}
     $: courseSched2Formatted = new Date(`1970-01-01T${courseSched2}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSched3Formatted = new Date(`1970-01-01T${courseSched3}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSchedule = courseSched1 + " " + courseSched2Formatted + " - " + courseSched3Formatted;
@@ -49,10 +46,12 @@
     <Breadcrumb items={[
         { href: "/dashboard/bootcamp", text: "Bootcamp" },
         { href: "/dashboard/bootcamp/courses_offered", text: "Courses Offered" },
-        { href: `/dashboard/bootcamp/courses_offered/add`, text: "Add Course"}
+        { href: `/dashboard/bootcamp/courses_offered/${course.Course_ID}/enroll`,
+          text: "Edit " + course.Course_Name
+        }
     ]}/>
 
-    <h3>Add new course to the bootcamp</h3>
+    <h3>Edit {course.Course_Name}</h3>
     <form method="POST" class="mt-6">
         <label for="newcourseID">
             Course ID:
@@ -63,12 +62,11 @@
             type="text" 
             name="newcourseID" 
             id="newcourseID"
-            bind:value={newcourseID}
+            bind:value={course.Course_ID}
             required 
             disabled
             
         >
-        <input type="hidden" name="courseID" id="courseID" value={newcourseID}>
         <br>
         <label for="courseName">
             Course Name:
@@ -80,7 +78,7 @@
             name="courseName" 
             id="courseName" 
             placeholder="Enter course name" 
-            bind:value={courseName}
+            bind:value={course.Course_Name}
             minlength="4"
             required 
             
@@ -187,7 +185,7 @@
         >
         <br>
         <button type="submit">
-            Add Course
+            Save Changes
         </button>
     </form>
 </main>
