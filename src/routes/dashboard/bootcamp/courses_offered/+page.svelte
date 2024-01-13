@@ -35,18 +35,6 @@
         bind:value={query}
       />
       <Menu
-        name="Select Status"
-        items={[
-          "In Development",
-          "For Deployment",
-          "For Monitoring",
-          "For Presentation",
-          "Done",
-          "Terminated",
-        ]}
-        bind:selected_item={selected_status}
-      />
-      <Menu
         name="Category"
         items={["Soft Skills", "Technical Skills"]}
         bind:selected_item={selected_type}
@@ -73,7 +61,7 @@
       >
         <div class="mb-4">
           <div>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="flex justify-between items-center">
               <div>
                 <p class="text-sm font-semibold text-gray-500 dark:text-white">
                   {course.Course_Category}
@@ -83,12 +71,12 @@
                 </p>
               </div>
               <!-- Edit button -->
-              <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/edit_course" class="w-1/8">
+              <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/edit_course">
                 <span class="material-symbols-outlined">edit</span>
                 <span class="text-base">Edit</span>
               </a>
             </div>
-
+          </div>
           <!-- Course name -->
           <p class="text-lg font-bold text-gray-900 dark:text-white mt-2">
             {course.Course_Name}
