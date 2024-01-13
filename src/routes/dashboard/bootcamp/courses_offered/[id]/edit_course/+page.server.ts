@@ -87,8 +87,8 @@ export const actions = {
     //   `SELECT * FROM Course_Enrolled WHERE Enrollment_ID = ${data.get("enrollmentID")}`,
     // );
 
-    console.log(course_add);
-    console.log(instructor_add);
+    // console.log(course_add);
+    // console.log(instructor_add);
     throw redirect(302, `/dashboard/bootcamp/courses_offered`);
   }
 
