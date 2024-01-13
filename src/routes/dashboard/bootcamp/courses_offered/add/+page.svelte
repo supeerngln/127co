@@ -15,6 +15,9 @@
     let courseSched2: string;  
     let courseSched3: string;
     let courseSchedule: string;
+    let courseDuration;
+    let courseDur;
+
 
 
     function getEmployeeID(selectedName: string): string {
@@ -41,6 +44,7 @@
     $: courseSched2Formatted = new Date(`1970-01-01T${courseSched2}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSched3Formatted = new Date(`1970-01-01T${courseSched3}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSchedule = courseSched1 + " " + courseSched2Formatted + " - " + courseSched3Formatted;
+    $: courseDuration = courseDur + (courseDur === 1 ? " month" : " months") + " (6 hours/week)";
     
 </script>
 
@@ -158,19 +162,21 @@
          class="hidden"
          value={getEmployeeID(selectedName)}> 
         <br>
-        <label for="courseDuration">
+        <label for="courseDur">
             Course Duration (months): 
             <br>
             <input 
             class="text-sm border-2 rounded-full border-gray-400 p-1 pl-2 pr-2"
             type="number" 
-            name="courseDuration" 
-            id="courseDuration" 
+            name="courseDur" 
+            id="courseDur" 
+            bind:value={courseDur}
             min="1"
             
             placeholder="Enter how many months" 
             required 
         >
+        <input  name="courseDuration" id="courseDuration" value={courseDuration}>
         <br>
         <label for="courseSlots">
             Course Capacity:
