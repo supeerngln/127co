@@ -63,6 +63,7 @@
         id="enrollmentID" 
         name="enrollmentID"
         value={newEnrollment_ID.new}
+        required
         style="margin-bottom: 10px;" 
         disabled>
 
@@ -100,7 +101,7 @@
         placeholder={currentDate}
         bind:value={editedDateStarted}
         style="margin-bottom: 10px;">
-      <label for="s">{editedDateStarted}, {getEmployeeID(selectedName)}, {isEnrolled(getEmployeeID(selectedName),editedDateStarted)}</label>
+      <!-- <label for="s">{editedDateStarted}, {getEmployeeID(selectedName)}, {isEnrolled(getEmployeeID(selectedName),editedDateStarted)}</label> -->
 
       <br>
       {#if !isEnrolled(getEmployeeID(selectedName),editedDateStarted)}
