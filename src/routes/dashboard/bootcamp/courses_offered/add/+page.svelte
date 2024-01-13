@@ -176,7 +176,7 @@
             placeholder="Enter how many months" 
             required 
         >
-        <input  name="courseDuration" id="courseDuration" value={courseDuration}>
+        <input type="hidden" name="courseDuration" id="courseDuration" value={courseDuration}>
         <br>
         <label for="courseSlots">
             Course Capacity:

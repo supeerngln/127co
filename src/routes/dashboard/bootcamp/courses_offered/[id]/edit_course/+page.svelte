@@ -68,7 +68,7 @@
     <Breadcrumb items={[
         { href: "/dashboard/bootcamp", text: "Bootcamp" },
         { href: "/dashboard/bootcamp/courses_offered", text: "Courses Offered" },
-        { href: `/dashboard/bootcamp/courses_offered/${course.Course_ID}/enroll`,
+        { href: `/dashboard/bootcamp/courses_offered/${course.Course_ID}/edit_course`,
           text: "Edit " + course.Course_Name
         }
     ]}/>
@@ -211,11 +211,23 @@
             required 
         >
         <br>
-        <button type="submit">
-            Save Changes
-        </button>
-        <a href="/dashboard/bootcamp/courses_offered">
-            Cancel
-        </a>
+        <div style="display: flex; justify-content: space-between; width: 75%">
+            <div>
+                <button type="submit">
+                    Save Changes
+                </button>
+                <a href="/dashboard/bootcamp/courses_offered">
+                    Cancel
+                </a>
+            </div>
+
+            <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/delete_course" class="mr-20">
+                <button type="button">
+                    <span class="material-symbols-outlined">delete</span>
+                    Delete Course
+                </button>
+            </a>
+        </div>
+
     </form>
 </main>
