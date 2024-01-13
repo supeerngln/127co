@@ -41,7 +41,7 @@ export const actions = {
   default: async ({ request, params }) => {
     const data = await request.formData();
     console.log(data.get("employeeID"));
-    console.log(data.get("courseID"));
+    console.log(data.get("newcourseID"));
     console.log(data.get("courseName"));
     console.log(data.get("courseInstructor"));
     console.log(data.get("courseSchedule"));

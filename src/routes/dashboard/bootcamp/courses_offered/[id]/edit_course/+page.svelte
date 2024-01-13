@@ -51,6 +51,8 @@
         return `${hours}:${minutes}`;
     }
 
+    $: courseSched2 = convertTo24Hour(courseSched2);
+    $: courseSched3 = convertTo24Hour(courseSched3);
     $: courseSched2Formatted = new Date(`1970-01-01T${courseSched2}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSched3Formatted = new Date(`1970-01-01T${courseSched3}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSchedule = courseSched1 + " " + courseSched2Formatted + " - " + courseSched3Formatted;
@@ -137,7 +139,7 @@
             type="time" 
             name="courseSched2" 
             id="courseSched2" 
-            value={convertTo24Hour(courseSched2)}
+            bind:value={courseSched2}
             required 
         />
         to
@@ -146,7 +148,7 @@
             type="time" 
             name="courseSched3" 
             id="courseSched3" 
-            value={convertTo24Hour(courseSched3)}
+            bind:value={courseSched3}
             required 
         />
         <input type="hidden" name="courseSchedule" id="courseSchedule" value={courseSchedule}>
@@ -206,5 +208,8 @@
         <button type="submit">
             Save Changes
         </button>
+        <a href="/dashboard/bootcamp/courses_offered">
+            Cancel
+        </a>
     </form>
 </main>
