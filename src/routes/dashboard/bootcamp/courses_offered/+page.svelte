@@ -72,15 +72,28 @@
         class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col justify-between"
       >
         <div class="mb-4">
-          <p class="text-sm font-semibold text-gray-500 dark:text-white">
-            {course.Course_Category}
-          </p>
-          <p class="text-sm text-gray-900 dark:text-white">
-            {course.Course_ID}
-          </p>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <p class="text-sm font-semibold text-gray-500 dark:text-white">
+                  {course.Course_Category}
+                </p>
+                <p class="text-sm text-gray-900 dark:text-white">
+                  {course.Course_ID}
+                </p>
+              </div>
+              <!-- Edit button -->
+              <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/edit_course" class="w-1/8">
+                <span class="material-symbols-outlined">edit</span>
+                <span class="text-base">Edit</span>
+              </a>
+            </div>
+
+          <!-- Course name -->
           <p class="text-lg font-bold text-gray-900 dark:text-white mt-2">
             {course.Course_Name}
           </p>
+
           <div class="mt-2 space-y-1">
             <div class="flex items-center">
               <span
