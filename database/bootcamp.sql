@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS Course_Enrolled (
     Course_ID VARCHAR(6) NOT NULL,
     Employee_ID INT NOT NULL,
     Start_Date DATE NOT NULL,
-    End_Date DATE NOT NULL,
-    Grade INT NOT NULL,
+    End_Date DATE ,
+    Grade INT ,
     FOREIGN KEY (Course_ID) REFERENCES Course_Offered(Course_ID) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (Employee_ID) REFERENCES Employee(Employee_ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -59,7 +59,7 @@ INSERT INTO Course_Enrolled (Enrollment_ID, Course_ID, Employee_ID, Start_Date, 
 ('EI107', 'WEB100', 20190014, '2023-03-05', '2023-06-05', 86),
 ('EI108', 'ADV100', 20230007, '2023-01-20', '2023-04-06', 92),
 ('EI109', 'PRO100', 20230012, '2023-03-10', '2023-06-10', 97),
-('EI1010', 'ADV100', 20220001, '2023-02-05', '2023-04-20', 87);
+('EI110', 'ADV100', 20220001, '2023-02-05', '2023-04-20', 87);
 
 INSERT INTO Certificate (Certificate_ID, Employee_ID, Course_ID, Release_Date) VALUES 
 ('JAV100160001', 20160001, 'JAV100', '2023-05-15'),
@@ -85,3 +85,31 @@ INSERT INTO Instructor (Employee_ID, Course_ID) VALUES
 (20230011, 'YOG100'),
 (20230009, 'STR100');
 
+DELIMITER //
+CREATE FUNCTION `generateEnrollmentID`()
+RETURNS VARCHAR(20) DETERMINISTIC
+BEGIN
+    DECLARE lastEnrollmentID VARCHAR(20);
+    DECLARE lastInt INT;
+    DECLARE newInt INT;
+    DECLARE newEnrollmentID VARCHAR(20);
+
+    -- Get the maximum Enrollment_ID
+    SELECT MAX(Enrollment_ID) INTO lastEnrollmentID FROM Course_Enrolled;
+
+    -- Extract the integer part from the Enrollment_ID
+    SET lastInt = CAST(SUBSTRING(lastEnrollmentID, 3) AS UNSIGNED);
+
+    -- Increment the integer by 1
+    SET newInt = lastInt + 1;
+
+    -- Generate a new Enrollment_ID with the incremented integer
+    SET newEnrollmentID = CONCAT('EI', newInt);
+
+    RETURN newEnrollmentID;
+END//
+
+
+
+
+DELIMITER ;

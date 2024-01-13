@@ -84,7 +84,8 @@
         type="date" 
         id="dateFinished" 
         name="dateFinished"
-        value={editedDateFinishes.toISOString().split("T")[0]}
+        value={editedDateFinishes ? editedDateFinishes.toISOString().split("T")[0] : ''}
+        placeholder="mm/dd/yyyy"
         style="margin-bottom: 10px;">
 
       <br>

@@ -69,7 +69,7 @@
     </a>
     {#each data.Courses as course}
       <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}"
-        class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+        class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col justify-between"
       >
         <div class="mb-4">
           <p class="text-sm font-semibold text-gray-500 dark:text-white">
@@ -99,6 +99,13 @@
             <div class="flex items-center">
               <span
                 class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1"
+                >Remaining Slots:</span
+              >
+              <span class="text-xs">{course.remaining_slots}</span>
+            </div>
+            <div class="flex items-center">
+              <span
+                class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1"
                 >Schedule:</span
               >
               <span class="text-xs">{course.Course_Schedule}</span>
@@ -112,8 +119,12 @@
             </div>
           </div>
         </div>
-        <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/enroll">
-          <button on:click|stopPropagation class="mt-2 mb-2">Enroll</button>
+        <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/enroll" class="w-full">
+          {#if course.remaining_slots > 0}
+            <button on:click|stopPropagation style="width: 100%;" class="mt-2 mb-2 w-full">Enroll</button>
+          {:else}
+            <button disabled style="width: 100%; background-color: gray;" class="mt-2 mb-2 w-full">No More Slots</button>
+          {/if}
         </a>
       </a>
     {/each}

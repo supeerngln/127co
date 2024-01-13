@@ -18,6 +18,8 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
        co.Course_Name,
        co.Course_ID,
        co.Course_Category,
+       co.Course_Capacity,
+       co.Course_Schedule,
        e.Employee_LastName, 
        e.Employee_FirstName
      FROM Course_Enrolled ce
@@ -36,45 +38,77 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     INNER JOIN Job j ON e.Employee_ID = j.Employee_ID`
   );
 
-  // Employee name
-  const enrollees = enrollmentResult[0];
+  const [slots] = await db.execute<RowDataPacket[]>(
+    
+    `SELECT
+    co.Course_Capacity - COUNT(*) AS slots
+    FROM Course_Enrolled ce
+    INNER JOIN Course_Offered co ON ce.Course_ID = co.Course_ID
+    WHERE co.Course_ID = "${courseID}"`
+  );
+
+  const [enrolled] = await db.execute<RowDataPacket[]>(
+    `SELECT ce.Employee_ID, ce.Start_Date
+    FROM Course_Enrolled ce
+    WHERE ce.Course_ID = "${courseID}"`
+  );
+
+  const [newEnrollmentID] = await db.execute<RowDataPacket[]>(
+    `SELECT generateEnrollmentID() AS new`
+  );
+    
+ 
+
+
+  const instructor = enrollmentResult[0];
   const employeeNames = employees;
+  const enrollees = enrolled;
+  const remainingSlots = slots[0];
+  const newEnrollment_ID = newEnrollmentID[0];
+
 
   return {
-    enrollees, employeeNames
+    instructor, employeeNames, remainingSlots, newEnrollment_ID, enrollees
   };
 };
 
-// export const actions = { 
-//   default: async ({ request, params }) => {
-//     const data = await request.formData();
+export const actions = { 
+  default: async ({ request, params }) => {
+    const data = await request.formData();
+    const course_ID = params.id;
+    data.get("enrollmentID")
+    const [newEnrollmentID] = await db.execute<RowDataPacket[]>(
+      `SELECT generateEnrollmentID() AS new`
+    );
 
-//     const [enrollment_edited] = await db.execute<ResultSetHeader[]>(
-//       `UPDATE Course_Enrolled ce
-//        SET ce.Start_Date = '${data.get("dateStarted")}',
-//            ce.End_Date = '${data.get("dateFinished")}',
-//            ce.Grade = '${data.get("grade")}'
-//        WHERE ce.Enrollment_ID = '${params.id}'`
-//        );
+    const enrollmentID = newEnrollmentID[0].new;
 
-//     const [employee_edited] = await db.execute<ResultSetHeader[]>(
-//       `UPDATE Employee e
-//       SET e.Employee_LastName = '${data.get("lastName")}',
-//           e.Employee_FirstName = '${data.get("firstName")}'
-//       WHERE e.Employee_ID = '${data.get("employee_ID")}'`
-//       );
+    console.log(enrollmentID);
+    console.log(data.get("employeeID"));
+    console.log(course_ID);
+    console.log(data.get("dateStarted"));
+
+    const [enrollment_add] = await db.execute<ResultSetHeader[]>(
+      `INSERT INTO Course_Enrolled
+        (Enrollment_ID, Employee_ID, Course_ID, Start_Date, End_Date, Grade)
+        VALUES  
+        ('${enrollmentID}',
+        '${data.get("employeeID")}',
+        '${course_ID}',
+        '${data.get("dateStarted")}',null,null)`
+       );
 
 
-//     console.log(params.id);
+    console.log(params.id);
     
-//     const [enrollment] = await db.execute<RowDataPacket[]>(
-//       `SELECT * FROM Course_Enrolled WHERE Enrollment_ID = ${data.get("enrollmentID")}`,
-//     );
+    const [enrollment] = await db.execute<RowDataPacket[]>(
+      `SELECT * FROM Course_Enrolled WHERE Enrollment_ID = ${data.get("enrollmentID")}`,
+    );
 
-//     console.log(enrollment_edited);
-//     throw redirect(302, `/dashboard/bootcamp/courses_offered/${data.get("course_ID")}`);
-//   }
+    console.log(enrollment_add);
+    throw redirect(302, `/dashboard/bootcamp/courses_offered`);
+  }
 
-// } satisfies Actions;
+} satisfies Actions;
 
 

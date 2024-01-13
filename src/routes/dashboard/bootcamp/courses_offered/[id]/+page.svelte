@@ -4,7 +4,7 @@
   export let data: PageData;
   
   // Extract course and employee data from the page data
-  const { course, Enrollments } = data;
+  const { course, Enrollments, remainingSlots } = data;
   
   // Function to format date to display only date part
   const formatDate = (dateString: string) => {
@@ -53,7 +53,16 @@
 
   <!-- Display enrolled students data in a table -->
   {#if Enrollments && Enrollments.length > 0}
-    <h2 class="text-2xl font-bold mt-6 mb-4">Enrolled Students</h2>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2 class="text-2xl font-bold mt-6 mb-2">Enrolled Students</h2>
+    <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/enroll" class="w-1/6 mr-12">
+      {#if remainingSlots.slots > 0}
+        <button on:click|stopPropagation class=" w-full">Enroll</button>
+      {:else}
+        <button disabled style="background-color: gray;" class="mt-2 mb-6 w-fuw-1/5">No More Slots</button>
+      {/if}
+    </a>
+  </div>
     <div class="overflow-x-auto">
       <table class="min-w-full divide-y divide-gray-200 text-center">
         <thead class="bg-gray-100">
@@ -73,7 +82,7 @@
               <td class="py-2">{enrollment.Enrollment_ID}</td>
               <td class="py-2">{enrollment.Name}</td>
               <td class="py-2">{formatDate(enrollment.Start_Date)}</td>
-              <td class="py-2">{formatDate(enrollment.End_Date)}</td>
+              <td class="py-2">{enrollment.End_Date ? formatDate(enrollment.End_Date) : "Not Yet Finished"}</td>
               <td class="py-2">{enrollment.Grade}</td>
               <td class="py-2">
                 <!-- Add edit and delete buttons -->  
