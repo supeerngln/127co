@@ -60,6 +60,7 @@
     $: courseSched2Formatted = new Date(`1970-01-01T${courseSched2}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSched3Formatted = new Date(`1970-01-01T${courseSched3}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSchedule = courseSched1 + " " + courseSched2Formatted + " - " + courseSched3Formatted;
+    $: courseDuration = courseDur + (courseDur === 1 ? " month" : " months") + " (6 hours/week)";
 </script>
 
 
@@ -185,8 +186,8 @@
             <input 
             class="text-sm border-2 rounded-full border-gray-400 p-1 pl-2 pr-2"
             type="number" 
-            name="courseDuration" 
-            id="courseDuration" 
+            name="courseDur" 
+            id="courseDur" 
             value={courseDur}
             min="1"
             
@@ -194,6 +195,7 @@
             required 
         >
         <br>
+        <input type="hidden" name="courseDuration" id="courseDuration" bind:value={courseDuration}>
         <label for="courseSlots">
             Course Capacity:
         </label>

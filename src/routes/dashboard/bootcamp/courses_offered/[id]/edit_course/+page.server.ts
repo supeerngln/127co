@@ -61,27 +61,27 @@ export const actions = {
     const courseCapacity = data.get("courseCapacity");
     const courseCategory = data.get("courseCategory");
 
-    // const [course_update] = await db.execute<ResultSetHeader[]>(
-    //   `UPDATE Course_Offered SET 
-    //   Course_Name = "${courseName}",
-    //   Employee_ID = "${employeeID}",
-    //   Course_Category = "${courseCategory}",
-    //   Course_Duration = "${courseDuration}",
-    //   Course_Capacity = "${courseCapacity}",
-    //   Course_Schedule = "${courseSchedule}",
-    //   Course_ID = "${newcourseID}"
-    //   WHERE Course_ID = "${courseID}"
-    //   `
+    const [course_update] = await db.execute<ResultSetHeader[]>(
+      `UPDATE Course_Offered SET 
+      Course_Name = "${courseName}",
+      Employee_ID = "${employeeID}",
+      Course_Category = "${courseCategory}",
+      Course_Duration = "${courseDuration}",
+      Course_Capacity = "${courseCapacity}",
+      Course_Schedule = "${courseSchedule}",
+      Course_ID = "${newcourseID}"
+      WHERE Course_ID = "${courseID}"
+      `
 
-    // );
+    );
 
-    // const [instructor_update] = await db.execute<ResultSetHeader[]>(
-    //   `UPDATE Instructor SET 
-    //   Employee_ID = "${employeeID}",
-    //   Course_ID = "${newcourseID}"
-    //   WHERE Course_ID = "${courseID}"
-    //   `
-    // );
+    const [instructor_update] = await db.execute<ResultSetHeader[]>(
+      `UPDATE Instructor SET 
+      Employee_ID = "${employeeID}",
+      Course_ID = "${newcourseID}"
+      WHERE Course_ID = "${courseID}"
+      `
+    );
 
     
     throw redirect(302, `/dashboard/bootcamp/courses_offered`);
