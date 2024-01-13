@@ -6,26 +6,15 @@ import { redirect } from "@sveltejs/kit";
 export const load: PageServerLoad = async ({ cookies, params }) => {
   const courseID = params.id;
 
-
-  // Fetch enrolled students data with names
-  const [enrollmentResult] = await db.execute<RowDataPacket[]>(
-    `SELECT
-       ce.Enrollment_ID,
-       ce.Employee_ID,
-       ce.Start_Date,
-       ce.End_Date,
-       ce.Grade,
-       co.Course_Name,
-       co.Course_ID,
-       co.Course_Category,
-       co.Course_Capacity,
-       co.Course_Schedule,
-       e.Employee_LastName, 
-       e.Employee_FirstName
-     FROM Course_Enrolled ce
-     INNER JOIN Course_Offered co ON ce.Course_ID = co.Course_ID
-     INNER JOIN Employee e ON ce.Employee_ID = e.Employee_ID
-     WHERE co.Course_ID  = "${courseID}"`
+  const [courses] = await db.execute<RowDataPacket[]>(
+    `SELECT 
+      co.*,
+      e.Employee_FirstName,
+      e.Employee_LastName
+    
+    FROM Course_Offered co
+    LEFT JOIN Employee e ON co.Employee_ID = e.Employee_ID
+    WHERE co.Course_ID = '${courseID}'`
   );
 
   // All Employees
@@ -40,12 +29,13 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
 
   const [slots] = await db.execute<RowDataPacket[]>(
     
-    `SELECT
-    co.Course_Capacity - COUNT(*) AS slots
-    FROM Course_Enrolled ce
-    INNER JOIN Course_Offered co ON ce.Course_ID = co.Course_ID
+    `SELECT 
+    co.Course_Capacity - IFNULL(COUNT(ce.Course_ID), 0) AS slots
+    FROM Course_Offered co 
+    LEFT JOIN Course_Enrolled ce ON co.Course_ID = ce.Course_ID
     WHERE co.Course_ID = "${courseID}"`
   );
+
 
   const [enrolled] = await db.execute<RowDataPacket[]>(
     `SELECT ce.Employee_ID, ce.Start_Date
@@ -60,7 +50,7 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
  
 
 
-  const instructor = enrollmentResult[0];
+  const course = courses[0];
   const employeeNames = employees;
   const enrollees = enrolled;
   const remainingSlots = slots[0];
@@ -68,7 +58,7 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
 
 
   return {
-    instructor, employeeNames, remainingSlots, newEnrollment_ID, enrollees
+    course, employeeNames, remainingSlots, newEnrollment_ID, enrollees
   };
 };
 
