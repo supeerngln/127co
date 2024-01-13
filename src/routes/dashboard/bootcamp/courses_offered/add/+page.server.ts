@@ -73,6 +73,12 @@ export const actions = {
 
     );
 
+    const [courses] = await db.execute<RowDataPacket[]>(
+      `SELECT * FROM Course_Offered`
+    );
+    console.log(courseID)
+    console.log(courses)
+
     const [instructor_add] = await db.execute<ResultSetHeader[]>(
         `INSERT INTO Instructor
         (Employee_ID, Course_ID)

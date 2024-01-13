@@ -5,6 +5,7 @@ import { redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({ cookies, params }) => {
   const course_ID = params.id;
+  console.log(course_ID);
 
 
   // Fetch enrolled students data with names
@@ -38,7 +39,6 @@ export const actions = {
     
     console.log(course_deleted);
     console.log(enrollment_deleted);
-    console.log(data.get("course_ID" + " " + data.get("course_ID")));
     throw redirect(302, `/dashboard/bootcamp/courses_offered`);  
   }
 
