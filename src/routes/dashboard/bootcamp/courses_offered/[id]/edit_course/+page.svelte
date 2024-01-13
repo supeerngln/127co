@@ -11,13 +11,16 @@
     let courseDur = course.Course_Duration.trim(" months")[0];
     let courseCapacity = course.Course_Capacity;
     let courseCategory = course.Course_Category;
-    let courseSched1 = course.Course_Schedule.substring(0, 6);
-    let courseSched2 = course.Course_Schedule.substring(7, 14);
-    let courseSched3 = course.Course_Schedule.substring(17, 24);
+    let courseSched = course.Course_Schedule.split(" ");
+    let courseSched1 = courseSched[0];
+    let courseSched2 = courseSched[1] + " " + courseSched[2];
+    let courseSched3 = courseSched[4] + " " + courseSched[5];
     let selectedName = employeeNames.find((employeeNames) => employeeNames.Employee_ID === course.Employee_ID).names;
     let newcourseID: string;
     let courseSchedule: string;
-
+    
+    console.log(courseSched1);
+    console.log(courseSched2);
     console.log(courseSched3);
     function getEmployeeID(selectedName: string): string {
         const employee = employeeNames.find((employeeNames) => employeeNames.names === selectedName);
@@ -51,12 +54,12 @@
         return `${hours}:${minutes}`;
     }
 
-    $: courseSched2 = convertTo24Hour(courseSched2);
-    $: courseSched3 = convertTo24Hour(courseSched3);
+     courseSched2 = convertTo24Hour(courseSched2);
+     courseSched3 = convertTo24Hour(courseSched3);
+    $: newcourseID = generateCourseID(courseName);
     $: courseSched2Formatted = new Date(`1970-01-01T${courseSched2}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSched3Formatted = new Date(`1970-01-01T${courseSched3}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSchedule = courseSched1 + " " + courseSched2Formatted + " - " + courseSched3Formatted;
-    
 </script>
 
 
@@ -80,12 +83,13 @@
             type="text" 
             name="newcourseID" 
             id="newcourseID"
-            value={generateCourseID(courseName)}
+            bind:value={newcourseID}
             required 
             disabled
             
         >
         <br>
+        <input type="hidden" name="courseID" id="courseID" value={newcourseID}>
         <label for="courseName">
             Course Name:
         </label>
@@ -151,7 +155,7 @@
             bind:value={courseSched3}
             required 
         />
-        <input type="hidden" name="courseSchedule" id="courseSchedule" value={courseSchedule}>
+        <input type="hidden" name="courseSchedule" id="courseSchedule" bind:value={courseSchedule}>
 
         <br>
         <label for="courseInstructor">

@@ -28,7 +28,8 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
   const course = courses[0];
   const employeeNames = instructors;
   const courseIDs = listcourseID;
-
+  
+  console.log(course);
 
 return { 
   course, employeeNames, courseIDs
@@ -40,8 +41,10 @@ return {
 export const actions = { 
   default: async ({ request, params }) => {
     const data = await request.formData();
+    const courseID = params.id;
+
     console.log(data.get("employeeID"));
-    console.log(data.get("newcourseID"));
+    console.log(data.get("courseID"));
     console.log(data.get("courseName"));
     console.log(data.get("courseInstructor"));
     console.log(data.get("courseSchedule"));
@@ -49,46 +52,38 @@ export const actions = {
     console.log(data.get("courseCapacity"));
     console.log(data.get("courseCategory"));
 
-    // const employeeID = data.get("employeeID");
-    // const courseID = data.get("courseID");
-    // const courseName = data.get("courseName");
-    // const courseInstructor = data.get("employeeID");
-    // const courseSchedule = data.get("courseSchedule");
-    // const courseDuration = data.get("courseDuration");
-    // const courseCapacity = data.get("courseCapacity");
-    // const courseCategory = data.get("courseCategory");
+    const employeeID = data.get("employeeID");
+    const newcourseID = data.get("courseID");
+    const courseName = data.get("courseName");
+    const courseInstructor = data.get("employeeID");
+    const courseSchedule = data.get("courseSchedule");
+    const courseDuration = data.get("courseDuration");
+    const courseCapacity = data.get("courseCapacity");
+    const courseCategory = data.get("courseCategory");
 
-
-    // const [course_add] = await db.execute<ResultSetHeader[]>(
-    //   `INSERT INTO Course_Offered 
-    //     (Course_ID, Employee_ID, Course_Name, Course_Category, Course_Duration, Course_Capacity, Course_Schedule)
-    //     VALUES
-    //         ("${courseID}", 
-    //         "${employeeID}", 
-    //         "${courseName}", 
-    //         "${courseCategory}", 
-    //         "${courseDuration}", 
-    //         "${courseCapacity}", 
-    //         "${courseSchedule}")`
+    // const [course_update] = await db.execute<ResultSetHeader[]>(
+    //   `UPDATE Course_Offered SET 
+    //   Course_Name = "${courseName}",
+    //   Employee_ID = "${employeeID}",
+    //   Course_Category = "${courseCategory}",
+    //   Course_Duration = "${courseDuration}",
+    //   Course_Capacity = "${courseCapacity}",
+    //   Course_Schedule = "${courseSchedule}",
+    //   Course_ID = "${newcourseID}"
+    //   WHERE Course_ID = "${courseID}"
+    //   `
 
     // );
 
-    // const [instructor_add] = await db.execute<ResultSetHeader[]>(
-    //     `INSERT INTO Instructor
-    //     (Employee_ID, Course_ID)
-    //     VALUES
-    //         ("${employeeID}", "${courseID}")`
+    // const [instructor_update] = await db.execute<ResultSetHeader[]>(
+    //   `UPDATE Instructor SET 
+    //   Employee_ID = "${employeeID}",
+    //   Course_ID = "${newcourseID}"
+    //   WHERE Course_ID = "${courseID}"
+    //   `
     // );
 
-
-    // console.log(params.id);
     
-    // const [enrollment] = await db.execute<RowDataPacket[]>(
-    //   `SELECT * FROM Course_Enrolled WHERE Enrollment_ID = ${data.get("enrollmentID")}`,
-    // );
-
-    // console.log(course_add);
-    // console.log(instructor_add);
     throw redirect(302, `/dashboard/bootcamp/courses_offered`);
   }
 
