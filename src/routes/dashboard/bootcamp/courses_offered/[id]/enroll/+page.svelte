@@ -25,9 +25,8 @@
         return employee ? employee.Employee_ID : '';
     }
 
-    function checker(ID: string) : boolean {
-        const employee = enrollees.find((enrollees) => enrollees.Employee_ID === ID);
-        return employee ? true : false;
+    function isEnrolled(employeeID: string, date: string): boolean {
+      return enrolled.get(employeeID) === date;
     }
 
 </script>
@@ -101,10 +100,15 @@
         placeholder={currentDate}
         bind:value={editedDateStarted}
         style="margin-bottom: 10px;">
-      <label for="s">{editedDateStarted}, {getEmployeeID(selectedName)}</label>
+      <label for="s">{editedDateStarted}, {getEmployeeID(selectedName)}, {isEnrolled(getEmployeeID(selectedName),editedDateStarted)}</label>
 
       <br>
-      <button type="submit" class="mt-2 mb-2">Enroll</button>
+      {#if !isEnrolled(getEmployeeID(selectedName),editedDateStarted)}
+        <button type="submit" class="mt-2 mb-2">Enroll</button>
+      {:else}
+        <h3>Employee is already enrolled in this course.</h3>
+        <button type="submit" class="mt-2 mb-2" style="color: gray;" disabled>Enroll</button>
+      {/if}
       <a href="/dashboard/bootcamp/courses_offered">Cancel</a>
       </form>
   </main>
