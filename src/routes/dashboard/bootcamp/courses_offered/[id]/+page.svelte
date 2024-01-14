@@ -83,7 +83,7 @@
               <td class="py-2">{enrollment.Name}</td>
               <td class="py-2">{formatDate(enrollment.Start_Date)}</td>
               <td class="py-2">{enrollment.End_Date ? formatDate(enrollment.End_Date) : "Not Yet Finished"}</td>
-              <td class="py-2">{enrollment.Grade}</td>
+              <td class="py-2">{enrollment.Grade ? enrollment.Grade : "No Grade Yet"}</td>
               <td class="py-2">
                 <!-- Add edit and delete buttons -->  
                   <button class="px-4 py-2 mr-2 bg-blue-500 text-white rounded" on:click={() => handleEdit(enrollment.Enrollment_ID)}>Edit</button>
