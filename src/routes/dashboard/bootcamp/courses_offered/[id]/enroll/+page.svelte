@@ -3,7 +3,7 @@
     import { Hr } from "flowbite-svelte";
     import type { PageData } from "./$types";
     export let data: PageData;
-    const { instructor, employeeNames, remainingSlots, newEnrollment_ID, enrollees } = data;
+    const { course, employeeNames, remainingSlots, newEnrollment_ID, enrollees } = data;
   
     let editedEnrollmentID: any;
     let employeeID: any;
@@ -35,19 +35,19 @@
     <Breadcrumb items={[
         { href: "/dashboard/bootcamp", text: "Bootcamp" },
         { href: "/dashboard/bootcamp/courses_offered", text: "Courses Offered" },
-        { href: `/dashboard/bootcamp/courses_offered/${instructor.Course_ID}/enroll`,
-          text: "Enroll " + instructor.Course_Name
+        { href: `/dashboard/bootcamp/courses_offered/${course.Course_ID}/enroll`,
+          text: "Enroll " + course.Course_Name
         }
       ]}/>
     
-    <h1 class="text-3xl font-semibold">Enroll {instructor.Course_Name}</h1>
+    <h1 class="text-3xl font-semibold">Enroll {course.Course_Name}</h1>
     
     <!-- Display course details -->
     <div class="grid grid-cols-2 gap-4">
       <div>
-        <p><strong>Course ID:</strong> {instructor.Course_ID} <strong class="ml-4">Course Category:</strong> {instructor.Course_Category}
-        <p><strong>Instructor:</strong> {instructor.Employee_FirstName} {instructor.Employee_LastName } 
-          <strong class="ml-4">Course Schedule:</strong> {instructor.Course_Schedule}
+        <p><strong>Course ID:</strong> {course.Course_ID} <strong class="ml-4">Course Category:</strong> {course.Course_Category}
+        <p><strong>Instructor:</strong> {course.Employee_FirstName} {course.Employee_LastName } 
+          <strong class="ml-4">Course Schedule:</strong> {course.Course_Schedule}
         <p><strong>Remaining Slots:</strong> {remainingSlots.slots}</p>
 
       </div>

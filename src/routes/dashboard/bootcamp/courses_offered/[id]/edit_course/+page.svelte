@@ -3,20 +3,25 @@
     import type { PageServerData } from "./$types";
     import Menu from "$lib/components/Menu.svelte";
     export let data: PageServerData;
-    const { employeeNames, courseID } = data;
+    const { course, employeeNames, courseIDs } = data;
+    let courseIDMap = courseIDs.map((courseIDs) => courseIDs.Course_ID)
     let names = employeeNames.map((employeeNames) => employeeNames.names)
-    let courseIDMap = courseID.map((courseID) => courseID.Course_ID)
-    
-
-    let courseName: string;
-    let selectedName:string;
+   
+    let courseName = course.Course_Name;
+    let courseDur = course.Course_Duration.trim(" months")[0];
+    let courseCapacity = course.Course_Capacity;
+    let courseCategory = course.Course_Category;
+    let courseSched = course.Course_Schedule.split(" ");
+    let courseSched1 = courseSched[0];
+    let courseSched2 = courseSched[1] + " " + courseSched[2];
+    let courseSched3 = courseSched[4] + " " + courseSched[5];
+    let selectedName = employeeNames.find((employeeNames) => employeeNames.Employee_ID === course.Employee_ID).names;
     let newcourseID: string;
-    let courseSched1: string;
-    let courseSched2: string;  
-    let courseSched3: string;
     let courseSchedule: string;
-
-
+    
+    console.log(courseSched1);
+    console.log(courseSched2);
+    console.log(courseSched3);
     function getEmployeeID(selectedName: string): string {
         const employee = employeeNames.find((employeeNames) => employeeNames.names === selectedName);
         return employee ? employee.Employee_ID : '';
@@ -36,12 +41,26 @@
         return newCourseID;
     }
 
+    function convertTo24Hour(timeStr) {
+        const [time, period] = timeStr.split(' ');
+        let [hours, minutes] = time.split(':');
 
-    $: {newcourseID = generateCourseID(courseName);}
+        if (period.toLowerCase() === 'pm' && hours !== '12') {
+            hours = Number(hours) + 12;
+        } else if (period.toLowerCase() === 'am' && hours === '12') {
+            hours = '00';
+        }
+
+        return `${hours}:${minutes}`;
+    }
+
+     courseSched2 = convertTo24Hour(courseSched2);
+     courseSched3 = convertTo24Hour(courseSched3);
+    $: newcourseID = generateCourseID(courseName);
     $: courseSched2Formatted = new Date(`1970-01-01T${courseSched2}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSched3Formatted = new Date(`1970-01-01T${courseSched3}:00`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     $: courseSchedule = courseSched1 + " " + courseSched2Formatted + " - " + courseSched3Formatted;
-    
+    $: courseDuration = courseDur + (courseDur === 1 ? " month" : " months") + " (6 hours/week)";
 </script>
 
 
@@ -49,10 +68,12 @@
     <Breadcrumb items={[
         { href: "/dashboard/bootcamp", text: "Bootcamp" },
         { href: "/dashboard/bootcamp/courses_offered", text: "Courses Offered" },
-        { href: `/dashboard/bootcamp/courses_offered/add`, text: "Add Course"}
+        { href: `/dashboard/bootcamp/courses_offered/${course.Course_ID}/edit_course`,
+          text: "Edit " + course.Course_Name
+        }
     ]}/>
 
-    <h3>Add new course to the bootcamp</h3>
+    <h3>Edit {course.Course_Name}</h3>
     <form method="POST" class="mt-6">
         <label for="newcourseID">
             Course ID:
@@ -68,8 +89,8 @@
             disabled
             
         >
-        <input type="hidden" name="courseID" id="courseID" value={newcourseID}>
         <br>
+        <input type="hidden" name="courseID" id="courseID" value={newcourseID}>
         <label for="courseName">
             Course Name:
         </label>
@@ -94,6 +115,7 @@
             class="text-sm border-2 rounded-full border-gray-400 p-1 pl-2 pr-2"
             name="courseCategory" 
             id="courseCategory" 
+            value={courseCategory}
             required 
         >
             <option value="">Select a category</option>
@@ -134,7 +156,7 @@
             bind:value={courseSched3}
             required 
         />
-        <input type="hidden" name="courseSchedule" id="courseSchedule" value={courseSchedule}>
+        <input type="hidden" name="courseSchedule" id="courseSchedule" bind:value={courseSchedule}>
 
         <br>
         <label for="courseInstructor">
@@ -145,7 +167,7 @@
             class="text-sm border-2 rounded-full border-gray-400 p-1 pl-2 pr-2 w-1/2"
             id="courseInstructor"
             name="courseInstructor"
-            bind:value={selectedName}
+            value={selectedName}
             
             style="margin-bottom: 10px;"
         >
@@ -164,14 +186,16 @@
             <input 
             class="text-sm border-2 rounded-full border-gray-400 p-1 pl-2 pr-2"
             type="number" 
-            name="courseDuration" 
-            id="courseDuration" 
+            name="courseDur" 
+            id="courseDur" 
+            value={courseDur}
             min="1"
             
             placeholder="Enter how many months" 
             required 
         >
         <br>
+        <input type="hidden" name="courseDuration" id="courseDuration" bind:value={courseDuration}>
         <label for="courseSlots">
             Course Capacity:
         </label>
@@ -182,12 +206,28 @@
             name="courseCapacity" 
             id="courseCapacity" 
             min="1"
+            value={courseCapacity}
             placeholder="Enter course slots" 
             required 
         >
         <br>
-        <button type="submit">
-            Add Course
-        </button>
+        <div style="display: flex; justify-content: space-between; width: 75%">
+            <div>
+                <button type="submit">
+                    Save Changes
+                </button>
+                <a href="/dashboard/bootcamp/courses_offered">
+                    Cancel
+                </a>
+            </div>
+
+            <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/delete_course" class="mr-20">
+                <button type="button">
+                    <span class="material-symbols-outlined">delete</span>
+                    Delete Course
+                </button>
+            </a>
+        </div>
+
     </form>
 </main>
