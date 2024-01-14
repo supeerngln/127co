@@ -96,7 +96,7 @@ export const actions = {
     );
 
     console.log(enrollment_add);
-    throw redirect(302, `/dashboard/bootcamp/courses_offered`);
+    throw redirect(302, `/dashboard/bootcamp/courses_offered/${course_ID}`);
   }
 
 } satisfies Actions;

@@ -19,15 +19,15 @@
       new Date(enrollee.Start_Date).toISOString().split("T")[0]
     );});
 
-    console.log(enrolled)
     function getEmployeeID(selectedName: string): string {
         const employee = employeeNames.find((employeeNames) => employeeNames.names === selectedName);
         return employee ? employee.Employee_ID : '';
     }
 
-    function isEnrolled(employeeID: string, date: string): boolean {
-      return enrolled.get(employeeID) === date;
+    function isEnrolled(employeeID: string, dateenrolled: string): boolean {
+      return enrolled.get(employeeID) === dateenrolled;
     }
+    console.log(enrolled)  
 
 </script>
   
@@ -101,7 +101,7 @@
         placeholder={currentDate}
         bind:value={editedDateStarted}
         style="margin-bottom: 10px;">
-      <!-- <label for="s">{editedDateStarted}, {getEmployeeID(selectedName)}, {isEnrolled(getEmployeeID(selectedName),editedDateStarted)}</label> -->
+      <label for="s">{editedDateStarted}, {getEmployeeID(selectedName)}, {isEnrolled(getEmployeeID(selectedName),editedDateStarted)}</label>
 
       <br>
       {#if !isEnrolled(getEmployeeID(selectedName),editedDateStarted)}

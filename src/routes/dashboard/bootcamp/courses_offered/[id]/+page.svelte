@@ -96,5 +96,12 @@
     </div>
   {:else}
     <p class="mt-6">No enrolled students found for this course.</p>
+    <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/enroll" class="w-1/6 mr-12">
+      {#if remainingSlots.slots > 0}
+        <button on:click|stopPropagation class=" w-1/6">Enroll</button>
+      {:else}
+        <button disabled style="background-color: gray;" class="mt-2 mb-6 w-fuw-1/5">No More Slots</button>
+      {/if}
+    </a>
   {/if}
 </main>

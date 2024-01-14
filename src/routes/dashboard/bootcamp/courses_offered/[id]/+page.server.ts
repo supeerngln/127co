@@ -37,10 +37,10 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
 
   const [slots] = await db.execute<RowDataPacket[]>(
     
-    `SELECT
-    co.Course_Capacity - COUNT(*) AS slots
-    FROM Course_Enrolled ce
-    INNER JOIN Course_Offered co ON ce.Course_ID = co.Course_ID
+    `SELECT 
+    co.Course_Capacity - IFNULL(COUNT(ce.Course_ID), 0) AS slots
+    FROM Course_Offered co 
+    LEFT JOIN Course_Enrolled ce ON co.Course_ID = ce.Course_ID
     WHERE co.Course_ID = "${courseID}"`
   );
 
