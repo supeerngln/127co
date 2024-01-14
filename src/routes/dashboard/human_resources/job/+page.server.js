@@ -3,15 +3,18 @@ import * as db from "$lib/util/hr/db/mysql";
 export async function load() {
   try {
     let q = {
-      fields: ["*"],
+      fields: [
+        "job.*",
+        "Employee.Employee_FirstName",
+        "Employee.Employee_LastName",
+      ],
       alias: null,
-      from: "job",
+      from: "Job NATURAL JOIN Employee",
       where: null,
       groupBy: null,
       having: null,
       orderBy: null,
     };
-
     return db.get(q);
   } catch (error) {
     console.error("Got an Error!!!");

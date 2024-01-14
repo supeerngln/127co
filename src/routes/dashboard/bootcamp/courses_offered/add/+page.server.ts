@@ -4,10 +4,6 @@ import type { PageServerLoad, Actions } from "./$types";
 import { redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({ cookies, params }) => {
-
-
-
-
   // All Employees
   const [instructors] = await db.execute<RowDataPacket[]>(
     `SELECT 
@@ -17,27 +13,23 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
     FROM Employee e
     INNER JOIN Job j ON e.Employee_ID = j.Employee_ID
     INNER JOIN PDS p ON e.Employee_ID = p.Employee_ID
-    WHERE j.Job_Position = "Instructor"`
+    WHERE j.Job_Position = "Instructor"`,
   );
-
 
   const [courses] = await db.execute<RowDataPacket[]>(
-    `SELECT Course_ID FROM Course_Offered`
+    `SELECT Course_ID FROM Course_Offered`,
   );
 
-    
- 
   const employeeNames = instructors;
   const courseID = courses;
 
-
-
   return {
-    employeeNames, courseID
+    employeeNames,
+    courseID,
   };
 };
 
-export const actions = { 
+export const actions = {
   default: async ({ request, params }) => {
     const data = await request.formData();
     console.log(data.get("employeeID"));
@@ -58,7 +50,6 @@ export const actions = {
     const courseCapacity = data.get("courseCapacity");
     const courseCategory = data.get("courseCategory");
 
-
     const [course_add] = await db.execute<ResultSetHeader[]>(
       `INSERT INTO Course_Offered 
         (Course_ID, Employee_ID, Course_Name, Course_Category, Course_Duration, Course_Capacity, Course_Schedule)
@@ -69,9 +60,14 @@ export const actions = {
             "${courseCategory}", 
             "${courseDuration}", 
             "${courseCapacity}", 
-            "${courseSchedule}")`
-
+            "${courseSchedule}")`,
     );
+
+    const [courses] = await db.execute<RowDataPacket[]>(
+      `SELECT * FROM Course_Offered`,
+    );
+    console.log(courseID);
+    console.log(courses);
 
     const [courses] = await db.execute<RowDataPacket[]>(
       `SELECT * FROM Course_Offered`
@@ -80,15 +76,14 @@ export const actions = {
     console.log(courses)
 
     const [instructor_add] = await db.execute<ResultSetHeader[]>(
-        `INSERT INTO Instructor
+      `INSERT INTO Instructor
         (Employee_ID, Course_ID)
         VALUES
-            ("${employeeID}", "${courseID}")`
+            ("${employeeID}", "${courseID}")`,
     );
 
-
     // console.log(params.id);
-    
+
     // const [enrollment] = await db.execute<RowDataPacket[]>(
     //   `SELECT * FROM Course_Enrolled WHERE Enrollment_ID = ${data.get("enrollmentID")}`,
     // );
@@ -96,8 +91,5 @@ export const actions = {
     console.log(course_add);
     console.log(instructor_add);
     throw redirect(302, `/dashboard/bootcamp/courses_offered`);
-  }
-
+  },
 } satisfies Actions;
-
-

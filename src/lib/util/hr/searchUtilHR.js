@@ -21,6 +21,8 @@ export const searchKeywordsEmployee = (employee, eMap) => {
 export const searchKeywordsJob = (job) => {
   return `${job.Job_ID}
         ${job.Employee_ID}
+        ${job.Employee_FirstName}
+        ${job.Employee_LastName}
         ${job.Job_Position}
         ${job.Job_Department}
         ${job.Employee_Status}
@@ -35,6 +37,8 @@ export const searchKeywordsJob = (job) => {
 export const searchKeywordsHE = (HE) => {
   return `
         ${HE.HE_ID}
+        ${HE.Employee_FirstName}
+        ${HE.Employee_LastNameName}
         ${HE.HE_Height}
         ${HE.HE_Weight}
         ${HE.HE_BloodType}
@@ -51,7 +55,6 @@ export const searchKeywordsHE = (HE) => {
 export const searchKeywordsTS = (TS) => {
   return `
         ${TS.Employee_FirstName}
-        ${TS.Employee_MiddleName ? TS.Employee_MiddleName : ""}
         ${TS.Employee_LastName}
         ${TS.Timesheet_ID}
         ${TS.Employee_ID}
