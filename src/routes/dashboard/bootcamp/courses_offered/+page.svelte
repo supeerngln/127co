@@ -9,7 +9,6 @@
   let query: string = "";
   let selected_type: string = "";
   let selected_status: string = "";
-
 </script>
 
 <main class="w-full">
@@ -19,11 +18,13 @@
       { href: "/dashboard/bootcamp/courses_offered", text: "Courses Offered" },
     ]}
   />
-  <h1 class="text-3xl font-bold text-gray-900 dark:text-white"> Courses Offered </h1>
+  <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+    Courses Offered
+  </h1>
   <p class="text-gray-700 dark:text-gray-400 mb-4">
     View and manage the courses offered by the bootcamp.
   </p>
-  
+
   <div class="flex items-center justify-center">
     <div class="flex items-center">
       <input
@@ -42,21 +43,19 @@
     </div>
   </div>
 
-  
-
-
   <!-- Course listing -->
   <div class="project grid grid-cols-3 gap-5">
     <!-- Iterate through courseList and create clickable boxes -->
-    <a href="/dashboard/bootcamp/courses_offered/add"
-    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-    
+    <a
+      href="/dashboard/bootcamp/courses_offered/add"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
     >
       <span class="text-3xl material-symbols-outlined mr-2"> add </span>
       Add a new Course
     </a>
     {#each data.Courses as course}
-      <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}"
+      <a
+        href="/dashboard/bootcamp/courses_offered/{course.Course_ID}"
         class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col justify-between"
       >
         <div class="mb-4">
@@ -71,7 +70,9 @@
                 </p>
               </div>
               <!-- Edit button -->
-              <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/edit_course">
+              <a
+                href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/edit_course"
+              >
                 <span class="material-symbols-outlined">edit</span>
                 <span class="text-base">Edit</span>
               </a>
@@ -88,7 +89,9 @@
                 class="text-xs font-semibold text-gray-600 dark:text-gray-300 mr-1"
                 >Instructor:</span
               >
-              <span class="text-xs">{`${course.Employee_FirstName} ${course.Employee_LastName}`}</span>
+              <span class="text-xs"
+                >{`${course.Employee_FirstName} ${course.Employee_LastName}`}</span
+              >
             </div>
             <div class="flex items-center">
               <span
@@ -120,11 +123,22 @@
             </div>
           </div>
         </div>
-        <a href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/enroll" class="w-full">
+        <a
+          href="/dashboard/bootcamp/courses_offered/{course.Course_ID}/enroll"
+          class="w-full"
+        >
           {#if course.remaining_slots > 0}
-            <button on:click|stopPropagation style="width: 100%;" class="mt-2 mb-2 w-full">Enroll</button>
+            <button
+              on:click|stopPropagation
+              style="width: 100%;"
+              class="mt-2 mb-2 w-full">Enroll</button
+            >
           {:else}
-            <button disabled style="width: 100%; background-color: gray;" class="mt-2 mb-2 w-full">No More Slots</button>
+            <button
+              disabled
+              style="width: 100%; background-color: gray;"
+              class="mt-2 mb-2 w-full">No More Slots</button
+            >
           {/if}
         </a>
       </a>

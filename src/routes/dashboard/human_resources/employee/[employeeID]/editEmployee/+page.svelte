@@ -8,5 +8,5 @@
 </script>
 
 <hr />
-<EditEmployeeForm {employee} {form}/>
+<EditEmployeeForm {employee} {form} />
 <hr />

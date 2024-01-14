@@ -17,8 +17,8 @@ export const load: PageServerLoad = async ({ cookies }) => {
       SELECT Course_ID, COUNT(*) as enrolled_count 
       FROM Course_Enrolled 
       GROUP BY Course_ID
-    ) ce ON co.Course_ID = ce.Course_ID`  );
-
+    ) ce ON co.Course_ID = ce.Course_ID`,
+  );
 
   return {
     Courses,

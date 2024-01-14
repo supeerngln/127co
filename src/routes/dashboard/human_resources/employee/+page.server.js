@@ -53,7 +53,6 @@ export const actions = {
             console.error("Error occured", e.message);
         }
     }
-  },
 };
 
 //delete is a reserved word so I'm using an alternative function name : (

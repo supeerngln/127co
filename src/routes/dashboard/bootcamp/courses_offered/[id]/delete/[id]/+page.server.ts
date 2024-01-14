@@ -6,7 +6,6 @@ import { redirect } from "@sveltejs/kit";
 export const load: PageServerLoad = async ({ cookies, params }) => {
   const enrollmentID = params.id;
 
-
   // Fetch enrolled students data with names
   const [enrollmentResult] = await db.execute<RowDataPacket[]>(
     `SELECT
@@ -22,30 +21,30 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
      FROM Course_Enrolled ce
      INNER JOIN Course_Offered co ON ce.Course_ID = co.Course_ID
      INNER JOIN Employee e ON ce.Employee_ID = e.Employee_ID
-     WHERE ce.Enrollment_ID  = "${enrollmentID}"`
+     WHERE ce.Enrollment_ID  = "${enrollmentID}"`,
   );
 
   // Employee name
   const enrollees = enrollmentResult[0];
 
   return {
-    enrollees
+    enrollees,
   };
 };
 
-export const actions = { 
+export const actions = {
   default: async ({ request, params }) => {
     const data = await request.formData();
 
     const [enrollee_deleted] = await db.execute<ResultSetHeader[]>(
-      `DELETE FROM Course_Enrolled WHERE Enrollment_ID = '${params.id}'`
-       );
-    
+      `DELETE FROM Course_Enrolled WHERE Enrollment_ID = '${params.id}'`,
+    );
+
     console.log(enrollee_deleted);
     console.log(data.get("course_ID" + " " + data.get("course_ID")));
-    throw redirect(302, `/dashboard/bootcamp/courses_offered/${data.get("course_ID")}`);  
-  }
-
+    throw redirect(
+      302,
+      `/dashboard/bootcamp/courses_offered/${data.get("course_ID")}`,
+    );
+  },
 } satisfies Actions;
-
-

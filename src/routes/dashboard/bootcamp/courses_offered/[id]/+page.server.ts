@@ -12,8 +12,7 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
      FROM Course_Offered
      INNER JOIN Instructor ON Course_Offered.Course_ID = Instructor.Course_ID
      INNER JOIN Employee ON Instructor.Employee_Id = Employee.Employee_Id
-     WHERE Course_Offered.Course_ID = "${courseID}"`
-    
+     WHERE Course_Offered.Course_ID = "${courseID}"`,
   );
 
   if (courseResult.length === 0) throw redirect(302, "/dashboard/bootcamp");
@@ -32,26 +31,24 @@ export const load: PageServerLoad = async ({ cookies, params }) => {
      FROM Course_Enrolled ce
      INNER JOIN Course_Offered co ON ce.Course_ID = co.Course_ID
      INNER JOIN Employee e ON ce.Employee_ID = e.Employee_ID
-     WHERE co.Course_ID = "${courseID}"`
+     WHERE co.Course_ID = "${courseID}"`,
   );
 
   const [slots] = await db.execute<RowDataPacket[]>(
-    
     `SELECT
     co.Course_Capacity - COUNT(*) AS slots
     FROM Course_Enrolled ce
     INNER JOIN Course_Offered co ON ce.Course_ID = co.Course_ID
-    WHERE co.Course_ID = "${courseID}"`
+    WHERE co.Course_ID = "${courseID}"`,
   );
 
   // Employee names
   const enrollments = enrollmentResult || [];
   const remainingSlots = slots[0];
 
-  
   return {
     course,
     Enrollments: enrollments,
-    remainingSlots
+    remainingSlots,
   };
 };
