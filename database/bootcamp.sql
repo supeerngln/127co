@@ -59,7 +59,7 @@ INSERT INTO Course_Enrolled (Enrollment_ID, Course_ID, Employee_ID, Start_Date, 
 ('EI107', 'WEB100', 20190014, '2023-03-05', '2023-06-05', 86),
 ('EI108', 'ADV100', 20230007, '2023-01-20', '2023-04-06', 92),
 ('EI109', 'PRO100', 20230012, '2023-03-10', '2023-06-10', 97),
-('EI110', 'ADV100', 20220001, '2023-02-05', '2023-04-20', 87);
+('EI110', 'ADV100', 20220001, '2023-02-05', '2023-04-20', 87),
 
 INSERT INTO Certificate (Certificate_ID, Employee_ID, Course_ID, Release_Date) VALUES 
 ('JAV100160001', 20160001, 'JAV100', '2023-05-15'),
